@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Warior
+  m_Controller: {fileID: 9100000, guid: f203ba6993d93d04cb1f466578e0ad19, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: cf526a2fab3912c45a719a2d86d2cee6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 60e27707d5111f540ba1d4eab573d69a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 71387f4326ccdb54494bc1e94eb6a6a6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5664972cd2dfa6744b6a8f6433d2adde, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4b93972b40b70cb4a8d96ff4b7572b1d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b0a71b2961279ae4693d35a4a1419ffa, type: 2}
