@@ -1,24 +1,34 @@
 using System.Collections;
 using UnityEngine;
+using TMPro; // Thêm thư viện TMP
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GamePlayManager gamePlayManager; // Tham chiếu đến GamePlayManager
     [SerializeField] private CastleHealth CastleHealth;
+    [SerializeField] private TMP_Text waveText; // TMP_Text để hiển thị thông tin wave
     public GameObject enemyPrefab; // Prefab của quái
     public Transform[] spawnPoints; // Các điểm spawn quái
-    public int[] enemiesPerLevel; // Số lượng quái theo mỗi level
+    public int[] enemiesPerWave; // Số lượng quái theo mỗi Wave
     public float spawnInterval = 1f; // Khoảng thời gian giữa các lần spawn
     public GameObject button; // Nút spawn quái
-    public int[] coinsPerLevel; // Số tiền nhận được cho mỗi level
+    public int[] coinsPerWave; // Số tiền nhận được cho mỗi Wave
 
-    private int currentLevel = 0; // Level hiện tại
+    private int currentWave = 0; // Wave hiện tại
     private int enemiesSpawned; // Số quái đã spawn trong level hiện tại
     private int enemiesDefeated; // Số quái đã bị tiêu diệt
 
     void Start()
     {
         button.SetActive(true); // Đảm bảo nút hiện khi bắt đầu
+        UpdateWaveText(); // Hiển thị số wave ban đầu
+    }
+
+    // Phương thức để cập nhật hiển thị số wave
+    private void UpdateWaveText()
+    {
+        int totalWaves = enemiesPerWave.Length;
+        waveText.text = $"Wave: {currentWave + 1}/{totalWaves}";
     }
 
     // Phương thức để bắt đầu spawn quái cho level hiện tại khi nhấn nút
@@ -26,7 +36,7 @@ public class SpawnManager : MonoBehaviour
     {
         CastleHealth.RestoreHealth();
         gamePlayManager.DisableUpgradeLevel(); // Vô hiệu hóa nâng cấp
-        if (currentLevel < enemiesPerLevel.Length)
+        if (currentWave < enemiesPerWave.Length)
         {
             Miner[] miners = FindObjectsOfType<Miner>();
             foreach (Miner miner in miners)
@@ -36,7 +46,7 @@ public class SpawnManager : MonoBehaviour
             button.SetActive(false); // Ẩn nút sau khi nhấn
             enemiesSpawned = 0;
             enemiesDefeated = 0;
-            StartCoroutine(SpawnEnemies(enemiesPerLevel[currentLevel]));
+            StartCoroutine(SpawnEnemies(enemiesPerWave[currentWave]));
         }
         else
         {
@@ -67,10 +77,10 @@ public class SpawnManager : MonoBehaviour
         CastleHealth.OnEnemyDefeated();
 
         // Khi tiêu diệt hết quái trong level hiện tại
-        if (enemiesDefeated >= enemiesPerLevel[currentLevel])
+        if (enemiesDefeated >= enemiesPerWave[currentWave])
         {
             // Cộng tiền theo cấp độ hiện tại
-            gamePlayManager.AddCoins(coinsPerLevel[currentLevel]);
+            gamePlayManager.AddCoins(coinsPerWave[currentWave]);
 
             // Gọi AddCoin cho tất cả các Miner trong cảnh
             Miner[] miners = FindObjectsOfType<Miner>();
@@ -87,12 +97,12 @@ public class SpawnManager : MonoBehaviour
             }
 
             // Tăng cấp độ và hiển thị lại nút để spawn cho level tiếp theo
-            currentLevel++;
+            currentWave++;
+            UpdateWaveText(); // Cập nhật hiển thị số wave
             button.SetActive(true);
 
             // Mở lại khả năng nâng cấp
             gamePlayManager.EnableUpgradeLevel();
         }
     }
-
 }
