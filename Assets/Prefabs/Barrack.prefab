@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4821749847182902465}
   - component: {fileID: 5460962911875265559}
   - component: {fileID: 3264297817081086837}
+  - component: {fileID: 4485676920369318088}
   m_Layer: 0
   m_Name: Warior (1)
   m_TagString: Player
@@ -190,7 +191,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -208,9 +209,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &4485676920369318088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760325399678838533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &3977774623389102213
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +242,7 @@ GameObject:
   - component: {fileID: 1985333475114714073}
   - component: {fileID: 2700050917296537002}
   - component: {fileID: 649397491068218401}
+  - component: {fileID: 7474216922187789328}
   m_Layer: 0
   m_Name: Warior
   m_TagString: Player
@@ -401,7 +418,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -419,9 +436,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &7474216922187789328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977774623389102213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5102308816592692230
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +469,7 @@ GameObject:
   - component: {fileID: 4091160237112592501}
   - component: {fileID: 1170537069041929508}
   - component: {fileID: 4153455743162589599}
+  - component: {fileID: 8346895912332669271}
   m_Layer: 0
   m_Name: Warior (5)
   m_TagString: Player
@@ -612,7 +645,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -630,9 +663,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &8346895912332669271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5102308816592692230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5156250941316927694
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +845,7 @@ GameObject:
   - component: {fileID: 7648658281220313990}
   - component: {fileID: 5285465648617925727}
   - component: {fileID: 4283883340131675512}
+  - component: {fileID: 4494001723156501230}
   m_Layer: 0
   m_Name: Warior (2)
   m_TagString: Player
@@ -972,7 +1021,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -990,9 +1039,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &4494001723156501230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6205435485144792234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8027172378589881176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,6 +1072,7 @@ GameObject:
   - component: {fileID: 2588704387149340826}
   - component: {fileID: 5242938426863176621}
   - component: {fileID: 6062934442360350766}
+  - component: {fileID: 8420363436151729141}
   m_Layer: 0
   m_Name: Warior (3)
   m_TagString: Player
@@ -1183,7 +1248,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1201,9 +1266,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &8420363436151729141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027172378589881176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &8684157606253813323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,6 +1299,7 @@ GameObject:
   - component: {fileID: 8177953969065766974}
   - component: {fileID: 96825752592133599}
   - component: {fileID: 5931427658307094707}
+  - component: {fileID: 8266491990338678257}
   m_Layer: 0
   m_Name: Warior (4)
   m_TagString: Player
@@ -1394,7 +1475,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: 0.7
   m_BaseOffset: 0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -1412,6 +1493,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 5
   maxAttackersPerEnemy: 3
   attackDamage: 10
+--- !u!114 &8266491990338678257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684157606253813323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
