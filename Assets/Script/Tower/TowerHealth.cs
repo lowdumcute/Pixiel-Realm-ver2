@@ -15,6 +15,7 @@ public class TowerHealth : MonoBehaviour
         currentHealth = maxHealth; // Khởi tạo máu ban đầu
         healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider ngay khi game bắt đầu
         UpdateHealthUI(); // Cập nhật giao diện UI lúc bắt đầu
+        animator.SetBool("Lose", false);
     }
 
     // Hàm nhận sát thương
@@ -55,7 +56,7 @@ public class TowerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Tower has been destroyed!");
-        animator.SetTrigger("Lose");
+        animator.SetBool("Lose", true);
 
         // Đổi tag của Tower thành "Untagged"
         gameObject.tag = "Untagged";
@@ -70,16 +71,17 @@ public class TowerHealth : MonoBehaviour
         healthSlider.gameObject.SetActive(false);
     }
 
-    // Hàm được gọi khi tiêu diệt quái (Ẩn Slider)
-    public void OnEnemyDefeated()
-    {
-        // Ẩn thanh Slider khi quái bị tiêu diệt
-        healthSlider.gameObject.SetActive(false);
-    }
+    // Hàm khôi phục lại máu cho Tower
     public void RestoreHealth()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
+        animator.SetBool("Lose", false);
         healthSlider.gameObject.SetActive(false);
+        gameObject.tag = "Tower"; // Đặt lại tag
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true); // Hiển thị các object con
+        }
     }
 }

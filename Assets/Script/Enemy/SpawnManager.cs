@@ -95,6 +95,14 @@ public class SpawnManager : MonoBehaviour
             {
                 barracksInstance.ResetUnitsPositions();
             }
+            // Tìm tất cả các đối tượng TowerHealth
+            TowerHealth[] towers = FindObjectsOfType<TowerHealth>();
+
+            // Duyệt qua tất cả và khôi phục máu
+            foreach (TowerHealth towerInstance in towers)
+            {
+                towerInstance.RestoreHealth();
+            }
 
             // Tăng cấp độ và hiển thị lại nút để spawn cho level tiếp theo
             currentWave++;
