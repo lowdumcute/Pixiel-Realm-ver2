@@ -91,6 +91,7 @@
     <Compile Include="Assets\Script\Sound\Sound.cs" />
     <Compile Include="Assets\Script\Outline\OutlineManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Script\Soldier\WariorHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Script\Tower\Bullet.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnManager.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Script\Outline\ClickableObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
+    <Compile Include="Assets\Script\Soldier\WariorHealthBar.cs" />
     <Compile Include="Assets\Script\Soldier\Warior.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
