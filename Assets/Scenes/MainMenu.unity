@@ -7563,6 +7563,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2032813699}
     m_Modifications:
     - target: {fileID: -3750335346999926319, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: name
+      value: Map1Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: -3750335346999926319, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: LoadingPanel
       value: 
       objectReference: {fileID: 2049408703}

@@ -32,16 +32,16 @@ public class WariorHealth : MonoBehaviour
         {
             healthBar.UpdateHealthBar(currentHealth, maxHealth);  // Cập nhật thanh máu ngay từ đầu
         }
+        healthbar.SetActive(false);
     }
 
     public void TakeDamage(int damage)
     {
         if (isDead) return;
+        healthbar.SetActive(true);
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
         isBeingAttacked = true;
         StartCoroutine(flash.FlashRountine());
-
-        Debug.Log("Enemy takes damage: " + damage + ", Current Health: " + currentHealth);
 
         // Cập nhật thanh máu
         if (healthBar != null)
