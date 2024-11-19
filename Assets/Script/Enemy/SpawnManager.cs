@@ -1,42 +1,55 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private GamePlayManager gamePlayManager; // Tham chiếu đến GamePlayManager
+    [SerializeField] private GamePlayManager gamePlayManager;
+    [SerializeField] private MainHouseController mainHouseController;
     [SerializeField] private CastleHealth CastleHealth;
-    public GameObject enemyPrefab; // Prefab của quái
-    public Transform[] spawnPoints; // Các điểm spawn quái
-    public int[] enemiesPerLevel; // Số lượng quái theo mỗi level
-    public float spawnInterval = 1f; // Khoảng thời gian giữa các lần spawn
-    public GameObject button; // Nút spawn quái
-    public int[] coinsPerLevel; // Số tiền nhận được cho mỗi level
+    [SerializeField] private TMP_Text waveText;
+    public GameObject enemyPrefab;
+    public Transform[] spawnPoints;
+    public int[] enemiesPerWave;
+    public float spawnInterval = 0.5f;
+    public GameObject button;
+    public int[] coinsPerWave;
 
-    private int currentLevel = 0; // Level hiện tại
-    private int enemiesSpawned; // Số quái đã spawn trong level hiện tại
-    private int enemiesDefeated; // Số quái đã bị tiêu diệt
+    private int currentWave = 0;
+    private int enemiesSpawned;
+    private int enemiesDefeated;
 
     void Start()
     {
-        button.SetActive(true); // Đảm bảo nút hiện khi bắt đầu
+        button.SetActive(true); // Hiển thị nút khi bắt đầu
+        UpdateWaveText();
     }
 
-    // Phương thức để bắt đầu spawn quái cho level hiện tại khi nhấn nút
+    private void UpdateWaveText()
+    {
+        int totalWaves = enemiesPerWave.Length;
+        waveText.text = $"Wave: {currentWave + 1}/{totalWaves}";
+    }
+
     public void SpawnCurrentLevel()
     {
+        MainHouseController.EnterCombat();
         CastleHealth.RestoreHealth();
         gamePlayManager.DisableUpgradeLevel(); // Vô hiệu hóa nâng cấp
-        if (currentLevel < enemiesPerLevel.Length)
+        Building.EnterCombat(); // Kích hoạt chế độ chiến đấu
+
+        if (currentWave < enemiesPerWave.Length)
         {
             Miner[] miners = FindObjectsOfType<Miner>();
             foreach (Miner miner in miners)
             {
                 miner.inGame();
             }
-            button.SetActive(false); // Ẩn nút sau khi nhấn
+
+            button.SetActive(false); // Ẩn nút sau khi bắt đầu wave
             enemiesSpawned = 0;
             enemiesDefeated = 0;
-            StartCoroutine(SpawnEnemies(enemiesPerLevel[currentLevel]));
+            StartCoroutine(SpawnEnemies(enemiesPerWave[currentWave]));
         }
         else
         {
@@ -60,39 +73,39 @@ public class SpawnManager : MonoBehaviour
         enemiesSpawned++;
     }
 
-    // Phương thức này được gọi khi một quái bị tiêu diệt
     public void OnEnemyDefeated()
     {
         enemiesDefeated++;
-        CastleHealth.OnEnemyDefeated();
-
-        // Khi tiêu diệt hết quái trong level hiện tại
-        if (enemiesDefeated >= enemiesPerLevel[currentLevel])
+        // Khi tiêu diệt hết quái trong wave
+        if (enemiesDefeated >= enemiesPerWave[currentWave])
         {
-            // Cộng tiền theo cấp độ hiện tại
-            gamePlayManager.AddCoins(coinsPerLevel[currentLevel]);
+            CastleHealth.OnEnemyDefeated();
+            MainHouseController.ExitCombat();
+            Building.ExitCombat(); // Thoát chế độ chiến đấu
+            gamePlayManager.AddCoins(coinsPerWave[currentWave]);
 
-            // Gọi AddCoin cho tất cả các Miner trong cảnh
             Miner[] miners = FindObjectsOfType<Miner>();
             foreach (Miner miner in miners)
             {
                 miner.AddCoin();
             }
 
-            // Gọi ResetUnitsPositions cho tất cả các Barracks trong cảnh
             Barracks[] barracks = FindObjectsOfType<Barracks>();
             foreach (Barracks barracksInstance in barracks)
             {
                 barracksInstance.ResetUnitsPositions();
             }
 
-            // Tăng cấp độ và hiển thị lại nút để spawn cho level tiếp theo
-            currentLevel++;
-            button.SetActive(true);
+            TowerHealth[] towers = FindObjectsOfType<TowerHealth>();
+            foreach (TowerHealth towerInstance in towers)
+            {
+                towerInstance.RestoreHealth();
+            }
 
-            // Mở lại khả năng nâng cấp
+            currentWave++;
+            UpdateWaveText();
+            button.SetActive(true);
             gamePlayManager.EnableUpgradeLevel();
         }
     }
-
 }

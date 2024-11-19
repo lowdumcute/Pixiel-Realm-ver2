@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b966ca680699425438562181cbaa7cbc
+guid: b0b2f2a553768e941afca8936c1e5e6a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -175,22 +175,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ribbon_Yellow_3Slides_0
+      name: UI 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 192
-        height: 64
+        y: 32
+        width: 80
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 64, y: 0, z: 64, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61d3b195932ee5249967dec2d68e590d
-      internalID: -1699266281
+      spriteID: 895c27d6b54b6d94eaa492d1b59ab324
+      internalID: -2097129138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI 1_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4778e1f1c3433ba478353f7f49054a2e
+      internalID: 2099735399
       vertices: []
       indices: 
       edges: []
@@ -206,7 +227,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ribbon_Yellow_3Slides_0: -1699266281
+      UI 1_0: -2097129138
+      UI 1_1: 2099735399
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

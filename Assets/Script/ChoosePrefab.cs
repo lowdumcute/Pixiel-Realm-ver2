@@ -1,17 +1,16 @@
-using System.Runtime.InteropServices;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class IndependentSpawner : MonoBehaviour
+public class Building : MonoBehaviour
 {
     public GameObject panel;                // UI Panel cho đối tượng này
     public GameObject prefabToSpawn;        // Prefab cụ thể cho đối tượng này
     public float detectionRadius = 5f;      // Bán kính phát hiện người chơi
     public Transform player;                // Tham chiếu đến người chơi
     [SerializeField] private GamePlayManager gamePlayManager;
-    [SerializeField] int coin = 2;
+    [SerializeField] private int coin = 2;
 
-    private bool hasSpawned = false;        // Biến riêng biệt để kiểm tra việc spawn của đối tượng này
+    private bool hasSpawned = false;        // Biến kiểm tra việc spawn của đối tượng này
+    private static bool isInCombat = false; // Biến toàn cục để kiểm soát trạng thái chiến đấu
 
     private void Start()
     {
@@ -24,8 +23,8 @@ public class IndependentSpawner : MonoBehaviour
 
     private void Update()
     {
-        // Nếu đã spawn prefab, ẩn panel và thoát sớm
-        if (hasSpawned)
+        // Ẩn panel nếu đã spawn hoặc đang trong chế độ chiến đấu
+        if (hasSpawned || isInCombat)
         {
             if (panel != null)
             {
@@ -47,28 +46,39 @@ public class IndependentSpawner : MonoBehaviour
         }
     }
 
-    // Hàm gọi khi nhấn nút Spawn trong panel
     public void OnSpawnButtonClicked()
     {
-        // Chỉ thực hiện nếu prefab chưa được spawn
-        if (prefabToSpawn != null && !hasSpawned)
+        // Kiểm tra nếu đủ tiền mới thực hiện
+        if (gamePlayManager.CanAfford(coin))
         {
-            gamePlayManager.subtractionCoins(coin);
-            // Spawn prefab tại vị trí của đối tượng hiện tại
-            Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
-            
-            // Đánh dấu là đã spawn và ẩn panel
-            hasSpawned = true;
-            if (panel != null)
+            // Chỉ thực hiện nếu prefab chưa được spawn
+            if (prefabToSpawn != null && !hasSpawned)
             {
-                panel.SetActive(false);
+                gamePlayManager.subtractionCoins(coin);
+                Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+                hasSpawned = true;
+
+                // Ẩn panel sau khi spawn
+                if (panel != null)
+                {
+                    panel.SetActive(false);
+                }
             }
+        }
+        else
+        {
+            // Rung text nếu không đủ tiền
+            gamePlayManager.ShakeCoinText();
         }
     }
 
-    // Phương thức để thay đổi prefab muốn spawn
-    public void SetPrefabToSpawn(GameObject newPrefab)
+    public static void EnterCombat()
     {
-        prefabToSpawn = newPrefab;
+        isInCombat = true;
+    }
+
+    public static void ExitCombat()
+    {
+        isInCombat = false;
     }
 }

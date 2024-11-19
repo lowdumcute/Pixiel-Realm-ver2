@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Project 2 (new).sln"
+    "dotnet.defaultSolution": "Pixiel-Realm-ver2.sln"
 }

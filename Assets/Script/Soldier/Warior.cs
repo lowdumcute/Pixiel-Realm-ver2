@@ -7,7 +7,6 @@ public class Warrior : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f; // Tầm đánh cận chiến
     [SerializeField] private float attackCooldown = 1f; // Thời gian hồi chiêu giữa các đòn đánh
-    [SerializeField] private float detectionRadius = 5f; // Bán kính phát hiện "Enemy"
     [SerializeField] private int maxAttackersPerEnemy = 3; // Số lượng Warrior tối đa có thể tấn công 1 Enemy
     public int attackDamage = 10;
     private Transform currentTarget; // Mục tiêu hiện tại (Enemy)
