@@ -29,15 +29,7 @@ public class SpawnManager : MonoBehaviour
     }
     private void updateplaytext()
     {
-        // Đảm bảo currentWave không vượt quá giới hạn của mảng coinsPerWave
-        if (currentWave < coinsPerWave.Length)
-        {
             playtext.text = $"Play: +{coinsPerWave[currentWave]}";
-        }
-        else
-        {
-            playtext.text = "Play: +0"; // Hiển thị +0 nếu đã hết wave
-        }
     }
     private void UpdateWaveText()
     {
@@ -120,6 +112,7 @@ public class SpawnManager : MonoBehaviour
             UpdateWaveText();
             button.SetActive(true);
             gamePlayManager.EnableUpgradeLevel();
+            updateplaytext();
         }
     }
 }

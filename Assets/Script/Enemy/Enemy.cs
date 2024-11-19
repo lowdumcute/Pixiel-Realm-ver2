@@ -51,12 +51,12 @@ public class Enemy : MonoBehaviour
 
         // Tìm "Tower" nếu tồn tại
         GameObject towerObject = GameObject.FindWithTag("Tower");
-        if (towerObject != null)
+        if (towerObject != null && mainTarget == null)
         {
             mainTarget = towerObject.transform;
         }
 
-        // Tìm "Main" nếu không tìm thấy Tower
+        // Tìm "Main" nếu không tìm thấy Warrior hoặc Tower
         if (mainTarget == null)
         {
             GameObject mainObject = GameObject.FindWithTag("Main");
@@ -69,10 +69,31 @@ public class Enemy : MonoBehaviour
         if (mainTarget == null)
         {
             Debug.LogWarning("Không tìm thấy mục tiêu nào (Warrior, Tower, hoặc Main).");
-            return;
+        }
+        else
+        {
+            UpdateAllEnemiesTarget(mainTarget);
         }
 
-        currentTarget = mainTarget; // Đặt mục tiêu ban đầu
+        currentTarget = mainTarget; // Đặt mục tiêu hiện tại
+    }
+
+    // Cập nhật mục tiêu cho tất cả các Enemy
+    private void UpdateAllEnemiesTarget(Transform newTarget)
+    {
+        foreach (Enemy enemy in allEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.UpdateTarget(newTarget);
+            }
+        }
+    }
+
+    // Cập nhật mục tiêu mới
+    public void UpdateTarget(Transform newTarget)
+    {
+        currentTarget = newTarget;
     }
 
     private void Update()
@@ -127,7 +148,6 @@ public class Enemy : MonoBehaviour
                 // Tìm mục tiêu mới nếu Tower bị phá hủy
                 if (towerHealth.currentHealth <= 0)
                 {
-                    Debug.Log("Tower đã bị phá hủy, tìm mục tiêu mới...");
                     FindTarget();
                 }
             }

@@ -13,7 +13,7 @@ public class WariorHealth : MonoBehaviour
 
     // Tham chiếu tới  để cập nhật thanh máu
     [SerializeField] private WariorHealthBar healthBar;
-    [SerializeField] private GameObject healthbar;
+    [SerializeField] private GameObject healthbarobj;
 
     private void Awake()
     {
@@ -32,13 +32,13 @@ public class WariorHealth : MonoBehaviour
         {
             healthBar.UpdateHealthBar(currentHealth, maxHealth);  // Cập nhật thanh máu ngay từ đầu
         }
-        healthbar.SetActive(false);
+        healthbarobj.SetActive(false);
     }
 
     public void TakeDamage(int damage)
     {
         if (isDead) return;
-        healthbar.SetActive(true);
+        healthbarobj.SetActive(true);
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
         isBeingAttacked = true;
         StartCoroutine(flash.FlashRountine());
@@ -62,7 +62,6 @@ public class WariorHealth : MonoBehaviour
 
     private void Die()
     {
-        FindObjectOfType<SpawnManager>().OnEnemyDefeated();
         Destroy(gameObject);
     }
 
