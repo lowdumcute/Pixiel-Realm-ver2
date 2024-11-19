@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private MainHouseController mainHouseController;
     [SerializeField] private CastleHealth CastleHealth;
     [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text playtext;
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
     public int[] enemiesPerWave;
@@ -23,8 +24,21 @@ public class SpawnManager : MonoBehaviour
     {
         button.SetActive(true); // Hiển thị nút khi bắt đầu
         UpdateWaveText();
+        updateplaytext();
+        
     }
-
+    private void updateplaytext()
+    {
+        // Đảm bảo currentWave không vượt quá giới hạn của mảng coinsPerWave
+        if (currentWave < coinsPerWave.Length)
+        {
+            playtext.text = $"Play: +{coinsPerWave[currentWave]}";
+        }
+        else
+        {
+            playtext.text = "Play: +0"; // Hiển thị +0 nếu đã hết wave
+        }
+    }
     private void UpdateWaveText()
     {
         int totalWaves = enemiesPerWave.Length;
