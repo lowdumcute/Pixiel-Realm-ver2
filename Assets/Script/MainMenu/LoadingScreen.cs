@@ -12,10 +12,14 @@ public class LoadingScreen : MonoBehaviour
     [SerializeField] private Slider LoadingSlider;
     // Tên Scene muốn chuyển
     [SerializeField] private string name;
-
+    public bool LoadNow;
     private void Start()
     {
-        LoadingLevel();
+        if(LoadNow)
+        {
+            LoadingLevel();
+        }
+        
     }
     public void LoadingLevel()
     {

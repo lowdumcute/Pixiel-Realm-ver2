@@ -92,9 +92,11 @@
     <Compile Include="Assets\Script\Outline\OutlineManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Script\MainMenu\ScrollView.cs" />
     <Compile Include="Assets\Script\Tower\Bullet.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnManager.cs" />
     <Compile Include="Assets\Script\Miner\Miner.cs" />
+    <Compile Include="Assets\Script\MainMenu\Lobby\Level_1.cs" />
     <Compile Include="Assets\Script\SortingOrderByY.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />

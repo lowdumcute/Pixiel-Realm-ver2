@@ -511,6 +511,7 @@ MonoBehaviour:
   LoadingPanel: {fileID: 1200869628}
   LoadingSlider: {fileID: 1716053046}
   name: MainMenu
+  LoadNow: 1
 --- !u!1 &1079845367
 GameObject:
   m_ObjectHideFlags: 0
