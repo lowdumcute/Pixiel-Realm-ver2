@@ -3373,7 +3373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ch\u01B0\u01A1ng 2"
+  m_text: Chapter 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5018,7 +5018,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_text
-      value: "Ch\u01B0\u01A1ng 1 - M\xE0n 2\n"
+      value: 'Chapter 2 - Ep 2
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372591063777760600, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_text
+      value: 'Episode 2
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7064,7 +7072,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_text
-      value: "Ch\u01B0\u01A1ng 2 - M\xE0n 1\n"
+      value: 'Chap 2 - Ep 1
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372591063777760600, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_text
+      value: 'Episode 1
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7572,7 +7588,9 @@ PrefabInstance:
       objectReference: {fileID: 331270969}
     - target: {fileID: 199861814994388411, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_text
-      value: "M\u1EE9c \u0111\u1ED9 Kh\xF3\n"
+      value: 'mode
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 199861814994388411, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_fontColor32.rgba
@@ -7667,12 +7685,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_text
+      value: 'Chapter 1 - Ep 1
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_margin.x
+      value: 109.03708
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_margin.z
+      value: -98.1646
+      objectReference: {fileID: 0}
+    - target: {fileID: 5015885038941101029, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5525936914941327476, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 3289650
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372591063777760600, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_text
+      value: 'Episode 1
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
