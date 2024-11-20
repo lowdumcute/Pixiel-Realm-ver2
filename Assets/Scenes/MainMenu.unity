@@ -7588,13 +7588,11 @@ PrefabInstance:
       objectReference: {fileID: 331270969}
     - target: {fileID: 199861814994388411, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_text
-      value: 'mode
-
-'
+      value: Decription
       objectReference: {fileID: 0}
     - target: {fileID: 199861814994388411, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2822629946536210337, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_Pivot.x
@@ -7704,13 +7702,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525936914941327476, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 3289650
+      value: 4281479730
       objectReference: {fileID: 0}
     - target: {fileID: 6372591063777760600, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
       propertyPath: m_text
       value: 'Episode 1
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6897284423400760130, guid: 9be44cdd7210cca4bb2e69e62e39b2d3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
