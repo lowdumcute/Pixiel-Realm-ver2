@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text coinText;           // Text hiển thị coin
-    [SerializeField] private MainHouseController mainHouseController; // Tham chiếu tới MainHouseController
-    [SerializeField] private int currentCoins = 2;        // Số tiền hiện tại
-    [SerializeField] private float shakeDuration = 0.5f;  // Thời gian rung text
-    [SerializeField] private float shakeMagnitude = 10f;  // Biên độ rung text
+    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private MainHouseController mainHouseController;
+    [SerializeField] private int currentCoins = 2;
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private float shakeMagnitude = 10f;
+    [SerializeField] private GameObject winPanel; // Tham chiếu tới Win Panel
 
-    private Vector3 originalPosition; // Vị trí gốc của text coin
+    private Vector3 originalPosition;
 
     private void Start()
     {
-        originalPosition = coinText.rectTransform.localPosition; // Lưu vị trí ban đầu
+        originalPosition = coinText.rectTransform.localPosition;
         UpdateCoinDisplay();
+        winPanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game
     }
 
     public void UpdateCoin(int amount)
@@ -37,7 +39,7 @@ public class GamePlayManager : MonoBehaviour
 
     public bool CanAfford(int amount)
     {
-        return currentCoins >= amount; // Kiểm tra nếu đủ tiền
+        return currentCoins >= amount;
     }
 
     private void UpdateCoinDisplay()
@@ -47,7 +49,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void ShakeCoinText()
     {
-        StopAllCoroutines(); // Dừng các coroutine rung hiện tại nếu có
+        StopAllCoroutines();
         StartCoroutine(ShakeText());
     }
 
@@ -57,7 +59,6 @@ public class GamePlayManager : MonoBehaviour
 
         while (elapsedTime < shakeDuration)
         {
-            // Tạo vị trí ngẫu nhiên trong giới hạn biên độ
             Vector3 randomOffset = (Vector3)Random.insideUnitCircle * shakeMagnitude;
             coinText.rectTransform.localPosition = originalPosition + randomOffset;
 
@@ -65,17 +66,24 @@ public class GamePlayManager : MonoBehaviour
             yield return null;
         }
 
-        // Đưa text về vị trí ban đầu sau khi rung
         coinText.rectTransform.localPosition = originalPosition;
     }
-     // Hàm để mở lại UpgradeLevel
+
     public void EnableUpgradeLevel()
     {
-        mainHouseController.canUpgrade= true;  // Mở lại UpgradeLevel
+        mainHouseController.canUpgrade = true;
     }
-      // Hàm để tạm thời vô hiệu hóa UpgradeLevel
+
     public void DisableUpgradeLevel()
     {
-        mainHouseController.canUpgrade = false; // Vô hiệu hóa UpgradeLevel
+        mainHouseController.canUpgrade = false;
+    }
+
+    // Phương thức Win
+    public void Win()
+    {
+        Debug.Log("You Win!");
+        winPanel.SetActive(true); // Hiển thị Win Panel
+        Time.timeScale = 0; // Dừng thời gian trong game
     }
 }

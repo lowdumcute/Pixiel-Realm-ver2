@@ -82,12 +82,11 @@ public class SpawnManager : MonoBehaviour
     public void OnEnemyDefeated()
     {
         enemiesDefeated++;
-        // Khi tiêu diệt hết quái trong wave
         if (enemiesDefeated >= enemiesPerWave[currentWave])
         {
             CastleHealth.OnEnemyDefeated();
             MainHouseController.ExitCombat();
-            Building.ExitCombat(); // Thoát chế độ chiến đấu
+            Building.ExitCombat();
             gamePlayManager.AddCoins(coinsPerWave[currentWave]);
 
             Miner[] miners = FindObjectsOfType<Miner>();
@@ -109,10 +108,18 @@ public class SpawnManager : MonoBehaviour
             }
 
             currentWave++;
-            UpdateWaveText();
-            button.SetActive(true);
-            gamePlayManager.EnableUpgradeLevel();
-            updateplaytext();
+            if (currentWave < enemiesPerWave.Length)
+            {
+                UpdateWaveText();
+                button.SetActive(true);
+                gamePlayManager.EnableUpgradeLevel();
+                updateplaytext();
+            }
+            else
+            {
+                // Nếu là wave cuối, gọi phương thức Win
+                gamePlayManager.Win();
+            }
         }
     }
 }
