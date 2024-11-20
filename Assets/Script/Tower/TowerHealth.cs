@@ -69,6 +69,9 @@ public class TowerHealth : MonoBehaviour
 
         // Ẩn thanh máu
         healthSlider.gameObject.SetActive(false);
+
+        // Thông báo cho tất cả các Enemy cập nhật mục tiêu
+        Enemy.NotifyAllEnemiesToFindTarget();
     }
 
     // Hàm khôi phục lại máu cho Tower

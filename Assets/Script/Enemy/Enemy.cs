@@ -4,26 +4,36 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float attackRange = 1.5f; // Tầm đánh cận chiến
-    [SerializeField] private float attackCooldown = 1f; // Thời gian hồi chiêu
-    [SerializeField] private float detectionRadius = 5f; // Bán kính phát hiện mục tiêu
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 1f;
     public int attackDamage = 10;
 
-    private Transform mainTarget; // Mục tiêu chính
     private Transform currentTarget; // Mục tiêu hiện tại
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private float lastAttackTime;
 
-    // Static list giữ tất cả Enemy
+    // Danh sách ưu tiên mục tiêu
+    [SerializeField] private List<string> targetPriority = new List<string> { "Warior", "Tower", "Main" };
+
+    // Danh sách tĩnh chứa tất cả Enemy
     public static List<Enemy> allEnemies = new List<Enemy>();
+
+    private void Awake()
+    {
+        // Thêm Enemy vào danh sách
+        allEnemies.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        // Loại bỏ Enemy khỏi danh sách khi bị hủy
+        allEnemies.Remove(this);
+    }
 
     private void Start()
     {
-        // Thêm vào danh sách tất cả Enemy
-        allEnemies.Add(this);
-
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -34,64 +44,29 @@ public class Enemy : MonoBehaviour
         FindTarget();
     }
 
-    private void OnDestroy()
-    {
-        // Xóa khỏi danh sách khi Enemy bị hủy
-        allEnemies.Remove(this);
-    }
-
     public void FindTarget()
     {
-        // Tìm "Warrior" nếu tồn tại
-        GameObject warriorObject = GameObject.FindWithTag("Warior");
-        if (warriorObject != null)
-        {
-            mainTarget = warriorObject.transform;
-        }
+        Transform newTarget = null;
 
-        // Tìm "Tower" nếu tồn tại
-        GameObject towerObject = GameObject.FindWithTag("Tower");
-        if (towerObject != null && mainTarget == null)
+        foreach (string tag in targetPriority)
         {
-            mainTarget = towerObject.transform;
-        }
-
-        // Tìm "Main" nếu không tìm thấy Warrior hoặc Tower
-        if (mainTarget == null)
-        {
-            GameObject mainObject = GameObject.FindWithTag("Main");
-            if (mainObject != null)
+            GameObject targetObject = GameObject.FindWithTag(tag);
+            if (targetObject != null)
             {
-                mainTarget = mainObject.transform;
+                newTarget = targetObject.transform;
+                break; // Ngừng tìm khi đã tìm thấy mục tiêu đầu tiên trong danh sách ưu tiên
             }
         }
 
-        if (mainTarget == null)
+        if (newTarget == null)
         {
-            Debug.LogWarning("Không tìm thấy mục tiêu nào (Warrior, Tower, hoặc Main).");
-        }
-        else
-        {
-            UpdateAllEnemiesTarget(mainTarget);
+            Debug.LogWarning("Không tìm thấy mục tiêu nào theo thứ tự ưu tiên.");
         }
 
-        currentTarget = mainTarget; // Đặt mục tiêu hiện tại
+        UpdateTarget(newTarget);
     }
 
-    // Cập nhật mục tiêu cho tất cả các Enemy
-    private void UpdateAllEnemiesTarget(Transform newTarget)
-    {
-        foreach (Enemy enemy in allEnemies)
-        {
-            if (enemy != null)
-            {
-                enemy.UpdateTarget(newTarget);
-            }
-        }
-    }
-
-    // Cập nhật mục tiêu mới
-    public void UpdateTarget(Transform newTarget)
+    private void UpdateTarget(Transform newTarget)
     {
         currentTarget = newTarget;
     }
@@ -106,7 +81,6 @@ public class Enemy : MonoBehaviour
 
         float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
 
-        // Nếu trong tầm đánh
         if (distanceToTarget <= attackRange)
         {
             agent.isStopped = true;
@@ -121,13 +95,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            // Di chuyển về phía mục tiêu
             agent.isStopped = false;
             agent.SetDestination(currentTarget.position);
             animator.SetBool("Attack", false);
             animator.SetBool("Run", true);
 
-            // Lật hướng Enemy theo hướng di chuyển
             Vector3 direction = agent.velocity;
             if (direction.x != 0)
             {
@@ -138,18 +110,14 @@ public class Enemy : MonoBehaviour
 
     private void AttackCurrentTarget()
     {
+        if (currentTarget == null) return;
+
         if (currentTarget.CompareTag("Tower"))
         {
             TowerHealth towerHealth = currentTarget.GetComponent<TowerHealth>();
             if (towerHealth != null)
             {
                 towerHealth.TakeDamage(attackDamage);
-
-                // Tìm mục tiêu mới nếu Tower bị phá hủy
-                if (towerHealth.currentHealth <= 0)
-                {
-                    FindTarget();
-                }
             }
         }
         else if (currentTarget.CompareTag("Main"))
@@ -159,24 +127,26 @@ public class Enemy : MonoBehaviour
             {
                 castleHealth.TakeDamage(attackDamage);
             }
+        }
         else if (currentTarget.CompareTag("Warior"))
         {
-            WariorHealth wariorHealth  = currentTarget.GetComponent<WariorHealth>();
-            if (wariorHealth != null)
+            WarriorHealth warriorHealth = currentTarget.GetComponent<WarriorHealth>();
+            if (warriorHealth != null)
             {
-                wariorHealth.TakeDamage(attackDamage);
-                if (wariorHealth.currentHealth <= 0)
-                {
-                    FindTarget();
-                }
+                warriorHealth.TakeDamage(attackDamage);
             }
-        }
         }
     }
 
-    // Gây sát thương từ Animation Event
-    public void OnAttackEvent()
+    // Phương thức tĩnh để tất cả Enemy tìm mục tiêu mới
+    public static void NotifyAllEnemiesToFindTarget()
     {
-        AttackCurrentTarget();
+        foreach (Enemy enemy in allEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.FindTarget();
+            }
+        }
     }
 }
