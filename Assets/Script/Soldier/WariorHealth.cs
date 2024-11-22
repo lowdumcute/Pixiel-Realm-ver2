@@ -15,7 +15,8 @@ public class WarriorHealth : MonoBehaviour
     [SerializeField] private WariorHealthBar healthBar;
     [SerializeField] private GameObject healthbarobj;
 
-    private void Awake()
+
+    private void Start()
     {
         flash = GetComponent<Flash>();
         // Nếu chưa có tham chiếu tới healthBar, tìm kiếm nó trong con
@@ -23,10 +24,6 @@ public class WarriorHealth : MonoBehaviour
         {
             healthBar = GetComponentInChildren<WariorHealthBar>();
         }
-    }
-
-    private void Start()
-    {
         currentHealth = maxHealth;
         if (healthBar != null)
         {

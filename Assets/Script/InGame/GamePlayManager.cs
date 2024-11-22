@@ -1,5 +1,13 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+
+[System.Serializable]
+public class LevelReward
+{
+    public GameObject[] itemReward; // Các Item phần thưởng
+    public int[] rewardQuantities; // Số lượng tương ứng của từng itemReward
+}
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -9,6 +17,7 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 10f;
     [SerializeField] private GameObject winPanel; // Tham chiếu tới Win Panel
+    [SerializeField] private LevelReward[] levelRewards; // Danh sách phần thưởng
 
     private Vector3 originalPosition;
 
@@ -79,11 +88,43 @@ public class GamePlayManager : MonoBehaviour
         mainHouseController.canUpgrade = false;
     }
 
+
+
     // Phương thức Win
     public void Win()
     {
         Debug.Log("You Win!");
         winPanel.SetActive(true); // Hiển thị Win Panel
         Time.timeScale = 0; // Dừng thời gian trong game
+        UpdateRewards();
+    }
+
+    private void UpdateRewards()
+    {
+        foreach (LevelReward reward in levelRewards)
+        {
+            for (int i = 0; i < reward.itemReward.Length; i++)
+            {
+                GameObject rewardObject = reward.itemReward[i];
+                int quantity = reward.rewardQuantities[i];
+
+                if (rewardObject != null)
+                {
+                    Item itemComponent = rewardObject.GetComponent<Item>();
+                    if (itemComponent != null)
+                    {
+                        itemComponent.UpdateQuantity(quantity); // Cập nhật số lượng vào Item
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"Item component is missing on {rewardObject.name}");
+                    }
+                }
+            }
+        }
+    }
+    public void ChangeSence()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }

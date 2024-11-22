@@ -11,7 +11,7 @@ public class LoadingScreen : MonoBehaviour
     //Thanh Loading
     [SerializeField] private Slider LoadingSlider;
     // Tên Scene muốn chuyển
-    [SerializeField] private string name;
+    [SerializeField] private string namesence;
     public bool LoadNow;
     private void Start()
     {
@@ -25,7 +25,7 @@ public class LoadingScreen : MonoBehaviour
     {
        
         LoadingPanel.SetActive(true);
-        StartCoroutine(LoadScene(name));
+        StartCoroutine(LoadScene(namesence));
     }
 
     // Update is called once per frame
