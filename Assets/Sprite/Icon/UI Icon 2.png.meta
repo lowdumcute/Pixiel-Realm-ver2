@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a7fcbc5300f2ba498293ba0303d4c35
+guid: 5ad5ee6bf391c3d4e96c88a2b357bda9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -175,43 +175,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cell Item_0
+      name: UI Icon 2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 64
-        height: 64
+        y: 88
+        width: 68
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3adb378c9919c945be23a3ff42d3462
-      internalID: 2126754772
+      spriteID: 8fbddd0611185fe42bdd9adaae449029
+      internalID: 445401969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cell Item_1
+      name: UI Icon 2_1
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 88
+        y: 88
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 2, y: 2, z: 2, w: 2}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ad319c9ada68eb49abf9b517db75825
-      internalID: -128596107
+      spriteID: d005b7596e65af14f97a638a479f1e15
+      internalID: 153179288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Icon 2_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 49
+        width: 28
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b34e915416529d34b966d9d81daff170
+      internalID: -738152408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI Icon 2_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 7
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed9fb635a8604404598604379bde2557
+      internalID: 19710732
       vertices: []
       indices: 
       edges: []
@@ -227,8 +269,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cell Item_0: 2126754772
-      Cell Item_1: -128596107
+      UI Icon 2_0: 445401969
+      UI Icon 2_1: 153179288
+      UI Icon 2_2: -738152408
+      UI Icon 2_3: 19710732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
