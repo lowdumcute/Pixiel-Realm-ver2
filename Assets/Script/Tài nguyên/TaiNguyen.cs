@@ -8,7 +8,7 @@ public class TaiNguyen : ScriptableObject
 {
     //các chỉ số tài nguyên
     public int Gold = 0;
-    public int MaxEnergy = 30;
-    public int Energy = 30;  
+    public int MaxEnergy ;
+    public int Energy ;  
     public int Star = 0;
 }

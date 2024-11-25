@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class MainHouseController : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class MainHouseController : MonoBehaviour
         public GameObject[] objects; // Các object của mỗi level
     }
 
-    [SerializeField] private GameObject buttonUpgrade; // Nút nâng cấp
+    [SerializeField] private GameObject UpgradePanel; // Panel nâng cấp
+    [SerializeField] private GameObject LevelObj;
+    [SerializeField] private TMP_Text LevelText;
+    [SerializeField] private GamePlayManager gamePlayManager;
+    [SerializeField] private int coin = 2;
     public LevelObjects[] levels; // Mảng chứa các cấp độ và các object liên quan
     public float detectionRadius = 5f; // Bán kính phát hiện người chơi
     private static bool isInCombat = false; // Trạng thái chiến đấu
@@ -18,6 +23,7 @@ public class MainHouseController : MonoBehaviour
 
     private void Start()
     {
+        LevelText.text = "Level";
         // Tìm đối tượng có tag "Player"
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
@@ -30,8 +36,10 @@ public class MainHouseController : MonoBehaviour
         }
 
         // Khởi tạo hiển thị nút nâng cấp và cập nhật các đối tượng cấp độ
-        buttonUpgrade.SetActive(false);
+        UpgradePanel.SetActive(false);
+        LevelObj.SetActive(false);
         UpdateLevelVisibility();
+        UpdateLevelText();
     }
 
     private void Update()
@@ -39,7 +47,8 @@ public class MainHouseController : MonoBehaviour
         // Kiểm tra nếu đang trong trạng thái chiến đấu thì luôn ẩn nút nâng cấp
         if (isInCombat)
         {
-            buttonUpgrade.SetActive(false);
+            UpgradePanel.SetActive(false);
+            LevelObj.SetActive(false);
             return;
         }
 
@@ -51,16 +60,19 @@ public class MainHouseController : MonoBehaviour
             // Hiển thị nút nâng cấp khi người chơi ở trong bán kính và nhà chính có thể nâng cấp
             if (distanceToPlayer <= detectionRadius && canUpgrade)
             {
-                buttonUpgrade.SetActive(true);
+                UpgradePanel.SetActive(true);
+                LevelObj.SetActive(true);
             }
             else
             {
-                buttonUpgrade.SetActive(false);
+                UpgradePanel.SetActive(false);
+                LevelObj.SetActive(false);
             }
         }
         else
         {
-            buttonUpgrade.SetActive(false);
+            UpgradePanel.SetActive(false);
+            LevelObj.SetActive(false);
         }
     }
 
@@ -68,10 +80,20 @@ public class MainHouseController : MonoBehaviour
     {
         if (currentLevel < levels.Length - 1)
         {
-            currentLevel++;
-            canUpgrade = enable && currentLevel < levels.Length - 1; // Kiểm tra cấp tối đa
-            UpdateLevelVisibility();
-            Debug.Log("Đã nâng cấp lên cấp độ: " + currentLevel);
+            if (gamePlayManager.CanAfford(coin))
+            {
+                gamePlayManager.subtractionCoins(coin);
+                currentLevel++;
+                canUpgrade = enable && currentLevel < levels.Length - 1; // Kiểm tra cấp tối đa
+                UpdateLevelVisibility();
+                Debug.Log("Đã nâng cấp lên cấp độ: " + currentLevel);
+                UpdateLevelText();
+            }
+            else
+            {
+                // Rung text nếu không đủ tiền
+                gamePlayManager.ShakeCoinText();
+            }
         }
         else
         {
@@ -79,7 +101,10 @@ public class MainHouseController : MonoBehaviour
             Debug.Log("Đã đạt cấp độ tối đa.");
         }
     }
-
+    private void UpdateLevelText()
+    {
+        LevelText.text = $"Level {currentLevel +1}";
+    }
     private void UpdateLevelVisibility()
     {
         // Hiển thị các object của cấp độ hiện tại và thấp hơn

@@ -5,6 +5,7 @@ public class AssetDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text goldText; // Tham chiếu đến UI hiển thị Gold
     [SerializeField] private TMP_Text starText; // Tham chiếu đến UI hiển thị Star
+    [SerializeField] private TextMeshProUGUI energyText; // UI hiển thị năng lượng
 
     private void Start()
     {
@@ -29,6 +30,11 @@ public class AssetDisplay : MonoBehaviour
                 starText.text = $"{Asset.instance.GetStar()}";
             else
                 Debug.LogError("StarText is not assigned!");
+
+            if (energyText != null)
+                energyText.text = $"{Asset.instance.GetEnergy()} / {Asset.instance.maxEnergy}";
+            else
+                Debug.LogError("EnergyText is not assigned!");
         }
     }
 }
