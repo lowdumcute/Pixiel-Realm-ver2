@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4520a2facc4811549841c95365cd33b3
+guid: 7a037cb75e963d64db9bee67043b46e5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -175,22 +175,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_Hover_9Slides_0
+      name: Equipment Panel_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 178
-        height: 184
+        x: 37
+        y: 21
+        width: 91
+        height: 88
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 16, z: 9, w: 10}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9bec8ac7d31444385fbb4d54b73f1a
-      internalID: -1824492374
+      spriteID: 3cb8671eddace48439463a659005d640
+      internalID: -394194972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 38
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7676cb1986c82ed4fbe33d52853a8504
+      internalID: 1034031792
       vertices: []
       indices: 
       edges: []
@@ -206,7 +227,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Button_Hover_9Slides_0: -1824492374
+      Equipment Panel_0: -394194972
+      Equipment Panel_1: 1034031792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

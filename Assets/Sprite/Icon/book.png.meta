@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4520a2facc4811549841c95365cd33b3
+guid: aed2afcca213d6447899030fcd09f7f0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -175,22 +175,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_Hover_9Slides_0
+      name: book_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 178
-        height: 184
+        x: 21
+        y: 18
+        width: 23
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 16, z: 9, w: 10}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9bec8ac7d31444385fbb4d54b73f1a
-      internalID: -1824492374
+      spriteID: 4b853507497fe2149a6df0eabfa619a8
+      internalID: 247536382
       vertices: []
       indices: 
       edges: []
@@ -206,7 +206,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Button_Hover_9Slides_0: -1824492374
+      book_0: 247536382
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

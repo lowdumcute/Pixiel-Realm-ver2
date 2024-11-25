@@ -1,29 +1,39 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float attackRange = 1.5f; // Tầm đánh cận chiến
-    [SerializeField] private float attackCooldown = 1f; // Thời gian hồi chiêu giữa các đòn đánh
-    [SerializeField] private float detectionRadius = 5f; // Bán kính phát hiện "Tower"
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float attackCooldown = 1f;
     public int attackDamage = 10;
-    private Transform mainTarget; // Mục tiêu chính (Main)
-    private Transform currentTarget; // Mục tiêu hiện tại (Tower hoặc Main)
+
+    private Transform currentTarget; // Mục tiêu hiện tại
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private float lastAttackTime;
 
-    // Static list để giữ tất cả enemy cùng tham chiếu đến
+    // Danh sách ưu tiên mục tiêu
+    [SerializeField] private List<string> targetPriority = new List<string> { "Warior", "Tower", "Main" };
+
+    // Danh sách tĩnh chứa tất cả Enemy
     public static List<Enemy> allEnemies = new List<Enemy>();
+
+    private void Awake()
+    {
+        // Thêm Enemy vào danh sách
+        allEnemies.Add(this);
+    }
+
+    private void OnDestroy()
+    {
+        // Loại bỏ Enemy khỏi danh sách khi bị hủy
+        allEnemies.Remove(this);
+    }
 
     private void Start()
     {
-        // Thêm bản sao của enemy vào danh sách tất cả enemy
-        allEnemies.Add(this);
-
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -31,66 +41,49 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        findTarget();
+        FindTarget();
     }
 
-    private void OnDestroy()
+    public void FindTarget()
     {
-        // Xóa khỏi danh sách khi enemy bị hủy
-        allEnemies.Remove(this);
-    }
+        Transform newTarget = null;
 
-    private void findTarget()
-    {
-        // Tìm mục tiêu có tag "Tower"
-        GameObject towerObject = GameObject.FindWithTag("Tower");
-        if (towerObject != null)
+        foreach (string tag in targetPriority)
         {
-            mainTarget = towerObject.transform;
-            currentTarget = mainTarget; // Đặt mục tiêu ban đầu là Tower
-        }
-        else
-        {
-            // Nếu không tìm thấy Tower, tìm đối tượng có tag "Main"
-            GameObject mainObject = GameObject.FindWithTag("Main");
-            if (mainObject != null)
+            GameObject targetObject = GameObject.FindWithTag(tag);
+            if (targetObject != null)
             {
-                mainTarget = mainObject.transform;
-                currentTarget = mainTarget; // Đặt mục tiêu là Main
-            }
-            else
-            {
-                Debug.LogWarning("Không tìm thấy đối tượng có tag 'Tower' hoặc 'Main'.");
+                newTarget = targetObject.transform;
+                break; // Ngừng tìm khi đã tìm thấy mục tiêu đầu tiên trong danh sách ưu tiên
             }
         }
 
-        // Tìm lại mục tiêu cho tất cả các enemy khác
-        foreach (Enemy enemy in allEnemies)
+        if (newTarget == null)
         {
-            enemy.SetTarget(mainTarget);  // Đặt lại mục tiêu cho tất cả enemy
+            Debug.LogWarning("Không tìm thấy mục tiêu nào theo thứ tự ưu tiên.");
         }
+
+        UpdateTarget(newTarget);
     }
 
-    // Đặt lại mục tiêu cho enemy
-    private void SetTarget(Transform target)
+    private void UpdateTarget(Transform newTarget)
     {
-        currentTarget = target;
+        currentTarget = newTarget;
     }
 
     private void Update()
     {
         if (currentTarget == null)
         {
-            findTarget(); // Tìm lại Tower nếu currentTarget là null
+            FindTarget(); // Tìm lại mục tiêu nếu bị null
             return;
         }
 
-        // Di chuyển đến mục tiêu hiện tại và kiểm tra khoảng cách
         float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
 
-        // Nếu trong tầm đánh, kích hoạt animation attack và đặt bool Attack = true
         if (distanceToTarget <= attackRange)
         {
+            agent.isStopped = true;
             animator.SetBool("Attack", true);
             animator.SetBool("Run", false);
 
@@ -102,14 +95,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            // Nếu ra ngoài tầm đánh, ngừng attack và chạy
+            agent.isStopped = false;
+            agent.SetDestination(currentTarget.position);
             animator.SetBool("Attack", false);
             animator.SetBool("Run", true);
 
-            agent.isStopped = false;
-            agent.SetDestination(currentTarget.position);
-
-            // Cập nhật hướng di chuyển và thay đổi flipX chỉ khi di chuyển
             Vector3 direction = agent.velocity;
             if (direction.x != 0)
             {
@@ -118,22 +108,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Tấn công mục tiêu hiện tại
     private void AttackCurrentTarget()
     {
+        if (currentTarget == null) return;
+
         if (currentTarget.CompareTag("Tower"))
         {
             TowerHealth towerHealth = currentTarget.GetComponent<TowerHealth>();
             if (towerHealth != null)
             {
-                towerHealth.TakeDamage(attackDamage); // Gây damage lên tower
-
-                // Kiểm tra nếu Tower đã hết máu, tìm Tower khác cho tất cả các enemy
-                if (towerHealth.currentHealth <= 0)
-                {
-                    Debug.Log("Tower is destroyed, finding new target...");
-                    findTarget(); // Tìm lại Tower mới nếu Tower hiện tại đã chết
-                }
+                towerHealth.TakeDamage(attackDamage);
             }
         }
         else if (currentTarget.CompareTag("Main"))
@@ -141,14 +125,28 @@ public class Enemy : MonoBehaviour
             CastleHealth castleHealth = currentTarget.GetComponent<CastleHealth>();
             if (castleHealth != null)
             {
-                castleHealth.TakeDamage(attackDamage); // Gây damage lên Castle
+                castleHealth.TakeDamage(attackDamage);
+            }
+        }
+        else if (currentTarget.CompareTag("Warior"))
+        {
+            WarriorHealth warriorHealth = currentTarget.GetComponent<WarriorHealth>();
+            if (warriorHealth != null)
+            {
+                warriorHealth.TakeDamage(attackDamage);
             }
         }
     }
 
-    // Method này sẽ được gọi từ Animation Event để gây sát thương khi animation đến vị trí yêu cầu
-    public void OnAttackEvent()
+    // Phương thức tĩnh để tất cả Enemy tìm mục tiêu mới
+    public static void NotifyAllEnemiesToFindTarget()
     {
-        AttackCurrentTarget(); // Gây damage vào lúc sự kiện được kích hoạt
+        foreach (Enemy enemy in allEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.FindTarget();
+            }
+        }
     }
 }

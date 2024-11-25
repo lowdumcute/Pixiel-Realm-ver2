@@ -8,6 +8,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private MainHouseController mainHouseController;
     [SerializeField] private CastleHealth CastleHealth;
     [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text playtext;
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
     public int[] enemiesPerWave;
@@ -23,8 +24,13 @@ public class SpawnManager : MonoBehaviour
     {
         button.SetActive(true); // Hiển thị nút khi bắt đầu
         UpdateWaveText();
+        updateplaytext();
+        
     }
-
+    private void updateplaytext()
+    {
+            playtext.text = $"Play: +{coinsPerWave[currentWave]}";
+    }
     private void UpdateWaveText()
     {
         int totalWaves = enemiesPerWave.Length;
@@ -76,12 +82,11 @@ public class SpawnManager : MonoBehaviour
     public void OnEnemyDefeated()
     {
         enemiesDefeated++;
-        // Khi tiêu diệt hết quái trong wave
         if (enemiesDefeated >= enemiesPerWave[currentWave])
         {
             CastleHealth.OnEnemyDefeated();
             MainHouseController.ExitCombat();
-            Building.ExitCombat(); // Thoát chế độ chiến đấu
+            Building.ExitCombat();
             gamePlayManager.AddCoins(coinsPerWave[currentWave]);
 
             Miner[] miners = FindObjectsOfType<Miner>();
@@ -103,9 +108,18 @@ public class SpawnManager : MonoBehaviour
             }
 
             currentWave++;
-            UpdateWaveText();
-            button.SetActive(true);
-            gamePlayManager.EnableUpgradeLevel();
+            if (currentWave < enemiesPerWave.Length)
+            {
+                UpdateWaveText();
+                button.SetActive(true);
+                gamePlayManager.EnableUpgradeLevel();
+                updateplaytext();
+            }
+            else
+            {
+                // Nếu là wave cuối, gọi phương thức Win
+                gamePlayManager.Win();
+            }
         }
     }
 }

@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class WarriorHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;
     public int currentHealth;
@@ -8,39 +10,35 @@ public class EnemyHealth : MonoBehaviour
     private bool isDead = false;
     private bool isBeingAttacked = false;
 
-    // Tham chiếu tới EnemyHealthBar để cập nhật thanh máu
-    [SerializeField] private EnemyHealthBar healthBar;
-    [SerializeField] private Enemy enemy;
 
-    private void Awake()
+    // Tham chiếu tới  để cập nhật thanh máu
+    [SerializeField] private WariorHealthBar healthBar;
+    [SerializeField] private GameObject healthbarobj;
+
+
+    private void Start()
     {
         flash = GetComponent<Flash>();
         // Nếu chưa có tham chiếu tới healthBar, tìm kiếm nó trong con
         if (healthBar == null)
         {
-            healthBar = GetComponentInChildren<EnemyHealthBar>();
+            healthBar = GetComponentInChildren<WariorHealthBar>();
         }
-    }
-
-    private void Start()
-    {
         currentHealth = maxHealth;
         if (healthBar != null)
         {
             healthBar.UpdateHealthBar(currentHealth, maxHealth);  // Cập nhật thanh máu ngay từ đầu
         }
+        healthbarobj.SetActive(false);
     }
 
     public void TakeDamage(int damage)
     {
         if (isDead) return;
-
-        // Gọi FindTarget từ instance cụ thể của Enemy
+        healthbarobj.SetActive(true);
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
         isBeingAttacked = true;
         StartCoroutine(flash.FlashRountine());
-
-        Debug.Log("Enemy takes damage: " + damage + ", Current Health: " + currentHealth);
 
         // Cập nhật thanh máu
         if (healthBar != null)
@@ -61,7 +59,6 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        FindObjectOfType<SpawnManager>().OnEnemyDefeated();
         Destroy(gameObject);
     }
 

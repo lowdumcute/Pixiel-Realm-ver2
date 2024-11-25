@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4520a2facc4811549841c95365cd33b3
+guid: e6c0fa6c6f20e094489f194f50a934c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -175,22 +175,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Button_Hover_9Slides_0
+      name: ItemIcon1_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 178
-        height: 184
+        x: 0
+        y: 30
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 16, z: 9, w: 10}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9bec8ac7d31444385fbb4d54b73f1a
-      internalID: -1824492374
+      spriteID: de2c97478244823469b4b2d6b0a35da3
+      internalID: -2008872332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemIcon1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50758dd396769414aa6abfd04230ff29
+      internalID: -138229602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemIcon1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767644fc1b0d82f4597ff471566fe2d5
+      internalID: 1350772686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ItemIcon1_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5be11b98656623041b880d5ae0f8b4de
+      internalID: -957785332
       vertices: []
       indices: 
       edges: []
@@ -206,7 +269,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Button_Hover_9Slides_0: -1824492374
+      ItemIcon1_0: -2008872332
+      ItemIcon1_1: -138229602
+      ItemIcon1_2: 1350772686
+      ItemIcon1_3: -957785332
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
