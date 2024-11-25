@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingPanel: {fileID: 1200869628}
   LoadingSlider: {fileID: 1716053046}
-  name: MainMenu
+  namesence: MainMenu
   LoadNow: 1
 --- !u!1 &1079845367
 GameObject:
