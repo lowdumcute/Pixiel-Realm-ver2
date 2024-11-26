@@ -8,6 +8,7 @@ public class SkillSlot : MonoBehaviour
     public SkillSO skillSO;
     public Image SkillIcon;
 
+    public bool isUnlock;
     private void OnValidate()
     {
         UpdateUI();
