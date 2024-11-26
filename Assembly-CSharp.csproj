@@ -95,6 +95,7 @@
     <Compile Include="Assets\Script\construction\Barracks\Barracks.cs" />
     <Compile Include="Assets\Script\Item\Item.cs" />
     <Compile Include="Assets\Script\Skill Tree\SkillSlot.cs" />
+    <Compile Include="Assets\Script\Skill Tree\SkillTreeOnOf.cs" />
     <Compile Include="Assets\Script\MainMenu\ScrollView.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnManager.cs" />
     <Compile Include="Assets\Script\construction\Tower\TowerHealth.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Assets\Script\Efcet\Flash.cs" />
     <Compile Include="Assets\Script\InGame\PlayerController.cs" />
     <Compile Include="Assets\Script\Asset.cs" />
+    <Compile Include="Assets\Script\Skill Tree\SkillTreeManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
   </ItemGroup>
   <ItemGroup>
