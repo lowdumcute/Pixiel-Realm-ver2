@@ -65,8 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\construction\Miner\Miner.cs" />
-    <Compile Include="Assets\Script\Tài nguyên\TaiNguyen.cs" />
-    <Compile Include="Assets\Script\AssetDisplay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy.cs" />
@@ -110,6 +108,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Script\Tài nguyên\AssetManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealthBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
@@ -125,6 +124,7 @@
     <Compile Include="Assets\Script\Sound\AudioManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\Script\Tài nguyên\Asset.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
@@ -132,8 +132,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Script\Efcet\Flash.cs" />
     <Compile Include="Assets\Script\InGame\PlayerController.cs" />
-    <Compile Include="Assets\Script\Asset.cs" />
     <Compile Include="Assets\Script\Skill Tree\SkillTreeManager.cs" />
+    <Compile Include="Assets\Script\Tài nguyên\AssetDisplay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
   </ItemGroup>
   <ItemGroup>

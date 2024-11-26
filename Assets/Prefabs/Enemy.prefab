@@ -448,8 +448,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1.5
   attackCooldown: 1
-  detectionRadius: 3
   attackDamage: 10
+  targetPriority:
+  - Warior
+  - Tower
+  - Main
 --- !u!195 &3449158610531178952
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -543,6 +546,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1857682539073817231}
+  enemy: {fileID: 0}
 --- !u!114 &1857682539073817231
 MonoBehaviour:
   m_ObjectHideFlags: 0
