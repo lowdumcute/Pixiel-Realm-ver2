@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\construction\Miner\Miner.cs" />
+    <Compile Include="Assets\Script\Tài nguyên\TaiNguyen.cs" />
     <Compile Include="Assets\Script\AssetDisplay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Script\construction\Tower\Tower.cs" />
     <Compile Include="Assets\Script\Outline\OutlineManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Script\Tài nguyên\UI_TaiNguyen.cs" />
     <Compile Include="Assets\Script\Soldier\WariorHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Script\construction\Barracks\Barracks.cs" />
