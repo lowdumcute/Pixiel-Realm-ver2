@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +7,9 @@ using UnityEngine.UI;
 
 public class SkillSlot : MonoBehaviour
 {
-    
+    //danh sách các skill cần mở khóa trước khi mở skll này
+    public List<SkillSlot> listSkill;
+
     public SkillSO skillSO;
     public Image SkillIcon;
     public TextMeshProUGUI levelText;
@@ -16,6 +19,8 @@ public class SkillSlot : MonoBehaviour
 
     public int currentlevel;
     public bool isUnlocked;
+    public static event Action<SkillSlot> onAbilitypointSpent;
+    public static event Action<SkillSlot> onMaxLevelSkill;
     private void OnValidate()
     {
         UpdateUI();
@@ -33,7 +38,7 @@ public class SkillSlot : MonoBehaviour
         {
             unlockedPanel.SetActive(false);
             SkillButton.interactable = true;
-            levelText.gameObject.SetActive(true);
+            
             levelText.text = $"{currentlevel} / {skillSO.maxLevel}"; 
             SkillIcon.color = Color.white;
             
@@ -41,7 +46,7 @@ public class SkillSlot : MonoBehaviour
         else
         {
             unlockedPanel.SetActive(true);
-            levelText.gameObject.SetActive(false);
+            levelText.text = "LOCKED";
             SkillButton.interactable = false;
             SkillIcon.color = Color.grey;
             
@@ -52,7 +57,31 @@ public class SkillSlot : MonoBehaviour
         if (isUnlocked && currentlevel < skillSO.maxLevel)
         {
             currentlevel++;
+            onAbilitypointSpent?.Invoke(this);
             UpdateUI();
+            if (currentlevel >= skillSO.maxLevel)
+            {
+                onMaxLevelSkill?.Invoke(this);
+                UpdateUI();
+            }
+            
         }
     }
+    public void Unlocked()
+    {
+        isUnlocked = true;
+        UpdateUI();
+    }
+    public bool CanbeUnlock()
+    {
+        foreach(SkillSlot slot in listSkill)
+        {
+            if(!slot.isUnlocked || slot.currentlevel < slot.skillSO.maxLevel)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
