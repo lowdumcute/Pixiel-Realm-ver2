@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8869863110046201364}
   - component: {fileID: 3740157815317367819}
   - component: {fileID: 4245546082750148980}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: SkillIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8732082937665114022}
   - component: {fileID: 7101366031638422584}
   - component: {fileID: 8849338176584540335}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 5539789211660576016}
   - component: {fileID: 5439068464096677545}
   - component: {fileID: 1829468078678625503}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5415924147026256765}
   - component: {fileID: 8192315060310131220}
   - component: {fileID: 3649262460287058763}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Button (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
