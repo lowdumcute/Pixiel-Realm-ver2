@@ -46,7 +46,7 @@ public class SkillSlot : MonoBehaviour
         }
         if(isUnlocked)
         {
-            unlockedPanel.SetActive(false);
+            
             SkillButton.interactable = true;
             
             levelText.text = $"{currentlevel} / {skillSO.maxLevel}"; 
@@ -55,7 +55,7 @@ public class SkillSlot : MonoBehaviour
         }
         else
         {
-            unlockedPanel.SetActive(true);
+            
             levelText.text = "LOCKED";
             SkillButton.interactable = false;
             SkillIcon.color = Color.grey;
