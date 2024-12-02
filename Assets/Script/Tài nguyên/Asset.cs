@@ -1,32 +1,14 @@
 using UnityEngine;
-public class Asset : MonoBehaviour
-{
-    public static Asset instance;
 
-    public static float Gold = 0;
-    public static float Star = 0;
+[CreateAssetMenu(fileName = "NewTaiNguyen", menuName = "ScriptableObjects/Asset")]
+public class Asset : ScriptableObject
+{
+    public float Gold = 0;
+    public float Star = 0;
     public int currentEnergy;
     public int maxEnergy = 30;
 
-    private void Awake()
-    {
-        // Singleton Pattern
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject); // Giữ đối tượng giữa các cảnh
-        }
-        else
-        {
-            Destroy(gameObject); // Hủy đối tượng nếu đã có instance
-        }
-    }
 
-    private void Start()
-    {
-        // Đặt năng lượng hiện tại bằng năng lượng tối đa khi bắt đầu
-        currentEnergy = maxEnergy;
-    }
 
     public void AddToElement(Item.ItemType type, int amount)
     {
@@ -58,22 +40,7 @@ public class Asset : MonoBehaviour
         currentEnergy += amount;
         if (currentEnergy > maxEnergy)
         {
-            currentEnergy = maxEnergy; // Đảm bảo không vượt quá giới hạn
+            currentEnergy = maxEnergy; // Không vượt quá giới hạn
         }
-    }
-
-    public float GetGold()
-    {
-        return Gold;
-    }
-
-    public float GetStar()
-    {
-        return Star;
-    }
-
-    public int GetEnergy()
-    {
-        return currentEnergy;
     }
 }

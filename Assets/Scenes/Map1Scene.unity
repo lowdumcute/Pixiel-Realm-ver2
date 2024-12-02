@@ -1983,6 +1983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   quantityText: {fileID: 135313178}
+  asset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   quantity: 0
 --- !u!114 &306850298
 MonoBehaviour:
@@ -5626,6 +5627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   quantityText: {fileID: 219305979}
+  asset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   quantity: 0
 --- !u!114 &794814730
 MonoBehaviour:
@@ -12416,7 +12418,7 @@ MonoBehaviour:
   CastleHealth: {fileID: 7011844071968235148}
   waveText: {fileID: 1193798482}
   playtext: {fileID: 395891195}
-  enemyPrefab: {fileID: 4382375389969782728, guid: 06cfc4ed8b62fc84b9c1703eeee8258f, type: 3}
+  enemyPrefab: {fileID: 6972387883976033761, guid: 06cfc4ed8b62fc84b9c1703eeee8258f, type: 3}
   spawnPoints:
   - {fileID: 1807681746}
   enemiesPerWave: 050000000a00000019000000

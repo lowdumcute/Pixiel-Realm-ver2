@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillTreeOnOf : MonoBehaviour
+public class PanelActive : MonoBehaviour
 {
     [SerializeField] private GameObject Panel;
     [SerializeField] private Button openPanel;

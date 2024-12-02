@@ -5,7 +5,9 @@ public class Item : MonoBehaviour
 {
     public enum ItemType { Gold, Star } // Các loại Item
     public ItemType Type;
+
     [SerializeField] private TMP_Text quantityText; // Text hiển thị số lượng
+    [SerializeField] private Asset asset;          // Tham chiếu tới ScriptableObject Asset
     public int quantity; // Số lượng hiện tại
 
     public void UpdateQuantity(int amount)
@@ -13,18 +15,25 @@ public class Item : MonoBehaviour
         quantity += amount; // Cập nhật số lượng
         UpdateText();
 
-            Asset.instance.AddToElement(Type, amount);
+        if (asset != null)
+        {
+            asset.AddToElement(Type, amount); // Cập nhật tài nguyên trong Asset
+        }
+        else
+        {
+            Debug.LogError("Asset reference is missing!");
+        }
     }
 
     private void UpdateText()
     {
         if (quantityText != null)
         {
-            quantityText.text = quantity.ToString(); // Cập nhật UI hiển thị số lượng
+            quantityText.text = quantity.ToString(); // Cập nhật UI
         }
         else
         {
-            Debug.LogWarning("Đéo tìm thấy text");
+            Debug.LogWarning("Quantity Text is not assigned!");
         }
     }
 }

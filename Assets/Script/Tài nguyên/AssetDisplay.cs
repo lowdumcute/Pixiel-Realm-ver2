@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class AssetDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text goldText; // Tham chiếu đến UI hiển thị Gold
-    [SerializeField] private TMP_Text starText; // Tham chiếu đến UI hiển thị Star
-    [SerializeField] private TextMeshProUGUI energyText; // UI hiển thị năng lượng
+    [SerializeField] private TMP_Text goldText;
+    [SerializeField] private TMP_Text starText;
+    [SerializeField] private TMP_Text energyText;
 
     private void Start()
     {
@@ -14,27 +14,27 @@ public class AssetDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        UpdateDisplay(); // Cập nhật UI khi script được kích hoạt
+        UpdateDisplay();
     }
 
     public void UpdateDisplay()
     {
-        if (Asset.instance != null)
+        if (AssetManager.instance != null)
         {
+            Asset assetData = AssetManager.instance.GetAssetData();
+
             if (goldText != null)
-                goldText.text = $"{Asset.instance.GetGold()}";
-            else
-                Debug.LogError("GoldText is not assigned!");
+                goldText.text = $"{assetData.Gold}";
 
             if (starText != null)
-                starText.text = $"{Asset.instance.GetStar()}";
-            else
-                Debug.LogError("StarText is not assigned!");
+                starText.text = $"{assetData.Star}";
 
             if (energyText != null)
-                energyText.text = $"{Asset.instance.GetEnergy()} / {Asset.instance.maxEnergy}";
-            else
-                Debug.LogError("EnergyText is not assigned!");
+                energyText.text = $"{assetData.currentEnergy} / {assetData.maxEnergy}";
+        }
+        else
+        {
+            Debug.LogError("AssetManager instance is not available!");
         }
     }
 }

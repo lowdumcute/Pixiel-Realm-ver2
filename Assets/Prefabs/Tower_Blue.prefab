@@ -228,6 +228,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthSlider: {fileID: 6692536243581974494}
+  VFXDestroy: {fileID: 2890243120471878462, guid: da387a8fa70ef23489fa625272f6013c, type: 3}
 --- !u!95 &6198265198346400113
 Animator:
   serializedVersion: 5

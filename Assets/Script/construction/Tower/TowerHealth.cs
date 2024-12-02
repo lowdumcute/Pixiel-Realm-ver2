@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class TowerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
     public Slider healthSlider; // Thanh Slider hiển thị máu
+    public GameObject VFXDestroy;
     private Animator animator;
 
     private void Start()
@@ -69,6 +71,12 @@ public class TowerHealth : MonoBehaviour
 
         // Ẩn thanh máu
         healthSlider.gameObject.SetActive(false);
+
+        if (VFXDestroy != null)
+        {
+            GameObject vfx = Instantiate(VFXDestroy, transform.position, Quaternion.identity);
+            Destroy(vfx, 0.6f);
+        }
 
         // Thông báo cho tất cả các Enemy cập nhật mục tiêu
         Enemy.NotifyAllEnemiesToFindTarget();
