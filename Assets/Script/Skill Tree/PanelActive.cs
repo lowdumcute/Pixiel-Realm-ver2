@@ -19,13 +19,13 @@ public class PanelActive : MonoBehaviour
     private void Open()
     {
 
-        AudioManager.instance.PlaySFX("Pop");
+        AudioManager.instance.PlaySFX("Button");
         Panel.SetActive(true);
     }
     private void Close()
     {
 
-        AudioManager.instance.PlaySFX("Pop");
+        AudioManager.instance.PlaySFX("Button");
         Panel.SetActive(false);
     }
     

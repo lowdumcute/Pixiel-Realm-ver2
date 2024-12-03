@@ -649,8 +649,10 @@ MonoBehaviour:
   - name: MainMenuTheme
     Clip: {fileID: 8300000, guid: 985f7964ff4c8be4bae82fd45ed20ed7, type: 3}
   SFXSound:
-  - name: 
+  - name: Pop
     Clip: {fileID: 8300000, guid: a2c32a1f241a3e2429ade109ba6e3fdd, type: 3}
+  - name: Button
+    Clip: {fileID: 8300000, guid: e09c5fb41705ced4680d5d59eb6dc6e0, type: 3}
   musicSource: {fileID: 2101902370}
   SFX_Source: {fileID: 296259431}
 --- !u!4 &27704864
