@@ -37,6 +37,7 @@ public class Level_1 : MonoBehaviour
 
     private void OpenPanel(int panelIndex)
     {
+        
         // Đóng tất cả panel trước
         foreach (Animator animator in animators)
         {
@@ -49,6 +50,7 @@ public class Level_1 : MonoBehaviour
         // Mở panel tương ứng
         if (panelIndex >= 0 && panelIndex < Panels.Length)
         {
+            AudioManager.instance.PlaySFX("Button");
             Panels[panelIndex].SetActive(true);
             animators[panelIndex].SetTrigger("Open");
         }
@@ -63,6 +65,7 @@ public class Level_1 : MonoBehaviour
 
             // Ẩn panel sau khi animation đóng hoàn tất
             StartCoroutine(DisablePanelAfterAnimation(Panels[panelIndex], animators[panelIndex]));
+            AudioManager.instance.PlaySFX("Button");
         }
     }
 

@@ -28,10 +28,13 @@ public class UIController : MonoBehaviour
 
     private void OpenPanel()
     {
+        AudioManager.instance.PlaySFX("Pop");
         ani.SetTrigger("Open");
     }
     private void ClosePanel()
     {
+
+        AudioManager.instance.PlaySFX("Pop");
         ani.SetTrigger("Close");
     }
     public void MusicVolume()
