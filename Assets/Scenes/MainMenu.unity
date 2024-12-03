@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 4508030}
   - component: {fileID: 4508031}
   - component: {fileID: 4508032}
+  - component: {fileID: 4508033}
   m_Layer: 5
   m_Name: SkillTree
   m_TagString: Untagged
@@ -259,6 +260,7 @@ MonoBehaviour:
   Panel: {fileID: 345516954}
   openPanel: {fileID: 107127767}
   closePanel: {fileID: 643343924}
+  animator: {fileID: 4508033}
 --- !u!114 &4508032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +284,27 @@ MonoBehaviour:
   - {fileID: 185974299}
   text: {fileID: 391367794}
   availabePoint: 15
+--- !u!95 &4508033
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508027}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 071eeb12b65eedd4d9ad36197433251e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4944149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,6 +3729,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4296,7 +4323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0003503508, y: -50}
+  m_AnchoredPosition: {x: -0.0004944298, y: -50}
   m_SizeDelta: {x: 0, y: 1224.63}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &557594767
@@ -6803,6 +6830,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557594766}
     m_Modifications:
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7691,7 +7722,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 831795582}
   m_HandleRect: {fileID: 831795581}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10642,6 +10673,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333999489}
     m_Modifications:
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11187,6 +11222,7 @@ MonoBehaviour:
   Panel: {fileID: 2117253762}
   openPanel: {fileID: 1892561918}
   closePanel: {fileID: 35302301}
+  animator: {fileID: 0}
 --- !u!1 &1775245049
 GameObject:
   m_ObjectHideFlags: 0
@@ -11309,6 +11345,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 557594766}
     m_Modifications:
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11706,6 +11746,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333999489}
     m_Modifications:
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12353,6 +12397,9 @@ MonoBehaviour:
   goldText: {fileID: 4944151}
   starText: {fileID: 986750152}
   energyText: {fileID: 57734186}
+  timeEnergyText: {fileID: 0}
+  attacktext: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!4 &1949526045
 Transform:
   m_ObjectHideFlags: 0
@@ -12602,6 +12649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1333999489}
     m_Modifications:
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
     - target: {fileID: 3071788215234403887, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -13739,7 +13790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_text
-      value: 0 / 3
+      value: 3 / 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829468078678625503, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
       objectReference: {fileID: 0}
     - target: {fileID: 1948506615522629500, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_IsActive
