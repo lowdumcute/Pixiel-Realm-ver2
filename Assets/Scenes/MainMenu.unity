@@ -2067,7 +2067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 117.109985, y: 87.83002}
+  m_AnchoredPosition: {x: 117.11035, y: 87.83008}
   m_SizeDelta: {x: 1394.69, y: 418.54}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &266287109
@@ -6551,7 +6551,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 820068555}
   m_OnClick:
     m_PersistentCalls:
@@ -10384,7 +10384,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b45e679d38ec6fc40a5d4e1c38af9347, type: 2}
     - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: isUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: SkillButton
@@ -10395,9 +10395,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 309848703}
     - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: assetDisplay
+      value: 
+      objectReference: {fileID: 1949526044}
+    - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: unlockedPanel
       value: 
       objectReference: {fileID: 366938938}
+    - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: listSkill.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: listSkill.Array.data[0]
+      value: 
+      objectReference: {fileID: 359259591}
     - target: {fileID: 4019598739469915416, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: m_SizeDelta.x
       value: -701.93
@@ -13641,7 +13653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1937410134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15222,6 +15234,10 @@ PrefabInstance:
       propertyPath: relatedStat
       value: 
       objectReference: {fileID: 1190731582}
+    - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
+      propertyPath: assetDisplay
+      value: 
+      objectReference: {fileID: 1949526044}
     - target: {fileID: 3649262460287058763, guid: 059ab4608fd2638449978cb559d9492a, type: 3}
       propertyPath: unlockedPanel
       value: 

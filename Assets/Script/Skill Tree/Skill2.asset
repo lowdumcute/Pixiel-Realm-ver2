@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillName: Health
   SkillIcon: {fileID: 985474680, guid: 4a589f40d30475f459d175615c460da8, type: 3}
-  currentLevel: 3
+  currentLevel: 0
   maxLevel: 3
