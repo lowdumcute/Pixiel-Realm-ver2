@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillSlot : MonoBehaviour
 {
+    [SerializeField] AssetDisplay assetDisplay;
     public List<SkillSlot> listSkill;
     public SkillSO skillSO;
     public Image SkillIcon;
@@ -28,15 +29,27 @@ public class SkillSlot : MonoBehaviour
 
     public void OpenPanel()
     {
-        // Kiểm tra nếu skill đã đạt max level thì không cho mở panel
-        if (skillSO.currentLevel >= skillSO.maxLevel)
+        // Kiểm tra nếu skill chưa được unlock, không cho phép mở panel
+        if (!isUnlocked)
         {
-            unlockedPanel.SetActive(false);
+            unlockedPanel.SetActive(false); // Tắt panel nếu skill chưa được unlock
         }
         else
         {
-            unlockedPanel.SetActive(true);
+            // Kiểm tra nếu skill đã đạt max level thì không cho mở panel
+            if (skillSO.currentLevel >= skillSO.maxLevel)
+            {
+                unlockedPanel.SetActive(false); // Tắt panel nếu skill đã đạt max level
+            }
+            else
+            {
+                unlockedPanel.SetActive(true); // Mở panel nếu skill chưa đạt max level
+            }
         }
+    }
+    public void ClosePnael()
+    {
+        unlockedPanel.SetActive(false);
     }
 
     private void OnValidate()
@@ -92,6 +105,7 @@ public class SkillSlot : MonoBehaviour
                 onMaxLevelSkill?.Invoke(this);
                 UpdateUI(); // Cập nhật lại UI khi đạt max level
             }
+            assetDisplay.UpdateDisplay();
         }
     }
 
@@ -116,18 +130,31 @@ public class SkillSlot : MonoBehaviour
     public void Unlocked()
     {
         isUnlocked = true;
-        UpdateUI();
+        UpdateUI();  // Cập nhật giao diện sau khi skill được mở khóa
+        OpenPanel(); // Mở panel sau khi skill được mở khóa
     }
 
+    // Kiểm tra và tự động mở khóa skill nếu tất cả skill trong list đạt max level
     public bool CanbeUnlock()
     {
+        bool allSkillsMaxLevel = true;
+
+        // Kiểm tra tất cả các skill trong listSkill
         foreach (SkillSlot slot in listSkill)
         {
-            if (!slot.isUnlocked || slot.skillSO.currentLevel < slot.skillSO.maxLevel)
+            if (slot.skillSO.currentLevel < slot.skillSO.maxLevel)  // Nếu có bất kỳ skill nào chưa đạt max level
             {
-                return false;
+                allSkillsMaxLevel = false;
+                break;  // Thoát vòng lặp nếu phát hiện có skill chưa max level
             }
         }
-        return true;
+
+        // Nếu tất cả skill đều đạt max level và skill hiện tại chưa unlock, thì mở khóa
+        if (allSkillsMaxLevel && !isUnlocked)
+        {
+            Unlocked(); // Mở khóa skill
+        }
+
+        return allSkillsMaxLevel;  // Trả về true nếu tất cả skill đạt max level
     }
 }

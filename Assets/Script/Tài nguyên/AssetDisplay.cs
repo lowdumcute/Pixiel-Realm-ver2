@@ -6,15 +6,46 @@ public class AssetDisplay : MonoBehaviour
     [SerializeField] private TMP_Text goldText;
     [SerializeField] private TMP_Text starText;
     [SerializeField] private TMP_Text energyText;
+    [SerializeField] private TMP_Text timeEnergyText; // Hiển thị thời gian hồi năng lượng
+    [SerializeField] private TMP_Text attacktext;
+    [SerializeField] private TMP_Text healthText;
 
     private void Start()
     {
+        // Lắng nghe sự kiện hồi năng lượng
+        if (AssetManager.instance != null)
+        {
+            Asset.OnEnergyReplenished += UpdateDisplay;
+        }
+
         UpdateDisplay();
     }
 
     private void OnEnable()
     {
         UpdateDisplay();
+    }
+
+    private void OnDisable()
+    {
+        // Hủy đăng ký sự kiện khi không còn cần thiết
+        if (AssetManager.instance != null)
+        {
+            Asset.OnEnergyReplenished -= UpdateDisplay;
+        }
+    }
+
+    private void Update()
+    {
+        // Cập nhật thời gian hồi năng lượng mỗi frame
+        if (AssetManager.instance != null)
+        {
+            Asset assetData = AssetManager.instance.GetAssetData();
+            assetData.UpdateEnergy(Time.deltaTime); // Cập nhật năng lượng theo thời gian
+
+            if (timeEnergyText != null)
+                timeEnergyText.text = assetData.GetEnergyRechargeTime(); // Hiển thị thời gian hồi năng lượng
+        }
     }
 
     public void UpdateDisplay()
@@ -31,6 +62,12 @@ public class AssetDisplay : MonoBehaviour
 
             if (energyText != null)
                 energyText.text = $"{assetData.currentEnergy} / {assetData.maxEnergy}";
+
+            if (attacktext != null)
+                attacktext.text = $"{assetData.Attack}";
+
+            if (healthText != null)
+                healthText.text = $"{assetData.Health}";
         }
         else
         {
