@@ -6,6 +6,7 @@ public class Miner : MonoBehaviour
     [SerializeField] public int coin = 2; // Số coin nhận được
     [SerializeField] private GamePlayManager gamePlayManager;
     [SerializeField] private GameObject buttonUpgrade;
+    [SerializeField] private GameObject Light;
     public float detectionRadius = 5f; // Bán kính phát hiện người chơi
     private static bool isInCombat = false; // Trạng thái chiến đấu
     private bool isPlaying = true; // Kiểm tra trạng thái in-game của Miner
@@ -17,6 +18,7 @@ public class Miner : MonoBehaviour
         gamePlayManager = FindObjectOfType<GamePlayManager>();
         mainHouseController = FindObjectOfType<MainHouseController>();
         buttonUpgrade.SetActive(false);
+        Light.SetActive (false);
 
         // Tìm đối tượng có tag "Player" khi khởi động
         GameObject playerObject = GameObject.FindWithTag("Player");
@@ -42,6 +44,7 @@ public class Miner : MonoBehaviour
     public void AddCoin()
     {
         gamePlayManager.AddCoins(coin);
+        Light.SetActive (false);
     }
 
     void Update()
@@ -77,6 +80,8 @@ public class Miner : MonoBehaviour
     public void inGame()
     {
         isPlaying = false;
+        Light.SetActive (true);
+        
     }
 
     public static void EnterCombat()

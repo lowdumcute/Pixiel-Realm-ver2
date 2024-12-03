@@ -40,9 +40,9 @@ public class SkillTreeManager : MonoBehaviour
     {
         foreach(SkillSlot slot in skillSlots)
         {
-            if(!slot.isUnlocked && slot.CanbeUnlock())
+            if(!slot.isUnlocked && slot.CanbeUnlock())  // Nếu skill chưa được unlock và có thể unlock
             {
-                slot.Unlocked();
+                slot.Unlocked(); // Mở khóa skill
             }
         }
     }
@@ -83,7 +83,6 @@ public class SkillTreeManager : MonoBehaviour
 
                 break;
              default:
-                Debug.Log("Không rõ tên skill muốn nâng");
                 break;
         }
     }
