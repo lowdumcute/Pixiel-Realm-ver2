@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;     // Tầm đánh cận chiến
+    [SerializeField] private Asset asset;  
     public float moveSpeed = 10f;                          // Tốc độ di chuyển
-    [SerializeField] private int attackDamage = 5;
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(attackDamage);
+                enemyHealth.TakeDamage(asset.Attack);
             }
         }
         isAttacking = false; // Reset lại trạng thái tấn công sau khi tấn công

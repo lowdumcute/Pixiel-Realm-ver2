@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -7,93 +6,128 @@ using UnityEngine.UI;
 
 public class SkillSlot : MonoBehaviour
 {
-    //danh sách các skill cần mở khóa trước khi mở skll này
     public List<SkillSlot> listSkill;
-
-    //Skill SO đã tạo 
     public SkillSO skillSO;
-
-    //ảnh của Button
     public Image SkillIcon;
-
-    //hiển thị skill mở khóa hoặc đang ở level nào
     public TextMeshProUGUI levelText;
-
-    //nút nhấn khi nâng cấp 
     public Button SkillButton;
-
-    //Panel để hiện lên xem nâng cấp hay không
     public GameObject unlockedPanel;
 
-    public int currentlevel;
     public bool isUnlocked;
-    //Event gọi trong SkillTreemanager
+
+    public Stats relatedStat; // Tham chiếu đến Stats liên quan
+
     public static event Action<SkillSlot> onAbilitypointSpent;
     public static event Action<SkillSlot> onMaxLevelSkill;
 
-    private void OnValidate()//hàm này được gọi khi mà có thay đổi thông số của gameobject
+    private void Start()
+    {
+        unlockedPanel.SetActive(false);
+        PreviewNextStats(); // Cập nhật preview stats ban đầu
+    }
+
+    public void OpenPanel()
+    {
+        // Kiểm tra nếu skill đã đạt max level thì không cho mở panel
+        if (skillSO.currentLevel >= skillSO.maxLevel)
+        {
+            unlockedPanel.SetActive(false);
+        }
+        else
+        {
+            unlockedPanel.SetActive(true);
+        }
+    }
+
+    private void OnValidate()
     {
         UpdateUI();
     }
 
-    
-    //Cập nhật UI
     void UpdateUI()
     {
-        if (skillSO!= null)
+        if (skillSO != null)
         {
             SkillIcon.sprite = skillSO.SkillIcon;
         }
-        if(isUnlocked)
+
+        if (isUnlocked)
         {
-            
             SkillButton.interactable = true;
-            
-            levelText.text = $"{currentlevel} / {skillSO.maxLevel}"; 
+            levelText.text = $"{skillSO.currentLevel} / {skillSO.maxLevel}";
             SkillIcon.color = Color.white;
-            
+
+            // Ẩn panel nếu đã đạt max level
+            if (skillSO.currentLevel >= skillSO.maxLevel)
+            {
+                unlockedPanel.SetActive(false); // Không cho mở panel nữa khi max level
+            }
+            else
+            {
+                unlockedPanel.SetActive(true); // Nếu chưa max level, vẫn cho phép mở panel
+            }
         }
         else
         {
-            
             levelText.text = "LOCKED";
             SkillButton.interactable = false;
             SkillIcon.color = Color.grey;
-            
+            unlockedPanel.SetActive(false); // Ẩn panel khi chưa mở khóa
         }
+
+        PreviewNextStats(); // Cập nhật giá trị preview sau mỗi thay đổi
     }
-    //Hàm nâng cấp Level
-    public void TryToUpgrade() 
+
+    public void TryToUpgrade()
     {
-        if (isUnlocked && currentlevel < skillSO.maxLevel)
+        if (isUnlocked && skillSO.currentLevel < skillSO.maxLevel)
         {
-            currentlevel++;
+            skillSO.currentLevel++;
             onAbilitypointSpent?.Invoke(this);
+            UpdateStats(); // Cập nhật Stats sau khi nâng cấp
             UpdateUI();
-            if (currentlevel >= skillSO.maxLevel)
+
+            if (skillSO.currentLevel >= skillSO.maxLevel)
             {
                 onMaxLevelSkill?.Invoke(this);
-                UpdateUI();
+                UpdateUI(); // Cập nhật lại UI khi đạt max level
             }
-            
         }
     }
-    //2 hàm kiểm tra xem có nâng cấp hay không
+
+    void UpdateStats()
+    {
+        if (relatedStat != null)
+        {
+            int statIncrease = 10; // Giá trị tăng mỗi level
+            relatedStat.UpdateQuantity(statIncrease);
+        }
+    }
+
+    void PreviewNextStats()
+    {
+        if (relatedStat != null && isUnlocked && skillSO.currentLevel < skillSO.maxLevel)
+        {
+            int nextStatIncrease = 10; // Giá trị preview mỗi level
+            relatedStat.PreviewNextQuantity(nextStatIncrease);
+        }
+    }
+
     public void Unlocked()
     {
         isUnlocked = true;
         UpdateUI();
     }
+
     public bool CanbeUnlock()
     {
-        foreach(SkillSlot slot in listSkill)
+        foreach (SkillSlot slot in listSkill)
         {
-            if(!slot.isUnlocked || slot.currentlevel < slot.skillSO.maxLevel)
+            if (!slot.isUnlocked || slot.skillSO.currentLevel < slot.skillSO.maxLevel)
             {
                 return false;
             }
         }
         return true;
     }
-
 }

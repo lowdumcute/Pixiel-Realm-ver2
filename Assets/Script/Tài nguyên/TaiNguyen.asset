@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
-  Gold: 0
-  Star: 0
-  currentEnergy: 0
+  Gold: 100
+  Star: 1
+  currentEnergy: 20
   maxEnergy: 30
+  Health: 100
+  Attack: 80
