@@ -344,11 +344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c612eb5ffa00a554c90b673e5207377f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assetDisplay: {fileID: 0}
   listSkill: []
   skillSO: {fileID: 0}
   SkillIcon: {fileID: 4245546082750148980}
   levelText: {fileID: 1829468078678625503}
   SkillButton: {fileID: 8192315060310131220}
   unlockedPanel: {fileID: 0}
-  currentlevel: 0
   isUnlocked: 0
+  relatedStat: {fileID: 0}
