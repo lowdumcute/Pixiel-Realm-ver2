@@ -647,8 +647,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSound:
   - name: MainMenuTheme
-    Clip: {fileID: 8300000, guid: 69ddcee5083b54a4dbd1790581cfb674, type: 3}
-  SFXSound: []
+    Clip: {fileID: 8300000, guid: 985f7964ff4c8be4bae82fd45ed20ed7, type: 3}
+  SFXSound:
+  - name: 
+    Clip: {fileID: 8300000, guid: a2c32a1f241a3e2429ade109ba6e3fdd, type: 3}
   musicSource: {fileID: 2101902370}
   SFX_Source: {fileID: 296259431}
 --- !u!4 &27704864
@@ -8437,7 +8439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2909.2, y: -9.300049}
+  m_AnchoredPosition: {x: -2909.2002, y: -9.299805}
   m_SizeDelta: {x: 102.22, y: 90}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1291911755
@@ -9418,7 +9420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 197.96997, y: -17.099976}
+  m_AnchoredPosition: {x: 197.96973, y: -17.100098}
   m_SizeDelta: {x: 137.49, y: 135.16}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1523914648
