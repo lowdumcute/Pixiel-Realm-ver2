@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6616b8e5af73a4e47b32372e5ecef51f, type: 3}
   m_Name: Skill2
   m_EditorClassIdentifier: 
+  SkillIsUnlocked: 0
   SkillName: Health
   SkillIcon: {fileID: 985474680, guid: 4a589f40d30475f459d175615c460da8, type: 3}
+  GoldNeed: 300
+  StartNeed: 0
   currentLevel: 0
   maxLevel: 3
