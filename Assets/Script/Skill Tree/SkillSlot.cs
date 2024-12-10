@@ -3,7 +3,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class SkillSlot : MonoBehaviour
 {
@@ -19,30 +18,13 @@ public class SkillSlot : MonoBehaviour
 
     public Stats relatedStat; // Tham chiếu đến Stats liên quan
 
-    //Tham số đến tài nguyên đang có 
-    public Asset asset;
-    // TextMessPro để hiện thông tin tài nguyên cần nâng cấp 
-    //Chỉ số vàng
-    public TextMeshProUGUI Goldcurrent;
-    public TextMeshProUGUI GoldNeed;
-    //chỉ số ngôi sao 
-    public TextMeshProUGUI StarCurrent;
-    public TextMeshProUGUI StarNeed;
-    
-    //Event Trigger khi nâng cấp 
     public static event Action<SkillSlot> onAbilitypointSpent;
     public static event Action<SkillSlot> onMaxLevelSkill;
 
     private void Start()
     {
-        isUnlocked = skillSO.SkillIsUnlocked;
-        GoldUI();
-
-
         unlockedPanel.SetActive(false);
-
         PreviewNextStats(); // Cập nhật preview stats ban đầu
-        UpdateUI();
     }
 
     public void OpenPanel()
@@ -106,16 +88,6 @@ public class SkillSlot : MonoBehaviour
             unlockedPanel.SetActive(false); // Ẩn panel khi chưa mở khóa
         }
 
-        if (asset.Gold >= skillSO.GoldNeed)
-        {
-            Goldcurrent.color = Color.yellow;
-            SkillButton.interactable = true;
-        }
-        else
-        {
-            Goldcurrent.color = Color.red;
-            SkillButton.interactable = false;
-        }
         PreviewNextStats(); // Cập nhật giá trị preview sau mỗi thay đổi
     }
 
@@ -124,12 +96,7 @@ public class SkillSlot : MonoBehaviour
         if (isUnlocked && skillSO.currentLevel < skillSO.maxLevel)
         {
             skillSO.currentLevel++;
-            //trigger event
             onAbilitypointSpent?.Invoke(this);
-            //trừ tiền sau khi nâng cấp
-            asset.Gold -= skillSO.GoldNeed;
-            //cập nhật lại tiền sau nâng cấp
-            GoldUI();
             UpdateStats(); // Cập nhật Stats sau khi nâng cấp
             UpdateUI();
 
@@ -141,12 +108,7 @@ public class SkillSlot : MonoBehaviour
             assetDisplay.UpdateDisplay();
         }
     }
-    //Cập nhật lại chữ tiền 
-    private void GoldUI()
-    {
-        Goldcurrent.text = asset.Gold.ToString();
-        GoldNeed.text = "/ " + skillSO.GoldNeed.ToString();
-    }
+
     void UpdateStats()
     {
         if (relatedStat != null)
@@ -168,10 +130,8 @@ public class SkillSlot : MonoBehaviour
     public void Unlocked()
     {
         isUnlocked = true;
-        skillSO.SkillIsUnlocked = true;
         UpdateUI();  // Cập nhật giao diện sau khi skill được mở khóa
-        GameObject Panel = transform.GetChild(2).gameObject; // Mở panel sau khi skill được mở khóa
-        Panel.SetActive(false);
+        OpenPanel(); // Mở panel sau khi skill được mở khóa
     }
 
     // Kiểm tra và tự động mở khóa skill nếu tất cả skill trong list đạt max level

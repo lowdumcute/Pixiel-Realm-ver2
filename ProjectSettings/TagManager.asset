@@ -10,8 +10,6 @@ TagManager:
   - Main
   - Miner
   - Warior
-  - skill
-  - Panel
   layers:
   - Default
   - TransparentFX

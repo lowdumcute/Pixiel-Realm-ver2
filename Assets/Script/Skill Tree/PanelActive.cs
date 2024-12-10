@@ -8,10 +8,9 @@ public class PanelActive : MonoBehaviour
     [SerializeField] private GameObject Panel;
     [SerializeField] private Button openPanel;
     [SerializeField] private Button closePanel;
-    [SerializeField] private Animator animator;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        
         openPanel.onClick.AddListener(Open);
         closePanel.onClick.AddListener(Close);
         Panel.SetActive(false);
@@ -19,28 +18,15 @@ public class PanelActive : MonoBehaviour
 
     private void Open()
     {
-        if(animator != null)
-        {
-            animator.SetTrigger("Open");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Button");
-            Panel.SetActive(true);
-        }
+
+        AudioManager.instance.PlaySFX("Button");
+        Panel.SetActive(true);
     }
     private void Close()
     {
-        if (animator != null)
-        {
-            animator.SetTrigger("Close");
-        }
-        else
-        {
-            AudioManager.instance.PlaySFX("Button");
-            Panel.SetActive(false);
-        }
-        
+
+        AudioManager.instance.PlaySFX("Button");
+        Panel.SetActive(false);
     }
     
 }
