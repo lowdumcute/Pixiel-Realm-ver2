@@ -73,11 +73,12 @@ public class SkillTreeManager : MonoBehaviour
     private void SkillSpent(SkillSlot skilllot)
     {
         string skillname = skilllot.name;
+
         switch(skillname)
         {
-            //Tên skill muốn nâng
+            //Tên skill của Skill SO
             case "1":
-                //Gọi hàm nâng cấp 1 lần
+                //Gọi hàm nâng cấp 1 lần hoặc mở khóa skill mới dựa theo tên
                 break;
             case "":
 
