@@ -12,6 +12,14 @@ public class Asset : ScriptableObject
     public float Health = 100;
     public int Attack = 10;
 
+    [Header("Quản lý Item")]
+    [SerializeField] public ItemStats weapon;
+    [SerializeField] public ItemStats helmet;
+    [SerializeField] public ItemStats armor;
+    [SerializeField] public ItemStats shoe;
+    [SerializeField] public ItemStats ring;
+    [SerializeField] public ItemStats pet;
+
     public float energyRechargeTime = 60f; // 1 phút cho 1 năng lượng
     private float timeSinceLastEnergyReplenish = 0f;
 
@@ -39,6 +47,18 @@ public class Asset : ScriptableObject
                 break;
             case Stats.StatsType.Attack:
                 Attack += amount;
+                break;
+        }
+    }
+    public void MinusStatPlayer(Stats.StatsType type, int amount)
+    {
+        switch (type)
+        {
+            case Stats.StatsType.Health:
+                Health -= amount;
+                break;
+            case Stats.StatsType.Attack:
+                Attack -= amount;
                 break;
         }
     }
@@ -79,6 +99,30 @@ public class Asset : ScriptableObject
                 // Gửi thông báo đã hồi năng lượng
                 OnEnergyReplenished?.Invoke();
             }
+        }
+    }
+     public void EquipItem(ItemStats item)
+    {
+        switch (item.Type)
+        {
+            case ItemStats.ItemType.Weapon:
+                weapon = item;
+                break;
+            case ItemStats.ItemType.Helmet:
+                helmet = item;
+                break;
+            case ItemStats.ItemType.Armor:
+                armor = item;
+                break;
+            case ItemStats.ItemType.Pet:
+                pet = item;
+                break;
+            case ItemStats.ItemType.Shoe:
+                shoe = item;
+                break;
+            case ItemStats.ItemType.Ring:
+                ring = item;
+                break;
         }
     }
 

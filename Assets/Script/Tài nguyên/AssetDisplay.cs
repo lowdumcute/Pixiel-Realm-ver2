@@ -44,6 +44,9 @@ public class AssetDisplay : MonoBehaviour
             assetData.UpdateEnergy(Time.deltaTime); // Cập nhật năng lượng theo thời gian
 
             if (timeEnergyText != null)
+                timeEnergyText.gameObject.SetActive(assetData.currentEnergy < assetData.maxEnergy);
+
+            if (timeEnergyText != null && assetData.currentEnergy < assetData.maxEnergy)
                 timeEnergyText.text = assetData.GetEnergyRechargeTime(); // Hiển thị thời gian hồi năng lượng
         }
     }
