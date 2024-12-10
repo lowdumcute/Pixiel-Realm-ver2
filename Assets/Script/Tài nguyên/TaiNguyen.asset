@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+<<<<<<< HEAD
   Gold: 100
   Star: 0
   currentEnergy: 30
@@ -24,4 +26,20 @@ MonoBehaviour:
   shoe: {fileID: 0}
   ring: {fileID: 0}
   pet: {fileID: 0}
+=======
+  Gold: 400
+  Star: 2
+  currentEnergy: 23
+  maxEnergy: 30
+  Health: 130
+  Attack: 230
+>>>>>>> 9a56942bc8832bbe6eb86396275c5827746e4e22
+=======
+  Gold: 200
+  Star: 2
+  currentEnergy: 18
+  maxEnergy: 30
+  Health: 130
+  Attack: 140
+>>>>>>> parent of 10ae88d (Update)
   energyRechargeTime: 60

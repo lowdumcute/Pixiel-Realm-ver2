@@ -66,9 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\construction\Miner\Miner.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
-    <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
-    <Compile Include="Assets\Script\Panel\TogglePanel.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Script\construction\Tower\Bullet.cs" />
@@ -83,11 +81,9 @@
     <Compile Include="Assets\Script\construction\Castle\CastleHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets\Script\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Script\MainMenu\LoadingScreen.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
-    <Compile Include="Assets\Script\Item\ItemStats.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Script\Sound\Sound.cs" />
     <Compile Include="Assets\Script\InGame\Building.cs" />
@@ -117,7 +113,6 @@
     <Compile Include="Assets\Script\Enemy\EnemyHealthBar.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets\Script\Item\ItemManager.cs" />
     <Compile Include="Assets\Script\construction\Castle\MainHouseController.cs" />
     <Compile Include="Assets\Script\Outline\ClickableObject.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
@@ -140,7 +135,6 @@
     <Compile Include="Assets\Script\InGame\PlayerController.cs" />
     <Compile Include="Assets\Script\Skill Tree\SkillTreeManager.cs" />
     <Compile Include="Assets\Script\Tài nguyên\AssetDisplay.cs" />
-    <Compile Include="Assets\Script\Inventory\ItemInventory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
   </ItemGroup>
   <ItemGroup>
