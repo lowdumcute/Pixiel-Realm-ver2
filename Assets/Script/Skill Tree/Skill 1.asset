@@ -15,6 +15,6 @@ MonoBehaviour:
   isUnlocked: 1
   SkillName: skill 1
   SkillIcon: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
-  GoldRequire: 200
-  currentLevel: 3
+  GoldRequire: 500
+  currentLevel: 0
   maxLevel: 3
