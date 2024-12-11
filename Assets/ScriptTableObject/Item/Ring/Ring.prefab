@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
+  m_Sprite: {fileID: -957785332, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 2291499982748700810}
   - component: {fileID: 2025142200830361607}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36a4485e0ce3a245a90f50bf0d5c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 4
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
   Attack: 20
@@ -545,8 +545,9 @@ MonoBehaviour:
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
-  itemInventory: {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
+  itemInventory: {fileID: 11400000, guid: 131fe695b6b4df94d9408d6503f56376, type: 2}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
+  isEquipped: 0
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0

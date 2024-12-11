@@ -20,7 +20,7 @@ public class Inventory : ScriptableObject
         {
             // Tạo bản sao để lưu trong inventory và thêm vào danh sách
             ItemInventory newItemInstance = Instantiate(newItem);
-            newItemInstance.quantity = amount;
+            newItemInstance.currentQuantity = amount;
             items.Add(newItemInstance);
         }
     }
@@ -35,7 +35,7 @@ public class Inventory : ScriptableObject
             existingItem.DecreaseQuantity(amount);
 
             // Xóa item nếu số lượng bằng 0
-            if (existingItem.quantity <= 0)
+            if (existingItem.currentQuantity <= 0)
             {
                 items.Remove(existingItem);
             }
