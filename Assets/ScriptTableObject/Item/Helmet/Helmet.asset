@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6616b8e5af73a4e47b32372e5ecef51f, type: 3}
-  m_Name: Skill 3
+  m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  isUnlocked: 1
-  SkillName: skill 3
-  SkillIcon: {fileID: 1704030974, guid: 4a589f40d30475f459d175615c460da8, type: 3}
-  GoldRequire: 2000
-  currentLevel: 0
-  maxLevel: 5
+  Type: 1
+  itemName: Helmet
+  itemPrefab: {fileID: 6816753760795425645, guid: ebf01f9038cbde047b66f9356b2d2324, type: 3}
+  currentQuantity: 0
+  totalQuantity: 1

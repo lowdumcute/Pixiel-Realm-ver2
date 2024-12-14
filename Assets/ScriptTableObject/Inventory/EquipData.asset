@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb75ff5b49fa1cd46aa81ded760ec291, type: 3}
   m_Name: EquipData
   m_EditorClassIdentifier: 
-  weaponItems: []
+  weaponItems:
+  - {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
   helmetItems: []
   armorItems: []
-  shoeItems: []
-  ringItems: []
+  shoeItems:
+  - {fileID: 11400000, guid: 24c5b2f60a0977140a6f595322c08941, type: 2}
+  ringItems:
+  - {fileID: 11400000, guid: 131fe695b6b4df94d9408d6503f56376, type: 2}
   petItems: []
