@@ -16,6 +16,6 @@ MonoBehaviour:
   Star: 10
   currentEnergy: 30
   maxEnergy: 30
-  Health: 240
-  Attack: 980
-  energyRechargeTime: 60
+  Health: 280
+  Attack: 60
+  energyRechargeTime: 100

@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 1882789273348145578}
   - component: {fileID: 2291499982748700810}
   - component: {fileID: 2025142200830361607}
+  - component: {fileID: -3762728664611631411}
   m_Layer: 5
   m_Name: Slime
   m_TagString: Untagged
@@ -512,6 +513,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -3762728664611631411}
+        m_TargetAssemblyTypeName: ItemInfoManager, Assembly-CSharp
+        m_MethodName: SpawnItemInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2291499982748700810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,14 +553,28 @@ MonoBehaviour:
   Type: 5
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 20
-  Health: 10
+  Attack: 10
+  Health: 20
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
   itemInventory: {fileID: 11400000, guid: 6840c5b95ae3cb4439e64e117d016412, type: 2}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   isEquipped: 0
+--- !u!114 &-3762728664611631411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6816753760795425645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: fa894689b191b5746a23b4312404b444, type: 3}
+  itemInfoReceiver: {fileID: 0}
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0
