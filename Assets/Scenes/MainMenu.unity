@@ -1340,6 +1340,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8342519068532393178, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0891299c4616f604381bc3c5ba18eea5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3656,6 +3660,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4897110270126694264, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
+      propertyPath: m_text
+      value: Chap 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5080840747816060848, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3736,6 +3744,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8342519068532393178, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 284c106165bcd384ab3c7293ac8b4ac3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6693,6 +6705,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1531879137}
   m_CullTransparentMesh: 1
+--- !u!114 &1545432604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7242897054629383040, guid: d709aeb142fafcf4d9f028094faaaa1f, type: 3}
+  m_PrefabInstance: {fileID: 7576522824463458110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1552577470 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5080840747816060848, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
@@ -8483,6 +8506,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4897110270126694264, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
+      propertyPath: m_text
+      value: Chap 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5080840747816060848, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8563,6 +8590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8342519068532393178, guid: 30b2222158911ce4fb864010bdbb6396, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b53c178995270a240ba82b5bfcf71a2c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9223,6 +9254,10 @@ PrefabInstance:
       propertyPath: m_FillCenter
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1005685128499003346, guid: d709aeb142fafcf4d9f028094faaaa1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1145696157724381728, guid: d709aeb142fafcf4d9f028094faaaa1f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -9371,6 +9406,10 @@ PrefabInstance:
       propertyPath: stageSO
       value: 
       objectReference: {fileID: 11400000, guid: 30858a3607f673f47a1cb31b2a19c27c, type: 2}
+    - target: {fileID: 8533845488326753847, guid: d709aeb142fafcf4d9f028094faaaa1f, type: 3}
+      propertyPath: ChallengeMode
+      value: 
+      objectReference: {fileID: 1545432604}
     - target: {fileID: 8533845488326753847, guid: d709aeb142fafcf4d9f028094faaaa1f, type: 3}
       propertyPath: LoadingSlider
       value: 
