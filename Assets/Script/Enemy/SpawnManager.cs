@@ -180,4 +180,9 @@ public class SpawnManager : MonoBehaviour
             dayNightImage.color = color;
         }
     }
+    // Hàm public để lấy số lượng quái đã tiêu diệt
+    public int GetEnemiesDefeated()
+    {
+        return enemiesDefeated;
+    }
 }

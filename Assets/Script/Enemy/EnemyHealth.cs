@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     // Tham chiếu tới EnemyHealthBar để cập nhật thanh máu
     [SerializeField] private EnemyHealthBar healthBar;
     [SerializeField] private Enemy enemy;
+    public KillEnemiesProgress killEnemiesProgress;
 
     private void Awake()
     {
@@ -29,6 +30,13 @@ public class EnemyHealth : MonoBehaviour
         {
             healthBar.UpdateHealthBar(currentHealth, maxHealth);  // Cập nhật thanh máu ngay từ đầu
         }
+         {
+        // Lấy tham chiếu đến KillEnemiesProgress nếu chưa có
+        if (killEnemiesProgress == null)
+        {
+            killEnemiesProgress = FindObjectOfType<KillEnemiesProgress>();
+        }
+    }
     }
 
     public void TakeDamage(int damage)
@@ -62,6 +70,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         FindObjectOfType<SpawnManager>().OnEnemyDefeated();
+        killEnemiesProgress.OnEnemyKilled();
         Destroy(gameObject);
     }
 
