@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6616b8e5af73a4e47b32372e5ecef51f, type: 3}
   m_Name: Skill2
   m_EditorClassIdentifier: 
-  isUnlocked: 1
+  isUnlocked: 0
   SkillName: Health
   SkillIcon: {fileID: 985474680, guid: 4a589f40d30475f459d175615c460da8, type: 3}
   GoldRequire: 1000
