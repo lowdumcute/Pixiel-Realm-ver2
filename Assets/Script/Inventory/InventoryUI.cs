@@ -21,29 +21,21 @@ public class InventoryUI : MonoBehaviour
         // Tạo mới UI từ danh sách item trong inventory
         foreach (ItemInventory item in inventory.items)
         {
-            if (item.itemPrefab != null)
+            if (item.currentQuantity > 0) // Kiểm tra nếu số lượng lớn hơn 0
             {
-                // Tạo một bản sao của itemPrefab
-                GameObject spawnedItem = Instantiate(item.itemPrefab, transform);
-
-                // Tạo object con chứa hình ảnh itemIcon
-                GameObject iconObject = new GameObject("ItemIcon");
-                iconObject.transform.SetParent(spawnedItem.transform);
-
-                // Đặt vị trí và scale mặc định
-                iconObject.transform.localPosition = Vector3.zero;
-                iconObject.transform.localScale = Vector3.one; // Đặt scale mặc định là (1, 1, 1)
-
-                // Gắn Image component và gán sprite
-                Image icon = iconObject.AddComponent<Image>();
-                icon.sprite = item.itemIcon;
-
-                // Đảm bảo iconObject được đặt ở cuối danh sách con của spawnedItem
-                iconObject.transform.SetAsFirstSibling();
-            }
-            else
-            {
-                Debug.LogWarning($"Item {item.itemName} không có itemPrefab được gắn!");
+                if (item.itemPrefab != null)
+                {
+                    // Tạo object dựa trên currentQuantity
+                    for (int i = 0; i < item.currentQuantity; i++)
+                    {
+                        GameObject spawnedItem = Instantiate(item.itemPrefab, transform);
+                        spawnedItem.name = $"{item.itemName}_{i + 1}"; // Đặt tên để dễ phân biệt
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"Item {item.itemName} không có itemPrefab được gắn!");
+                }
             }
         }
     }

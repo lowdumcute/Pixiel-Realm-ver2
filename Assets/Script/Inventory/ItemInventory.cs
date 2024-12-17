@@ -1,20 +1,23 @@
     using UnityEngine;
 
+    
     [CreateAssetMenu(fileName = "ItemInventory", menuName = "ScriptableObjects/Item")]
+    
     public class ItemInventory : ScriptableObject
     {
+        public ItemStats.ItemType Type;
         public string itemName;    // Tên item
-        public Sprite itemIcon;    // Hình ảnh biểu tượng item
         public GameObject itemPrefab; // chứa Item Stats
-        public int quantity = 1;   // Số lượng item
+        public int currentQuantity = 1;   // Số lượng trong Túi
+        public int totalQuantity = 0; // tổng số lượng 
 
         public void IncreaseQuantity(int amount)
         {
-            quantity += amount;
+            currentQuantity += amount;
         }
 
         public void DecreaseQuantity(int amount)
         {
-            quantity = Mathf.Max(quantity - amount, 0); // Không nhỏ hơn 0
+            currentQuantity = Mathf.Max(currentQuantity - amount, 0); // Không nhỏ hơn 0
         }
     }

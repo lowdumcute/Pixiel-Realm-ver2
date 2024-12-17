@@ -5,12 +5,17 @@ public class ItemStats : MonoBehaviour
     public enum ItemType { Weapon, Helmet, Armor, Shoe, Ring, Pet } // Loại Item
     [Header("Stat Item")]
     public ItemType Type;
+    [SerializeField] public GameObject EquipButton;
+    [SerializeField] public GameObject UnequipButton;
     [SerializeField] public int Attack = 0; // Giá trị Attack của item
     [SerializeField] public int Health = 0; // Giá trị Health của item
     [SerializeField] private Asset playerAsset; // Tham chiếu đến Asset người chơi
+    [SerializeField] private ItemManager itemManager;
     [SerializeField] private AssetDisplay assetDisplay;
+    [SerializeField] private ItemInventory itemInventory;
+    [SerializeField] private ItemData itemData; // Tham chiếu đến ItemData
 
-    private bool isEquipped = false; // Trạng thái trang bị
+    public bool isEquipped = false; // Trạng thái trang bị
 
     private void Start()
     {
@@ -18,6 +23,7 @@ public class ItemStats : MonoBehaviour
         {
             assetDisplay = FindObjectOfType<AssetDisplay>();
         }
+        itemManager = FindObjectOfType<ItemManager>();
     }
 
     public void Equip()
@@ -28,10 +34,20 @@ public class ItemStats : MonoBehaviour
             return;
         }
 
-        if (playerAsset != null)
+        if (playerAsset != null && itemManager != null)
         {
-            // Gọi phương thức EquipItem trong Asset để trang bị item
-            playerAsset.EquipItem(this);  // Truyền đúng item vào (this là đối tượng ItemStats hiện tại)
+            EquipButton.SetActive(false);
+            UnequipButton.SetActive(true);
+
+            // Di chuyển object sang panel tương ứng
+            itemManager.EquipItem(this);
+
+            // Trừ số lượng hiện trong túi
+            itemInventory.DecreaseQuantity(1);
+
+            // Thêm item vào ItemData dựa trên loại item
+            itemData.AddItem(itemInventory, 1);
+
             // Thêm stat cho nhân vật
             if (Attack != 0) playerAsset.AddStatPlayer(Stats.StatsType.Attack, Attack);
             if (Health != 0) playerAsset.AddStatPlayer(Stats.StatsType.Health, Health);
@@ -44,11 +60,10 @@ public class ItemStats : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player Asset is not assigned!");
+            Debug.LogError("Player Asset hoặc Item Manager chưa được gán!");
         }
     }
 
-    /// Tháo trang bị item, trừ giá trị của item khỏi stats nhân vật.
     public void Unequip()
     {
         if (!isEquipped)
@@ -57,21 +72,31 @@ public class ItemStats : MonoBehaviour
             return;
         }
 
-        if (playerAsset != null)
+        if (playerAsset != null && itemManager != null)
         {
-            // Trừ stat của nhân vật khi tháo item
+            UnequipButton.SetActive(false);
+            EquipButton.SetActive(true);
+
+            // Cộng số lượng hiện trong túi
+            itemInventory.IncreaseQuantity(1);
+
+            // Di chuyển object trở lại inventory panel
+            itemManager.UnequipItem(Type);
+
+            // Xóa item từ ItemData
+            itemData.RemoveItem(itemInventory, 1);
+
+            // Trừ stat của nhân vật
             if (Attack != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Attack, Attack);
             if (Health != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Health, Health);
 
-            // Xóa item khỏi Asset
-            playerAsset.EquipItem(null); // Đặt item về null để tháo trang bị
-
             isEquipped = false;
+            assetDisplay.UpdateDisplay();
             Debug.Log($"Unequipped {gameObject.name}. Removed Attack: {Attack}, Health: {Health}.");
         }
         else
         {
-            Debug.LogError("Player Asset is not assigned!");
+            Debug.LogError("Player Asset hoặc Item Manager chưa được gán!");
         }
     }
 }

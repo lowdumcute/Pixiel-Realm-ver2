@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb75ff5b49fa1cd46aa81ded760ec291, type: 3}
+  m_Name: EquipData
+  m_EditorClassIdentifier: 
+  weaponItems:
+  - {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
+  helmetItems: []
+  armorItems: []
+  shoeItems:
+  - {fileID: 11400000, guid: 24c5b2f60a0977140a6f595322c08941, type: 2}
+  ringItems:
+  - {fileID: 11400000, guid: 131fe695b6b4df94d9408d6503f56376, type: 2}
+  petItems: []

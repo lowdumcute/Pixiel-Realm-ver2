@@ -8,22 +8,17 @@ public class Asset : ScriptableObject
     public float Star = 0;
     public int currentEnergy;
     public int maxEnergy = 30;
-    [Header ("Stat PLayer")]
+
+    [Header("Stat Player")]
     public float Health = 100;
     public int Attack = 10;
 
-    [Header("Quản lý Item")]
-    [SerializeField] public ItemStats weapon;
-    [SerializeField] public ItemStats helmet;
-    [SerializeField] public ItemStats armor;
-    [SerializeField] public ItemStats shoe;
-    [SerializeField] public ItemStats ring;
-    [SerializeField] public ItemStats pet;
-
     public float energyRechargeTime = 60f; // 1 phút cho 1 năng lượng
     private float timeSinceLastEnergyReplenish = 0f;
-
+    private string lastEnergySaveKey = "LastEnergySave";
     public static event Action OnEnergyReplenished; // Sự kiện khi năng lượng được hồi
+
+    private const string LastPlayedTimeKey = "LastPlayedTime";
 
     public void AddToElement(Item.ItemType type, int amount)
     {
@@ -50,6 +45,7 @@ public class Asset : ScriptableObject
                 break;
         }
     }
+
     public void MinusStatPlayer(Stats.StatsType type, int amount)
     {
         switch (type)
@@ -68,6 +64,7 @@ public class Asset : ScriptableObject
         if (currentEnergy >= amount)
         {
             currentEnergy -= amount;
+            SaveLastPlayedTime();
         }
         else
         {
@@ -101,30 +98,6 @@ public class Asset : ScriptableObject
             }
         }
     }
-     public void EquipItem(ItemStats item)
-    {
-        switch (item.Type)
-        {
-            case ItemStats.ItemType.Weapon:
-                weapon = item;
-                break;
-            case ItemStats.ItemType.Helmet:
-                helmet = item;
-                break;
-            case ItemStats.ItemType.Armor:
-                armor = item;
-                break;
-            case ItemStats.ItemType.Pet:
-                pet = item;
-                break;
-            case ItemStats.ItemType.Shoe:
-                shoe = item;
-                break;
-            case ItemStats.ItemType.Ring:
-                ring = item;
-                break;
-        }
-    }
 
     public string GetEnergyRechargeTime()
     {
@@ -133,4 +106,59 @@ public class Asset : ScriptableObject
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
         return $"{minutes:D2}:{seconds:D2}"; // Format phút:giây
     }
+
+    // Lưu thời gian khi người chơi thoát
+    public void SaveLastPlayedTime()
+    {
+        PlayerPrefs.SetString(LastPlayedTimeKey, DateTime.Now.ToString());
+        PlayerPrefs.Save();
+    }
+
+    // Hồi năng lượng dựa trên thời gian offline
+    public void RestoreEnergyFromOffline()
+    {
+        if (PlayerPrefs.HasKey(LastPlayedTimeKey))
+        {
+            // Lấy thời gian lưu trước đó
+            string lastPlayedTimeString = PlayerPrefs.GetString(LastPlayedTimeKey);
+            DateTime lastPlayedTime = DateTime.Parse(lastPlayedTimeString);
+
+            // Tính thời gian trôi qua
+            TimeSpan timeElapsed = DateTime.Now - lastPlayedTime;
+            float secondsElapsed = (float)timeElapsed.TotalSeconds;
+
+            // Tính số năng lượng hồi được
+            int energyToReplenish = Mathf.FloorToInt(secondsElapsed / energyRechargeTime);
+
+            if (energyToReplenish > 0)
+            {
+                ReplenishEnergy(energyToReplenish);
+
+                // Reset thời gian chờ còn lại
+                timeSinceLastEnergyReplenish = secondsElapsed % energyRechargeTime;
+            }
+        }
+    }
+    public void RestoreEnergyOnLoad()
+    {
+        if (PlayerPrefs.HasKey(lastEnergySaveKey))
+        {
+            DateTime lastPlayedTime = DateTime.Parse(PlayerPrefs.GetString(lastEnergySaveKey));
+            TimeSpan timePassed = DateTime.Now - lastPlayedTime;
+
+            // Tính toán số năng lượng được hồi
+            int energyRecovered = Mathf.FloorToInt((float)timePassed.TotalSeconds / energyRechargeTime);
+            if (energyRecovered > 0)
+            {
+                currentEnergy = Mathf.Min(currentEnergy + energyRecovered, maxEnergy);
+
+                // Gọi sự kiện nếu có thay đổi năng lượng
+                OnEnergyReplenished?.Invoke();
+
+                // Lưu lại thời gian còn lại
+                SaveLastPlayedTime();
+            }
+        }
+    }
+    
 }

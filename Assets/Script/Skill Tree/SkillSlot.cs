@@ -16,7 +16,7 @@ public class SkillSlot : MonoBehaviour
 
     public bool isUnlocked;
 
-    public Stats relatedStat; // Tham chiếu đến Stats liên quan
+    public Stats relatedStat; // Tham chiếu đến Stats liên quan // là sao
     public Asset asset;// Tham  chiếu đến tài nguyên
 
     //2 Textmeshpro vàng trong panel
