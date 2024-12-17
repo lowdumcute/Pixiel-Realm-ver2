@@ -60,16 +60,6 @@ public class ItemManager : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            // Tắt panel và hủy đối tượng nếu không có item
-            if (currentItemSlot != null)
-            {
-                Destroy(currentItemSlot.gameObject);
-                currentItemSlot = null;
-            }
-            panel.SetActive(false);
-        }
     }
 
     public void EquipItem(ItemStats item)
