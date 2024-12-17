@@ -1,39 +1,38 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemData", menuName = "ScriptableObjects/PanelData", order = 1)]
 public class ItemData : ScriptableObject
 {
-    [Header("Danh sách item từ các Panel")]
-    public List<ItemInventory> weaponItems = new List<ItemInventory>();
-    public List<ItemInventory> helmetItems = new List<ItemInventory>();
-    public List<ItemInventory> armorItems = new List<ItemInventory>();
-    public List<ItemInventory> shoeItems = new List<ItemInventory>();
-    public List<ItemInventory> ringItems = new List<ItemInventory>();
-    public List<ItemInventory> petItems = new List<ItemInventory>();
+    [Header("Item từ các Panel")]
+    public ItemInventory weaponItem;
+    public ItemInventory helmetItem;
+    public ItemInventory armorItem;
+    public ItemInventory shoeItem;
+    public ItemInventory ringItem;
+    public ItemInventory petItem;
 
-    // Thêm item vào đúng danh sách dựa trên loại
-    public void AddItem(ItemInventory newItem, int amount = 1)
+    // Thêm item vào đúng ô dựa trên loại
+    public void SetItem(ItemInventory newItem)
     {
         switch (newItem.Type)
         {
             case ItemStats.ItemType.Weapon:
-                AddToList(weaponItems, newItem, amount);
+                weaponItem = newItem;
                 break;
             case ItemStats.ItemType.Helmet:
-                AddToList(helmetItems, newItem, amount);
+                helmetItem = newItem;
                 break;
             case ItemStats.ItemType.Armor:
-                AddToList(armorItems, newItem, amount);
+                armorItem = newItem;
                 break;
             case ItemStats.ItemType.Shoe:
-                AddToList(shoeItems, newItem, amount);
+                shoeItem = newItem;
                 break;
             case ItemStats.ItemType.Ring:
-                AddToList(ringItems, newItem, amount);
+                ringItem = newItem;
                 break;
             case ItemStats.ItemType.Pet:
-                AddToList(petItems, newItem, amount);
+                petItem = newItem;
                 break;
             default:
                 Debug.LogError("Unknown Item Type");
@@ -41,53 +40,32 @@ public class ItemData : ScriptableObject
         }
     }
 
-    // Xóa item khỏi đúng danh sách dựa trên loại
-    public void RemoveItem(ItemInventory itemToRemove, int amount = 1)
+    // Xóa item khỏi đúng ô dựa trên loại
+    public void RemoveItem(ItemStats.ItemType itemType)
     {
-        switch (itemToRemove.Type)
+        switch (itemType)
         {
             case ItemStats.ItemType.Weapon:
-                RemoveFromList(weaponItems, itemToRemove, amount);
+                weaponItem = null;
                 break;
             case ItemStats.ItemType.Helmet:
-                RemoveFromList(helmetItems, itemToRemove, amount);
+                helmetItem = null;
                 break;
             case ItemStats.ItemType.Armor:
-                RemoveFromList(armorItems, itemToRemove, amount);
+                armorItem = null;
                 break;
             case ItemStats.ItemType.Shoe:
-                RemoveFromList(shoeItems, itemToRemove, amount);
+                shoeItem = null;
                 break;
             case ItemStats.ItemType.Ring:
-                RemoveFromList(ringItems, itemToRemove, amount);
+                ringItem = null;
                 break;
             case ItemStats.ItemType.Pet:
-                RemoveFromList(petItems, itemToRemove, amount);
+                petItem = null;
                 break;
             default:
                 Debug.LogError("Unknown Item Type");
                 break;
-        }
-    }
-
-    // Thêm item vào danh sách
-    private void AddToList(List<ItemInventory> itemList, ItemInventory item, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            itemList.Add(item);
-        }
-    }
-
-    // Xóa item khỏi danh sách
-    private void RemoveFromList(List<ItemInventory> itemList, ItemInventory item, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            if (itemList.Contains(item))
-            {
-                itemList.Remove(item);
-            }
         }
     }
 }

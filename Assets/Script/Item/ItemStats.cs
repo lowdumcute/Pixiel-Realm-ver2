@@ -46,7 +46,7 @@ public class ItemStats : MonoBehaviour
             itemInventory.DecreaseQuantity(1);
 
             // Thêm item vào ItemData dựa trên loại item
-            itemData.AddItem(itemInventory, 1);
+            itemData.SetItem(itemInventory);
 
             // Thêm stat cho nhân vật
             if (Attack != 0) playerAsset.AddStatPlayer(Stats.StatsType.Attack, Attack);
@@ -84,7 +84,7 @@ public class ItemStats : MonoBehaviour
             itemManager.UnequipItem(Type);
 
             // Xóa item từ ItemData
-            itemData.RemoveItem(itemInventory, 1);
+            itemData.RemoveItem(Type);
 
             // Trừ stat của nhân vật
             if (Attack != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Attack, Attack);

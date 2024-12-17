@@ -28,37 +28,47 @@ public class ItemManager : MonoBehaviour
     public void UpdateUI()
     {
         // Cập nhật UI cho từng loại item
-        UpdatePanel(weaponPanel, itemData.weaponItems, ref weapon);
-        UpdatePanel(helmetPanel, itemData.helmetItems, ref helmet);
-        UpdatePanel(armorPanel, itemData.armorItems, ref armor);
-        UpdatePanel(shoePanel, itemData.shoeItems, ref shoe);
-        UpdatePanel(ringPanel, itemData.ringItems, ref ring);
-        UpdatePanel(petPanel, itemData.petItems, ref pet);
+        UpdatePanel(weaponPanel, itemData.weaponItem, ref weapon);
+        UpdatePanel(helmetPanel, itemData.helmetItem, ref helmet);
+        UpdatePanel(armorPanel, itemData.armorItem, ref armor);
+        UpdatePanel(shoePanel, itemData.shoeItem, ref shoe);
+        UpdatePanel(ringPanel, itemData.ringItem, ref ring);
+        UpdatePanel(petPanel, itemData.petItem, ref pet);
     }
-    private void UpdatePanel(GameObject panel, List<ItemInventory> itemList, ref ItemStats itemStats)
+
+    // Phương thức cập nhật từng Panel dựa trên item hiện tại
+    private void UpdatePanel(GameObject panel, ItemInventory itemInventory, ref ItemStats currentItemSlot)
     {
-        foreach (var item in itemList)
+        // Kiểm tra nếu itemInventory không null
+        if (itemInventory != null)
         {
-            if (item != null)
+            // Kích hoạt panel nếu có item
+            panel.SetActive(true);
+
+            // Nếu UI slot chưa có, tạo một object mới từ prefab của item
+            if (currentItemSlot == null)
             {
-                // Tạo một item từ danh sách và di chuyển vào đúng panel
-                GameObject itemPrefab = Instantiate(item.itemPrefab, panel.transform);
-                itemPrefab.transform.localPosition = Vector3.zero;
+                GameObject itemObject = Instantiate(itemInventory.itemPrefab, panel.transform);
+                currentItemSlot = itemObject.GetComponent<ItemStats>();
 
-                // Tìm ItemStats trong prefab và set nó
-                ItemStats stats = itemPrefab.GetComponent<ItemStats>();  // Lấy ItemStats từ prefab
-
-                if (stats != null)
+                // Đặt trạng thái cho item
+                if (currentItemSlot != null)
                 {
-                    // Cập nhật lại button và trạng thái
-                    stats.EquipButton.SetActive(false); // Ẩn EquipButton
-                    stats.UnequipButton.SetActive(true); // Hiện UnequipButton
-                    stats.isEquipped = true;
-
-                    // Gán ItemStats vào biến itemStats để quản lý
-                    itemStats = stats;
+                    currentItemSlot.EquipButton.SetActive(false); // Ẩn nút trang bị
+                    currentItemSlot.UnequipButton.SetActive(true); // Hiện nút gỡ bỏ
+                    currentItemSlot.isEquipped = true;
                 }
             }
+        }
+        else
+        {
+            // Tắt panel và hủy đối tượng nếu không có item
+            if (currentItemSlot != null)
+            {
+                Destroy(currentItemSlot.gameObject);
+                currentItemSlot = null;
+            }
+            panel.SetActive(false);
         }
     }
 
@@ -70,96 +80,55 @@ public class ItemManager : MonoBehaviour
             // Di chuyển object sang panel tương ứng
             item.transform.SetParent(targetPanel.transform);
             item.transform.localPosition = Vector3.zero;
+
+            // Lưu item vào `ItemData`
+            itemData.SetItem(new ItemInventory { Type = item.Type, itemPrefab = item.gameObject });
+
+            // Gán tham chiếu vào biến quản lý
             switch (item.Type)
             {
-                case ItemStats.ItemType.Weapon:
-                    if (weapon != null)
-                    {
-                        Debug.LogWarning("Weapon slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    weapon = item;
-                    break;
-
-                case ItemStats.ItemType.Helmet:
-                    if (helmet != null)
-                    {
-                        Debug.LogWarning("Helmet slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    helmet = item;
-                    break;
-
-                case ItemStats.ItemType.Armor:
-                    if (armor != null)
-                    {
-                        Debug.LogWarning("Armor slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    armor = item;
-                    break;
-
-                case ItemStats.ItemType.Shoe:
-                    if (shoe != null)
-                    {
-                        Debug.LogWarning("Shoe slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    shoe = item;
-                    break;
-
-                case ItemStats.ItemType.Ring:
-                    if (ring != null)
-                    {
-                        Debug.LogWarning("Ring slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    ring = item;
-                    break;
-
-                case ItemStats.ItemType.Pet:
-                    if (pet != null)
-                    {
-                        Debug.LogWarning("Pet slot đã được trang bị. Tháo trước khi trang bị mới.");
-                        return;
-                    }
-                    pet = item;
-                    break;
+                case ItemStats.ItemType.Weapon: weapon = item; break;
+                case ItemStats.ItemType.Helmet: helmet = item; break;
+                case ItemStats.ItemType.Armor: armor = item; break;
+                case ItemStats.ItemType.Shoe: shoe = item; break;
+                case ItemStats.ItemType.Ring: ring = item; break;
+                case ItemStats.ItemType.Pet: pet = item; break;
             }
 
-            Debug.Log($"{item.name} đã được di chuyển đến {targetPanel.name}");
-        }
-        else
-        {
-            Debug.LogError($"Không tìm thấy panel cho loại item: {item.Type}");
+            Debug.Log($"{item.name} đã được trang bị.");
         }
     }
 
     public void UnequipItem(ItemStats.ItemType itemType)
     {
         ItemStats itemToUnequip = GetEquippedItem(itemType);
-        inventoryUI.UpdateUI();
 
         if (itemToUnequip != null)
         {
-            // Di chuyển object về inventory
-            inventoryUI.UpdateUI();
-
-            // Xóa object trong panel tương ứng
+            // Xóa item khỏi panel
             GameObject targetPanel = GetTargetPanel(itemType);
             if (targetPanel != null)
             {
-                foreach (Transform child in targetPanel.transform)
-                {
-                    if (child.gameObject == itemToUnequip.gameObject)
-                    {
-                        Destroy(child.gameObject);
-                        Debug.Log($"{itemToUnequip.name} đã được xóa khỏi panel {targetPanel.name}.");
-                        break;
-                    }
-                }
+                Destroy(itemToUnequip.gameObject);
             }
+
+            // Xóa dữ liệu trong `ItemData`
+            itemData.RemoveItem(itemType);
+
+            // Xóa tham chiếu trong ItemManager
+            switch (itemType)
+            {
+                case ItemStats.ItemType.Weapon: weapon = null; break;
+                case ItemStats.ItemType.Helmet: helmet = null; break;
+                case ItemStats.ItemType.Armor: armor = null; break;
+                case ItemStats.ItemType.Shoe: shoe = null; break;
+                case ItemStats.ItemType.Ring: ring = null; break;
+                case ItemStats.ItemType.Pet: pet = null; break;
+            }
+
+            Debug.Log($"Item {itemType} đã được tháo.");
         }
+        inventoryUI.UpdateUI();
     }
 
     private GameObject GetTargetPanel(ItemStats.ItemType itemType)
