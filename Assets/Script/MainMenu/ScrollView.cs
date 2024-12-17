@@ -7,6 +7,7 @@ public class ScrollView : MonoBehaviour
 {
     public GameObject scrollBar;
     private float scroll_pos = 0f;
+
     private float[] pos;
 
     void Update()
@@ -44,7 +45,7 @@ public class ScrollView : MonoBehaviour
                 child.localScale = Vector2.Lerp(child.localScale, new Vector2(1f, 1f), 0.1f);
 
                 // Kích hoạt các nút trong bảng được chọn
-                EnableButtons(child, true);
+               
 
                 for (int a = 0; a < pos.Length; a++)
                 {
@@ -56,20 +57,21 @@ public class ScrollView : MonoBehaviour
                         otherChild.localScale = Vector2.Lerp(otherChild.localScale, new Vector2(0.6f, 0.6f), 0.1f);
 
                         // Vô hiệu hóa các nút trong bảng không được chọn
-                        EnableButtons(otherChild, false);
+                        
                     }
                 }
             }
         }
     }
 
-    // Hàm bật/tắt trạng thái tương tác của các nút trong bảng
-    private void EnableButtons(Transform panel, bool state)
+    // Hàm chọn 1 mảng 
+    public void ScrollToPosition(int index)
     {
-        Button[] buttons = panel.GetComponentsInChildren<Button>();
-        foreach (Button button in buttons)
+        if (index >= 0 && index < pos.Length)
         {
-            button.interactable = state;
+            scroll_pos = pos[index];          
+            scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, scroll_pos, 0.1f);
         }
     }
+
 }
