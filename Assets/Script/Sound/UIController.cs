@@ -13,8 +13,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider SFXSlider;
 
     //2 nút bật tắt Panel
-    [SerializeField] private Button OpenAudioManager;
-    [SerializeField] private Button CloseAudioManager;
     [SerializeField]
     private Animator ani;
     private void Start()
@@ -22,16 +20,14 @@ public class UIController : MonoBehaviour
         MusicSlider.value = AudioManager.instance.musicSource.volume;
         SFXSlider.value = AudioManager.instance.SFX_Source.volume;
         ani = GetComponent<Animator>();
-        OpenAudioManager.onClick.AddListener(OpenPanel);
-        CloseAudioManager.onClick.AddListener(ClosePanel);
     }
 
-    private void OpenPanel()
+    public void OpenPanel()
     {
         AudioManager.instance.PlaySFX("Pop");
         ani.SetTrigger("Open");
     }
-    private void ClosePanel()
+    public void ClosePanel()
     {
 
         AudioManager.instance.PlaySFX("Pop");

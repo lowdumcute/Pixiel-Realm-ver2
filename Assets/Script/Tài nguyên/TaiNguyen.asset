@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
-  Gold: 200
-  Star: 0
+  Gold: 0
+  Star: 10
   currentEnergy: 30
   maxEnergy: 30
-  Health: 130
-  Attack: 650
-  weapon: {fileID: 0}
-  helmet: {fileID: 0}
-  armor: {fileID: 0}
-  shoe: {fileID: 0}
-  ring: {fileID: 0}
-  pet: {fileID: 0}
-  energyRechargeTime: 60
+  Health: 280
+  Attack: 60
+  energyRechargeTime: 100

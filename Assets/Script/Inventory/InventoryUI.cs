@@ -25,8 +25,12 @@ public class InventoryUI : MonoBehaviour
             {
                 if (item.itemPrefab != null)
                 {
-                    // Tạo một bản sao của itemPrefab
-                    GameObject spawnedItem = Instantiate(item.itemPrefab, transform);
+                    // Tạo object dựa trên currentQuantity
+                    for (int i = 0; i < item.currentQuantity; i++)
+                    {
+                        GameObject spawnedItem = Instantiate(item.itemPrefab, transform);
+                        spawnedItem.name = $"{item.itemName}_{i + 1}"; // Đặt tên để dễ phân biệt
+                    }
                 }
                 else
                 {

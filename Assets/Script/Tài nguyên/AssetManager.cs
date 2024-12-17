@@ -11,12 +11,18 @@ public class AssetManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Giữ AssetManager xuyên suốt các scene
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        // Khôi phục năng lượng mỗi khi khởi chạy
+        assetData.RestoreEnergyOnLoad();
     }
 
     public void AddResource(Item.ItemType type, int amount)

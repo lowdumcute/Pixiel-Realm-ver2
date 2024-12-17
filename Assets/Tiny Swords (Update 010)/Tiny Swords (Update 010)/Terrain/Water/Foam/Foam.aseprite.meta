@@ -290,7 +290,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Foam_Frame_0
+    - name: Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -299,7 +299,7 @@ ScriptedImporter:
         width: 82
         height: 82
       spriteId: 2a01f13a3cd4d6a4a917d0c46a3d87bc
-    - name: Foam_Frame_1
+    - name: Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -308,7 +308,7 @@ ScriptedImporter:
         width: 81
         height: 82
       spriteId: b693bb8ae018d6f418aa2be8cb5a9af6
-    - name: Foam_Frame_2
+    - name: Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -317,7 +317,7 @@ ScriptedImporter:
         width: 81
         height: 82
       spriteId: 47e60ad3286b9184cb5573e963bb2ebf
-    - name: Foam_Frame_3
+    - name: Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -326,7 +326,7 @@ ScriptedImporter:
         width: 81
         height: 82
       spriteId: 97212863f93bca4428f07f4e52e35657
-    - name: Foam_Frame_4
+    - name: Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -335,7 +335,7 @@ ScriptedImporter:
         width: 82
         height: 82
       spriteId: a0e823deae0e5a74581b5b267a5a9559
-    - name: Foam_Frame_5
+    - name: Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -344,7 +344,7 @@ ScriptedImporter:
         width: 85
         height: 86
       spriteId: d19513b88895557489b98ed619aa1030
-    - name: Foam_Frame_6
+    - name: Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -353,7 +353,7 @@ ScriptedImporter:
         width: 86
         height: 86
       spriteId: a1719edb91b37a642ae5f60f0e672d55
-    - name: Foam_Frame_7
+    - name: Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:

@@ -56,5 +56,13 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Pixiel-Realm-ver2.sln"
+    "dotnet.defaultSolution": "Pixiel-Realm-ver2.sln",
+    "dotnetAcquisitionExtension.existingDotnetPath": [],
+    "editor.codeActions.triggerOnFocusChange": false,
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.renderControlCharacters": false,
+    "editor.renderWhitespace": "none",
+    "cSpell.words": [
+        "UGUI"
+    ]
 }

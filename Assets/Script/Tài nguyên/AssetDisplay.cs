@@ -15,6 +15,9 @@ public class AssetDisplay : MonoBehaviour
         // Lắng nghe sự kiện hồi năng lượng
         if (AssetManager.instance != null)
         {
+            Asset assetData = AssetManager.instance.GetAssetData();
+            assetData.RestoreEnergyOnLoad(); // Khôi phục năng lượng mỗi khi vào scene
+
             Asset.OnEnergyReplenished += UpdateDisplay;
         }
 
