@@ -550,7 +550,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Barrel_Red_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -559,7 +559,7 @@ ScriptedImporter:
         width: 50
         height: 70
       spriteId: 06bd6d147f278e148bb7fc41a162d25f
-    - name: Frame_1
+    - name: Barrel_Red_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -568,7 +568,7 @@ ScriptedImporter:
         width: 50
         height: 70
       spriteId: 4ac43194055e96641b8e19490771c8af
-    - name: Frame_2
+    - name: Barrel_Red_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -577,7 +577,7 @@ ScriptedImporter:
         width: 58
         height: 62
       spriteId: b6e340afbe7648a4e9b21ee3405e1d69
-    - name: Frame_3
+    - name: Barrel_Red_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -586,7 +586,7 @@ ScriptedImporter:
         width: 42
         height: 84
       spriteId: d2490e1dcd9aa2544a978359bbbb48ba
-    - name: Frame_4
+    - name: Barrel_Red_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
@@ -595,7 +595,7 @@ ScriptedImporter:
         width: 50
         height: 93
       spriteId: 6360c9790aa8ee14c98a3cf8cc8b8611
-    - name: Frame_5
+    - name: Barrel_Red_Frame_5
       frameIndex: 5
       additiveSortOrder: 0
       cellRect:
@@ -604,7 +604,7 @@ ScriptedImporter:
         width: 54
         height: 67
       spriteId: 23870e2d4b7f2ee49b538636f4e36c11
-    - name: Frame_6
+    - name: Barrel_Red_Frame_6
       frameIndex: 6
       additiveSortOrder: 0
       cellRect:
@@ -613,7 +613,7 @@ ScriptedImporter:
         width: 50
         height: 80
       spriteId: b7ee0c9cd7d236a4183663298c40b812
-    - name: Frame_7
+    - name: Barrel_Red_Frame_7
       frameIndex: 7
       additiveSortOrder: 0
       cellRect:
@@ -622,7 +622,7 @@ ScriptedImporter:
         width: 50
         height: 83
       spriteId: 45c463f8927f41647abe3f9c34ea3d10
-    - name: Frame_8
+    - name: Barrel_Red_Frame_8
       frameIndex: 8
       additiveSortOrder: 0
       cellRect:
@@ -631,7 +631,7 @@ ScriptedImporter:
         width: 50
         height: 83
       spriteId: 952d0dddafa732045965b68e5ad0279b
-    - name: Frame_9
+    - name: Barrel_Red_Frame_9
       frameIndex: 9
       additiveSortOrder: 0
       cellRect:
@@ -640,7 +640,7 @@ ScriptedImporter:
         width: 54
         height: 67
       spriteId: 20f83b3e869014049a3fd94285ff7bfc
-    - name: Frame_10
+    - name: Barrel_Red_Frame_10
       frameIndex: 10
       additiveSortOrder: 0
       cellRect:
@@ -649,7 +649,7 @@ ScriptedImporter:
         width: 50
         height: 89
       spriteId: 73055d5c072c4df47aadce338b18f86c
-    - name: Frame_11
+    - name: Barrel_Red_Frame_11
       frameIndex: 11
       additiveSortOrder: 0
       cellRect:
@@ -658,7 +658,7 @@ ScriptedImporter:
         width: 42
         height: 95
       spriteId: 614f4d3a3206f7844a99dbc3ebee27dd
-    - name: Frame_12
+    - name: Barrel_Red_Frame_12
       frameIndex: 12
       additiveSortOrder: 0
       cellRect:
@@ -667,7 +667,7 @@ ScriptedImporter:
         width: 58
         height: 62
       spriteId: 132943f82ed59c5478b1d1c360736fbc
-    - name: Frame_13
+    - name: Barrel_Red_Frame_13
       frameIndex: 13
       additiveSortOrder: 0
       cellRect:
@@ -676,7 +676,7 @@ ScriptedImporter:
         width: 45
         height: 76
       spriteId: c65ab4287455371458dc6328d935a970
-    - name: Frame_14
+    - name: Barrel_Red_Frame_14
       frameIndex: 14
       additiveSortOrder: 0
       cellRect:
@@ -685,7 +685,7 @@ ScriptedImporter:
         width: 50
         height: 70
       spriteId: 960e52e9447a0ab4f8a60a6cea6b0ffa
-    - name: Frame_15
+    - name: Barrel_Red_Frame_15
       frameIndex: 15
       additiveSortOrder: 0
       cellRect:
@@ -694,7 +694,7 @@ ScriptedImporter:
         width: 54
         height: 67
       spriteId: b2c4d4bb1c9278d459c901ae844e2e12
-    - name: Frame_16
+    - name: Barrel_Red_Frame_16
       frameIndex: 16
       additiveSortOrder: 0
       cellRect:
@@ -703,7 +703,7 @@ ScriptedImporter:
         width: 50
         height: 84
       spriteId: ccdc334efe320f7459da23d92724bc9c
-    - name: Frame_17
+    - name: Barrel_Red_Frame_17
       frameIndex: 17
       additiveSortOrder: 0
       cellRect:
@@ -712,7 +712,7 @@ ScriptedImporter:
         width: 48
         height: 86
       spriteId: 13963b3120d7ad04788f72d74169257c
-    - name: Frame_18
+    - name: Barrel_Red_Frame_18
       frameIndex: 18
       additiveSortOrder: 0
       cellRect:
@@ -721,7 +721,7 @@ ScriptedImporter:
         width: 57
         height: 75
       spriteId: a47b85e9571ce93438d7fd2ff1be3359
-    - name: Frame_19
+    - name: Barrel_Red_Frame_19
       frameIndex: 19
       additiveSortOrder: 0
       cellRect:
@@ -730,7 +730,7 @@ ScriptedImporter:
         width: 46
         height: 79
       spriteId: 45377d00d00173f4f81e916f4b45be9e
-    - name: Frame_20
+    - name: Barrel_Red_Frame_20
       frameIndex: 20
       additiveSortOrder: 0
       cellRect:

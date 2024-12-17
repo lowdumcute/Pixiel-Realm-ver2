@@ -230,7 +230,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Frame_0
+    - name: Wood_Tower_Blue_Frame_0
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -239,7 +239,7 @@ ScriptedImporter:
         width: 146
         height: 155
       spriteId: 4285dfcf473df214caf2ac18bcd5d1ac
-    - name: Frame_1
+    - name: Wood_Tower_Blue_Frame_1
       frameIndex: 1
       additiveSortOrder: 0
       cellRect:
@@ -248,7 +248,7 @@ ScriptedImporter:
         width: 130
         height: 155
       spriteId: fc0dced653dbb0a44937ab00b263a3a1
-    - name: Frame_2
+    - name: Wood_Tower_Blue_Frame_2
       frameIndex: 2
       additiveSortOrder: 0
       cellRect:
@@ -257,7 +257,7 @@ ScriptedImporter:
         width: 130
         height: 155
       spriteId: 12817acb4b7ab1f4591907f414c8eec1
-    - name: Frame_3
+    - name: Wood_Tower_Blue_Frame_3
       frameIndex: 3
       additiveSortOrder: 0
       cellRect:
@@ -266,7 +266,7 @@ ScriptedImporter:
         width: 130
         height: 155
       spriteId: 5edd021b4b10ff94380b2b1854e58243
-    - name: Frame_4
+    - name: Wood_Tower_Blue_Frame_4
       frameIndex: 4
       additiveSortOrder: 0
       cellRect:
