@@ -15,5 +15,5 @@ MonoBehaviour:
   Type: 0
   itemName: Sword
   itemPrefab: {fileID: 6816753760795425645, guid: 04b1c7f3f4f709646a4d83e98a38fdf5, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0
   totalQuantity: 1
