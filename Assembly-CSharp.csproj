@@ -101,7 +101,6 @@
     <Compile Include="Assets\Script\Skill Tree\SkillSlot.cs" />
     <Compile Include="Assets\Script\MainMenu\ScrollView.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnManager.cs" />
-    <Compile Include="Assets\Script\Item\ItemEquipPanel.cs" />
     <Compile Include="Assets\Script\construction\Tower\TowerHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
