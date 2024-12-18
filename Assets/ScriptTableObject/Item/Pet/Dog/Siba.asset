@@ -15,5 +15,5 @@ MonoBehaviour:
   Type: 5
   itemName: Siba
   itemPrefab: {fileID: 6816753760795425645, guid: 01d7c9a63afd7f54f9d55f6376028cc2, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0
   totalQuantity: 1
