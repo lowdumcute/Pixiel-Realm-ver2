@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 558598038, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
+  m_Sprite: {fileID: -1911031700, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -390,9 +390,9 @@ GameObject:
   - component: {fileID: 1882789273348145578}
   - component: {fileID: 2291499982748700810}
   - component: {fileID: 2025142200830361607}
-  - component: {fileID: -3762728664611631411}
+  - component: {fileID: 1271514312033840114}
   m_Layer: 5
-  m_Name: Slime
+  m_Name: KingRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,8 +447,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -128596107, guid: 6a7fcbc5300f2ba498293ba0303d4c35, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: -1677239292, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -513,7 +513,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: -3762728664611631411}
+      - m_Target: {fileID: 1271514312033840114}
         m_TargetAssemblyTypeName: ItemInfoManager, Assembly-CSharp
         m_MethodName: SpawnItemInfo
         m_Mode: 1
@@ -553,15 +553,15 @@ MonoBehaviour:
   Type: 5
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 10
-  Health: 20
+  Attack: 15
+  Health: 0
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
-  itemInventory: {fileID: 11400000, guid: 6840c5b95ae3cb4439e64e117d016412, type: 2}
+  itemInventory: {fileID: 11400000, guid: 99d7cd0100fdff940957227add0d0a7e, type: 2}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   isEquipped: 0
---- !u!114 &-3762728664611631411
+--- !u!114 &1271514312033840114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfoPrefab: {fileID: 4306930842908753219, guid: fa894689b191b5746a23b4312404b444, type: 3}
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: 10003cb571133a94cbc09aaf735f7fef, type: 3}
   itemInfoReceiver: {fileID: 0}
 --- !u!1 &7256183067165968862
 GameObject:
