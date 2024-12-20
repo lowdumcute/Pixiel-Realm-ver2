@@ -70,7 +70,7 @@ public class ScrollView : MonoBehaviour
         if (index >= 0 && index < pos.Length)
         {
             scroll_pos = pos[index];          
-            scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, scroll_pos, 0.1f);
+            scrollBar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollBar.GetComponent<Scrollbar>().value, scroll_pos, 0.001f);
         }
     }
 
