@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static ItemStats;
 
@@ -17,6 +18,11 @@ public class GachaSystem : MonoBehaviour
     [Header("Inventory Of Player")]
     public InventoryUI inventoryUI;
     public Inventory playerInventory;  // Tham chiếu đến Inventory của người chơi
+    [Header("Tài nguyên của người chơi")]
+    public Asset asset;// Tham chiếu đến Tài nguyên của người chơi của người chơi
+    public TextMeshProUGUI StarText;
+    public AssetDisplay assetDisplay;
+    //public GameObject Panel;
 
     // Tỉ lệ rơi vật phẩm của Item
     [Header("% ăn rate")]
@@ -50,11 +56,26 @@ public class GachaSystem : MonoBehaviour
                     break;
             }
         }
-    }
+        TextUpdate();
+        assetDisplay.UpdateDisplay();
 
+}
+private void TextUpdate()
+    {
+        StarText.text = asset.Star.ToString();
+    }
     public void GachaOnce()
     {
         // Xác suất ngẫu nhiên với hệ thống pity
+        if(asset.Star <159)
+        {
+            Debug.Log("Khong du tai nguyen de roll"); 
+            //Panel.SetActive(true);
+            return;
+        }
+        asset.Star -= 160;
+        TextUpdate();
+        assetDisplay.UpdateDisplay();
         float roll = Random.Range(0f, 1f);
 
         // Kiểm tra pity và điều chỉnh xác suất nếu cần
@@ -125,6 +146,13 @@ public class GachaSystem : MonoBehaviour
 
     public void GachaTenTimes()
     {
+        if (asset.Star < 1599)
+        {
+            Debug.Log("Khong du tai nguyen de roll");
+            //Panel.SetActive(true);
+            return;
+        }
+
         Debug.Log("Thực hiện gacha 10 lần...");
         for (int i = 0; i < 10; i++)
         {
