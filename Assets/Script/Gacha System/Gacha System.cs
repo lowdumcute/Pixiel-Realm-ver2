@@ -5,61 +5,125 @@ using static ItemStats;
 
 public class GachaSystem : MonoBehaviour
 {
+    [Header("List Gacha Item")]
     public List<ItemInventory> availableItems;  // Danh sách các item có thể trúng trong gacha
-    public Inventory playerInventory;  // Tham chiếu đến Inventory của người chơi
+    
 
     // Cài đặt giá trị pity (số lần rút trước khi xác suất gacha tăng)
     public int pityCount = 0;
-    public int pityThreshold = 89; // Mốc pity khi rút không trúng legendary
-    public float pityBonusRate = 1.25f; // Tăng xác suất trúng legendary sau pity
-    
     //UI của inventory
+
+
+    // UI của inventory
+    [Header("Inventory Of Player")]
     public InventoryUI inventoryUI;
+    public Inventory playerInventory;  // Tham chiếu đến Inventory của người chơi
 
-    //Tỉ lệ rơi vật phẩm của Item
+    // Tỉ lệ rơi vật phẩm của Item
+    [Header("% ăn rate")]
     public float Common = 0.90f;    // 90% cho item hiếm 
-
     public float Rare = 0.10f;      // 10% cho item hiếm 
+    public float Legendary = 0.025f; // 2,5% cho item huyền thoại
 
-    public float Legendary = 0.025f;         // 2,5% cho item huyền thoại
+    // Danh sách cho từng loại item
+    private List<ItemInventory> commonItems = new List<ItemInventory>();
+    private List<ItemInventory> rareItems = new List<ItemInventory>();
+    private List<ItemInventory> legendaryItems = new List<ItemInventory>();
+
+    // Thống kê số lần quay không trúng Rare
+    public int consecutiveNonRare = 0;
+
+    public void Start()
+    {
+        // Phân loại các item vào 3 danh sách theo rarity
+        foreach (var item in availableItems)
+        {
+            switch (item.Rarity)
+            {
+                case ItemRarity.Common:
+                    commonItems.Add(item);
+                    break;
+                case ItemRarity.Rare:
+                    rareItems.Add(item);
+                    break;
+                case ItemRarity.Legendary:
+                    legendaryItems.Add(item);
+                    break;
+            }
+        }
+    }
 
     public void GachaOnce()
     {
         // Xác suất ngẫu nhiên với hệ thống pity
         float roll = Random.Range(0f, 1f);
 
-        // Kiểm tra xem có đang ở trong chế độ pity không
-        if (pityCount >= pityThreshold)
+        // Kiểm tra pity và điều chỉnh xác suất nếu cần
+        AdjustPity(ref roll);
+
+        // Kiểm tra trường hợp 9 lần liên tiếp không trúng Rare
+        if (consecutiveNonRare >= 9)
         {
-            // Tăng xác suất cho Legendary sau khi đạt mốc pity
-            roll = Mathf.Min(roll * pityBonusRate, 1.0f);
-            Debug.Log("Đã đạt pity, tăng xác suất trúng Legendary!");
+            Debug.Log("Lần này chắc chắn là Rare!");
+            roll = 0.9f; // Reset để luôn trúng Rare
         }
-        // Lấy vật phẩm từ danh sách theo xác suất và mốc pity
+
+        // Lấy vật phẩm từ danh sách dựa trên xác suất
         ItemInventory selectedItem = GetItemBasedOnRarity(roll);
+
         // Đảm bảo rằng chắc chắn nhận được vật phẩm
         if (selectedItem != null)
         {
-            Debug.Log("Trúng item: " + selectedItem.itemName);
-            Debug.Log("Rarity: " + selectedItem.Rarity);
-            // Thêm item vào Inventory
+            
             playerInventory.AddItem(selectedItem, 1);
-            inventoryUI.UpdateUI();
-            // Nếu trúng Legendary, reset pity
+
+            // Nếu trúng Legendary, reset pity và tỷ lệ Legendary về giá trị ban đầu
             if (selectedItem.Rarity == ItemRarity.Legendary)
             {
-                pityCount = 0;
+                Debug.Log("<color=yellow>Trúng item: " + selectedItem.itemName + "</color>");
+                Debug.Log("<color=yellow>Rarity: " + selectedItem.Rarity + "</color>");
+                pityCount = 0; // Reset lại số lần quay không trúng Legendary
+                Legendary = 0.025f; // Đưa tỷ lệ Legendary về giá trị ban đầu
             }
             else
             {
                 pityCount++;
+                // Nếu trúng Rare, reset đếm liên tiếp không trúng Rare
+                if (selectedItem.Rarity == ItemRarity.Rare)
+                {
+                    Debug.Log("<color=purple>Trúng item: " + selectedItem.itemName + "</color>");
+                    Debug.Log("<color=purple>Rarity: " + selectedItem.Rarity + "</color>");
+
+                    consecutiveNonRare = 0;
+
+                }
+                else
+                {
+                    Debug.Log("Trúng item: " + selectedItem.itemName );
+                    Debug.Log("Rarity: " + selectedItem.Rarity );
+                    consecutiveNonRare++;
+                }
             }
         }
         else
         {
             Debug.Log("Không trúng item nào.");
         }
+        inventoryUI.UpdateUI();
     }
+
+    private void AdjustPity(ref float roll)
+    {
+        // Kiểm tra nếu đã quay đủ 89 lần không trúng Legendary
+        if (pityCount >= 89)
+        {
+            // Đảm bảo rằng lần này chắc chắn trúng Legendary
+            roll = 0; // Đặt roll về 0 để chắc chắn trúng Legendary
+            Debug.Log("Đã đạt mốc pity 89 lần, lần này chắc chắn Legendary!");
+        }
+        
+    }
+
     public void GachaTenTimes()
     {
         Debug.Log("Thực hiện gacha 10 lần...");
@@ -68,36 +132,37 @@ public class GachaSystem : MonoBehaviour
             GachaOnce();
         }
     }
-
     private ItemInventory GetItemBasedOnRarity(float roll)
     {
-        List<ItemInventory> availableItemsByRarity = new List<ItemInventory>();
-
-        // Lọc vật phẩm theo xác suất
-        foreach (var item in availableItems)
+        // Nếu đã quay đủ 9 lần không ra Rare, chắc chắn chọn Rare
+        if (consecutiveNonRare >= 9)
         {
-            if (roll <= GetRarityProbability(item.Rarity))
-            {
-                availableItemsByRarity.Add(item);
-            }
+            // Đảm bảo trúng Rare
+            return rareItems[Random.Range(0, rareItems.Count)];
+        }
+        // Nếu đã đạt đủ pity (89 lần không ra Legendary), chắc chắn chọn Legendary
+        if (pityCount >= 89)
+        {
+            return legendaryItems[Random.Range(0, legendaryItems.Count)];
         }
 
-        // Nếu không có vật phẩm phù hợp, chọn bất kỳ vật phẩm nào từ danh sách
-        if (availableItemsByRarity.Count > 0)
+        if(pityCount > 50)
         {
-            return availableItemsByRarity[Random.Range(0, availableItemsByRarity.Count)];
+        
+            Legendary += 0.01f;  // Tăng tỷ lệ Legendary thêm 2%
+            Debug.Log("Tỉ lệ Legendary tăng lên: " + Legendary);
         }
-        return null;
-    }
-    private float GetRarityProbability(ItemRarity rarity)
-    {
-        switch (rarity)
+        if (roll <= Legendary)
         {
-            case ItemRarity.Common: return Common; // 90% cho item thông thường        
-            case ItemRarity.Rare: return Rare; // 10% cho item hiếm 
-            case ItemRarity.Legendary: return Legendary; // 1% cho item huyền thoại
-            default:
-                return Common;
+            return legendaryItems[Random.Range(0, legendaryItems.Count)];
+        }
+        else if (roll <= Rare + Legendary)
+        {
+            return rareItems[Random.Range(0, rareItems.Count)];
+        }
+        else
+        {
+            return commonItems[Random.Range(0, commonItems.Count)];
         }
     }
 }
