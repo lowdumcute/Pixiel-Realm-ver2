@@ -42,7 +42,7 @@ public class ScrollView : MonoBehaviour
             if (scroll_pos < pos[i] + (distance / 2) && scroll_pos > pos[i] - (distance / 2))
             {
                 // Phóng to bảng được chọn
-                child.localScale = Vector2.Lerp(child.localScale, new Vector2(1f, 1f), 0.1f);
+                child.localScale = Vector2.Lerp(child.localScale, new Vector2(1f, 1f), 0.5f);
 
                 // Kích hoạt các nút trong bảng được chọn
                
@@ -54,7 +54,7 @@ public class ScrollView : MonoBehaviour
                         Transform otherChild = transform.GetChild(a);
 
                         // Thu nhỏ các bảng không được chọn
-                        otherChild.localScale = Vector2.Lerp(otherChild.localScale, new Vector2(0.6f, 0.6f), 0.1f);
+                        otherChild.localScale = Vector2.Lerp(otherChild.localScale, new Vector2(0.7f, 0.7f), 0.5f);
 
                         // Vô hiệu hóa các nút trong bảng không được chọn
                         
