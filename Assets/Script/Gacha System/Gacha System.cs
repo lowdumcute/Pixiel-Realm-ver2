@@ -11,9 +11,18 @@ public class GachaSystem : MonoBehaviour
     // Cài đặt giá trị pity (số lần rút trước khi xác suất gacha tăng)
     public int pityCount = 0;
     public int pityThreshold = 89; // Mốc pity khi rút không trúng legendary
-    public float pityBonusRate = 1.05f; // Tăng xác suất trúng legendary sau pity
+    public float pityBonusRate = 1.25f; // Tăng xác suất trúng legendary sau pity
+    
     //UI của inventory
     public InventoryUI inventoryUI;
+
+    //Tỉ lệ rơi vật phẩm của Item
+    public float Common = 0.90f;    // 90% cho item hiếm 
+
+    public float Rare = 0.10f;      // 10% cho item hiếm 
+
+    public float Legendary = 0.025f;         // 2,5% cho item huyền thoại
+
     public void GachaOnce()
     {
         // Xác suất ngẫu nhiên với hệ thống pity
@@ -32,6 +41,7 @@ public class GachaSystem : MonoBehaviour
         if (selectedItem != null)
         {
             Debug.Log("Trúng item: " + selectedItem.itemName);
+            Debug.Log("Rarity: " + selectedItem.Rarity);
             // Thêm item vào Inventory
             playerInventory.AddItem(selectedItem, 1);
             inventoryUI.UpdateUI();
@@ -83,10 +93,11 @@ public class GachaSystem : MonoBehaviour
     {
         switch (rarity)
         {
-            case ItemRarity.Common: return 0.80f; // 90% cho item thông thường        
-            case ItemRarity.Rare: return 0.20f; // 10% cho item hiếm 
-            case ItemRarity.Legendary: return 0.025f; // 1% cho item huyền thoại
-            default: return 0.0f;
+            case ItemRarity.Common: return Common; // 90% cho item thông thường        
+            case ItemRarity.Rare: return Rare; // 10% cho item hiếm 
+            case ItemRarity.Legendary: return Legendary; // 1% cho item huyền thoại
+            default:
+                return Common;
         }
     }
 }

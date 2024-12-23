@@ -10227,9 +10227,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
   playerInventory: {fileID: 11400000, guid: d04344f77e1b7ee49820856a03f2d7e4, type: 2}
   pityCount: 0
-  pityThreshold: 89
-  pityBonusRate: 1.15
+  pityThreshold: 0
+  pityBonusRate: 1.25
   inventoryUI: {fileID: 996658932}
+  Common: 0.9
+  Rare: 0.1
+  Legendary: 0.025
 --- !u!1 &1820787201
 GameObject:
   m_ObjectHideFlags: 0
