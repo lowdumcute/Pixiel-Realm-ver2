@@ -1,12 +1,14 @@
     using UnityEngine;
 
-    
-    [CreateAssetMenu(fileName = "ItemInventory", menuName = "ScriptableObjects/Item")]
+
+[CreateAssetMenu(fileName = "ItemInventory", menuName = "ScriptableObjects/Item")]
     
     public class ItemInventory : ScriptableObject
     {
         public ItemStats.ItemType Type;
-        public string itemName;    // Tên item
+        public ItemStats.ItemRarity Rarity;
+        
+    public string itemName;    // Tên item
         public GameObject itemPrefab; // chứa Item Stats
         public int currentQuantity = 1;   // Số lượng trong Túi
         public int totalQuantity = 0; // tổng số lượng 

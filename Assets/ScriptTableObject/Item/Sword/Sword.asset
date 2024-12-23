@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   Type: 0
+  Rarity: 1
   itemName: Sword
   itemPrefab: {fileID: 6816753760795425645, guid: 04b1c7f3f4f709646a4d83e98a38fdf5, type: 3}
   currentQuantity: 0
