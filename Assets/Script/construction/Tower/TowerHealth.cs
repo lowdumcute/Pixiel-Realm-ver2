@@ -10,6 +10,7 @@ public class TowerHealth : MonoBehaviour
     public Slider healthSlider; // Thanh Slider hiển thị máu
     public GameObject VFXDestroy;
     public GameObject VFXStart; // VFX cho khi Tower khởi động
+    public GameObject VFXHit; // VFX cho khi Tower nhận sát thươngthương
     private Animator animator;
 
     private void Start()
@@ -19,21 +20,58 @@ public class TowerHealth : MonoBehaviour
         healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider ngay khi game bắt đầu
         UpdateHealthUI(); // Cập nhật giao diện UI lúc bắt đầu
         animator.SetBool("Lose", false);
-        PlayStartVFX();
+        PlayStartVFX(new Vector3(0, 3, 0));
     }
-    private void PlayStartVFX()
+    private void PlayStartVFX(Vector3 offset)
     {
         if (VFXStart != null)
+    {
+        // Thêm offset vào vị trí hiện tại của đối tượng
+        Vector3 spawnPosition = transform.position + offset;
+
+        // Tạo hiệu ứng VFX tại vị trí tính toán
+        GameObject vfx = Instantiate(VFXStart, spawnPosition, Quaternion.identity);
+
+        // Xoá hiệu ứng sau khi hoàn tất
+        ParticleSystem ps = vfx.GetComponent<ParticleSystem>();
+        if (ps != null)
         {
-            // Instantiate VFX tại vị trí của Tower
-            GameObject vfx = Instantiate(VFXStart, transform.position, Quaternion.identity);
-            Destroy(vfx, 1f); // Tự động xóa VFX sau 2 giây
+            Destroy(vfx, ps.main.duration + ps.main.startLifetime.constantMax);
+        }
+        else
+        {
+            Destroy(vfx, 1f); // Dự phòng nếu không tìm thấy ParticleSystem
         }
     }
+    }
+    private void PlayDamageVFX(Vector3 offset)
+{
+    if (VFXHit != null)
+    {
+        // Thêm offset vào vị trí hiện tại của đối tượng
+        Vector3 spawnPosition = transform.position + offset;
+
+        // Tạo hiệu ứng VFX tại vị trí tính toán
+        GameObject vfx = Instantiate(VFXHit, spawnPosition, Quaternion.identity);
+
+        // Xoá hiệu ứng sau khi hoàn tất
+        ParticleSystem ps = vfx.GetComponent<ParticleSystem>();
+        if (ps != null)
+        {
+            Destroy(vfx, ps.main.duration + ps.main.startLifetime.constantMax);
+        }
+        else
+        {
+            Destroy(vfx, 1f); // Dự phòng nếu không tìm thấy ParticleSystem
+        }
+    }
+}
+
 
     // Hàm nhận sát thương
     public void TakeDamage(int damage)
     {
+        PlayDamageVFX(new Vector3(0, 1, 0));
         currentHealth -= damage; // Giảm máu
         currentHealth = Mathf.Max(currentHealth, 0); // Đảm bảo máu không giảm xuống dưới 0
         UpdateHealthUI(); // Cập nhật giao diện UI sau khi nhận sát thương
