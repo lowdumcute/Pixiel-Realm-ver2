@@ -9,6 +9,7 @@ public class TowerHealth : MonoBehaviour
     public int currentHealth;
     public Slider healthSlider; // Thanh Slider hiển thị máu
     public GameObject VFXDestroy;
+    public GameObject VFXStart; // VFX cho khi Tower khởi động
     private Animator animator;
 
     private void Start()
@@ -18,6 +19,16 @@ public class TowerHealth : MonoBehaviour
         healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider ngay khi game bắt đầu
         UpdateHealthUI(); // Cập nhật giao diện UI lúc bắt đầu
         animator.SetBool("Lose", false);
+        PlayStartVFX();
+    }
+    private void PlayStartVFX()
+    {
+        if (VFXStart != null)
+        {
+            // Instantiate VFX tại vị trí của Tower
+            GameObject vfx = Instantiate(VFXStart, transform.position, Quaternion.identity);
+            Destroy(vfx, 1f); // Tự động xóa VFX sau 2 giây
+        }
     }
 
     // Hàm nhận sát thương
