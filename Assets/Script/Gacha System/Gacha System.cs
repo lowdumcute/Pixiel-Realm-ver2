@@ -11,7 +11,6 @@ public class GachaSystem : MonoBehaviour
 
     // Cài đặt giá trị pity (số lần rút trước khi xác suất gacha tăng)
     public int pityCount = 0;
-    //UI của inventory
 
 
     // UI của inventory
