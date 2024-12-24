@@ -114,7 +114,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.2830189, g: 0.2771449, b: 0.2771449, a: 0.78431374}
+      key0: {r: 0.2830189, g: 0.2771449, b: 0.2771449, a: 0.50980395}
       key1: {r: 1, g: 1, b: 1, a: 0.4745098}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -187,6 +187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7149097185566680353}
   - {fileID: 3518981192431287410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -318,3 +319,85 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &3570996445205667765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2553768537531752672}
+    m_Modifications:
+    - target: {fileID: 47101255097224761, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.06557589
+      objectReference: {fileID: 0}
+    - target: {fileID: 47101255097224761, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.9422556
+      objectReference: {fileID: 0}
+    - target: {fileID: 47101255097224761, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 47101255097224761, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 47101255097224761, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217708725268795028, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_Name
+      value: VFX Circle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.257
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99984777
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.01745245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+--- !u!4 &7149097185566680353 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5960523296190036628, guid: adabdc1168848dd408a5858fe9b14e0c, type: 3}
+  m_PrefabInstance: {fileID: 3570996445205667765}
+  m_PrefabAsset: {fileID: 0}
