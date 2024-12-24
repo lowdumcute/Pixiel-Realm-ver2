@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private EnemyHealthBar healthBar;
     [SerializeField] private Enemy enemy;
     public KillEnemiesProgress killEnemiesProgress;
+    [SerializeField] private GameObject deathEffectPrefab;
 
     private void Awake()
     {
@@ -69,8 +70,23 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return; // Tránh gọi Die nhiều lần
+        isDead = true;
+
+        // Gửi sự kiện lên SpawnManager và KillEnemiesProgress
         FindObjectOfType<SpawnManager>().OnEnemyDefeated();
-        killEnemiesProgress.OnEnemyKilled();
+        if (killEnemiesProgress != null)
+        {
+            killEnemiesProgress.OnEnemyKilled();
+        }
+
+        // Spawn hiệu ứng chết
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+
+        // Hủy đối tượng
         Destroy(gameObject);
     }
 

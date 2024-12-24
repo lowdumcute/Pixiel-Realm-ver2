@@ -17,5 +17,5 @@ MonoBehaviour:
   currentEnergy: 30
   maxEnergy: 30
   Health: 300
-  Attack: 280
+  Attack: 355
   energyRechargeTime: 100
