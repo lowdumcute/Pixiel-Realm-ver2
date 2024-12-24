@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
   Gold: 5600
-  Star: 11
+  Star: 3500
   currentEnergy: 30
   maxEnergy: 30
   Health: 300

@@ -20,8 +20,11 @@ public class GachaSystem : MonoBehaviour
     public Inventory playerInventory;  // Tham chiếu đến Inventory của người chơi
     [Header("Tài nguyên của người chơi")]
     public Asset asset;// Tham chiếu đến Tài nguyên của người chơi của người chơi
+    
     public TextMeshProUGUI StarText;
+    //Cập nhật UI người chơi
     public AssetDisplay assetDisplay;
+    public GachaUI gachaUI;
     //public GameObject Panel;
 
     // Tỉ lệ rơi vật phẩm của Item
@@ -76,6 +79,7 @@ public class GachaSystem : MonoBehaviour
         asset.Star -= 160;
         TextUpdate();
         assetDisplay.UpdateDisplay();
+        gachaUI.UpdateUI();
         float roll = Random.Range(0f, 1f);
 
         // Kiểm tra pity và điều chỉnh xác suất nếu cần

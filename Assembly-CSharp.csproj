@@ -65,6 +65,7 @@
     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Script\Panel\TogglePanel.cs" />
+    <Compile Include="Assets\Script\Gacha System\GachaUI.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy.cs" />
     <Compile Include="Assets\Script\Gacha System\GachaSystem.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealth.cs" />
