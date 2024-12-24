@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: KingRock
   m_EditorClassIdentifier: 
   Type: 5
-  Rarity: 2
   itemName: KingRock
   itemPrefab: {fileID: 6816753760795425645, guid: 5210166c2db225242a9bf2e301f6c9b9, type: 3}
-  currentQuantity: 5
+  currentQuantity: 1
   totalQuantity: 1

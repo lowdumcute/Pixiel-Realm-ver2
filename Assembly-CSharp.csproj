@@ -69,7 +69,6 @@
     <Compile Include="Assets\Script\Inventory\Inventory.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\Script\Panel\TogglePanel.cs" />
-    <Compile Include="Assets\Script\Gacha System\GachaUI.cs" />
     <Compile Include="Assets\Script\Enemy\Enemy.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealth.cs" />
     <Compile Include="Assets\Script\construction\Tower\Bullet.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
-    <Compile Include="Assets\Script\Gacha System\Gacha System.cs" />
     <Compile Include="Assets\Script\Sound\UIController.cs" />
     <Compile Include="Assets\Script\construction\Castle\CastleHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
