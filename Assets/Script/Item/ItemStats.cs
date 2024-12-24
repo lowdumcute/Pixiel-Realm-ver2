@@ -3,6 +3,13 @@ using UnityEngine;
 public class ItemStats : MonoBehaviour
 {
     public enum ItemType { Weapon, Helmet, Armor, Shoe, Ring, Pet } // Loại Item
+    public enum ItemRarity
+    {
+        Common,
+        Rare,
+        Legendary
+    }
+    //độ hiếm item
     [Header("Stat Item")]
     public ItemType Type;
     [SerializeField] public GameObject EquipButton;
