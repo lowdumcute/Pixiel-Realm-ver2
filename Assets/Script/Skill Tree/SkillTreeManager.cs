@@ -13,13 +13,13 @@ public class SkillTreeManager : MonoBehaviour
     //Unity Event
     private void OnEnable()
     {
-        
+        SkillSlot.onAbilitypointSpent += PointSpent;
         SkillSlot.onAbilitypointSpent += SkillSpent;
         SkillSlot.onMaxLevelSkill += SkillMax;
     }
     private void OnDisable()
     {
-        
+        SkillSlot.onAbilitypointSpent -= PointSpent;
         SkillSlot.onAbilitypointSpent -= SkillSpent;
         SkillSlot.onMaxLevelSkill -= SkillMax;
     }
@@ -30,7 +30,7 @@ public class SkillTreeManager : MonoBehaviour
         {
             slot.SkillButton.onClick.AddListener(() => checkAvailablePoint(slot));
         }
-        
+        abilityPoint(0);
     }
     
     
@@ -49,7 +49,18 @@ public class SkillTreeManager : MonoBehaviour
     //điểm để nâng cấp Skill(tạm thời)
     //sau này đổi thành tài nguyên sau
 
-    
+    public void abilityPoint(int amount)
+    {
+        availabePoint += amount;
+        text.text = availabePoint.ToString();
+    }
+    private void PointSpent(SkillSlot skilllot)
+    {
+        if (availabePoint > 0)
+        {
+            abilityPoint(-1);
+        }
+    }
     //kiểm tra xem có đủ điểm để nâng cấp hay không nếu không thì không nâng cấp
     private void checkAvailablePoint(SkillSlot slot)
     {
