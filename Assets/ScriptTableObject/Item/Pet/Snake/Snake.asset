@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
-  m_Name: TaiNguyen
+  m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
+  m_Name: Snake
   m_EditorClassIdentifier: 
-  Gold: 4200
-  Star: 735840
-  currentEnergy: 30
-  maxEnergy: 30
-  Health: 250
-  Attack: 400
-  energyRechargeTime: 100
+  Type: 5
+  Rarity: 1
+  itemName: Snake
+  itemPrefab: {fileID: 6816753760795425645, guid: 3d0e33a3d5f39394796290d1a2877204, type: 3}
+  currentQuantity: 0
+  totalQuantity: 0

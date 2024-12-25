@@ -6,6 +6,7 @@ public class AddItem : MonoBehaviour
 {
     [SerializeField] private ItemInventory itemInventory; // item add vào túi 
     [SerializeField] private Inventory inventory; // Tham chiếu tới Inventory ScriptableObject
+
     public void AddToInventory(int amount = 1)
     {
         if (itemInventory == null || inventory == null)

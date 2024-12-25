@@ -15,6 +15,7 @@ public class Inventory : ScriptableObject
         {
             // Nếu item đã tồn tại, tăng số lượng
             existingItem.IncreaseQuantity(amount);
+            existingItem.IncreaseQuantityTotal(amount);
         }
         else
         {
@@ -48,9 +49,14 @@ public class Inventory : ScriptableObject
         return items.Exists(item => item.itemName == itemToCheck.itemName);
     }
 
-    // Xóa toàn bộ inventory
+    // Xóa toàn bộ inventory (cập nhật lại currentQuantity và totalQuantity của tất cả item)
     public void ClearInventory()
     {
-        items.Clear();
+        foreach (ItemInventory item in items)
+        {
+            item.currentQuantity = 0;  // Đặt lại số lượng hiện tại về 0
+            item.totalQuantity = 0;    // Đặt lại tổng số lượng về 0
+        }
+
     }
 }

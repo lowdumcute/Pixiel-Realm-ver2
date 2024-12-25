@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Helmet
   m_EditorClassIdentifier: 
   Type: 1
+  Rarity: 0
   itemName: Helmet
   itemPrefab: {fileID: 6816753760795425645, guid: ebf01f9038cbde047b66f9356b2d2324, type: 3}
   currentQuantity: 0
-  totalQuantity: 1
+  totalQuantity: 0

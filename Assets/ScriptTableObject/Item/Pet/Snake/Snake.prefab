@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7614042104445262979}
   - component: {fileID: 5082522666668438349}
   m_Layer: 5
-  m_Name: ImageItem
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 276958713, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
+  m_Sprite: {fileID: -865424053, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -390,9 +390,9 @@ GameObject:
   - component: {fileID: 1882789273348145578}
   - component: {fileID: 2291499982748700810}
   - component: {fileID: 2025142200830361607}
-  - component: {fileID: 8239945309906367121}
+  - component: {fileID: -3762728664611631411}
   m_Layer: 5
-  m_Name: Helmet
+  m_Name: Snake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8239945309906367121}
+      - m_Target: {fileID: -3762728664611631411}
         m_TargetAssemblyTypeName: ItemInfoManager, Assembly-CSharp
         m_MethodName: SpawnItemInfo
         m_Mode: 1
@@ -550,18 +550,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36a4485e0ce3a245a90f50bf0d5c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 5
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 5
-  Health: 40
+  Attack: 10
+  Health: 20
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
-  itemInventory: {fileID: 11400000, guid: f3e5e5a470d6c564ba21ecc4df336ab1, type: 2}
+  itemInventory: {fileID: 11400000, guid: a3be7b7f58dc935438b5198b6d0b2952, type: 2}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   isEquipped: 0
---- !u!114 &8239945309906367121
+--- !u!114 &-3762728664611631411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfoPrefab: {fileID: 4306930842908753219, guid: 23e66104956d6e14e9d7f86a0b2a31e4, type: 3}
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: d9bfd615b9d33b948a6f9a7e16826791, type: 3}
   itemInfoReceiver: {fileID: 0}
 --- !u!1 &7256183067165968862
 GameObject:

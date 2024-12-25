@@ -16,9 +16,17 @@
         {
             currentQuantity += amount;
         }
+        public void IncreaseQuantityTotal(int amount)
+        {
+            totalQuantity += amount;
+        }
 
         public void DecreaseQuantity(int amount)
         {
             currentQuantity = Mathf.Max(currentQuantity - amount, 0); // Không nhỏ hơn 0
+        }
+        public void DecreaseQuantityTotal(int amount)
+        {
+            totalQuantity = Mathf.Max(totalQuantity - amount, 0); // Không nhỏ hơn 0
         }
     }

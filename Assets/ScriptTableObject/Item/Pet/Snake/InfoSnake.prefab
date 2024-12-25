@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Nh\u1EABn r\u1EAFn "
+  m_text: "R\u1EAFn l\u1EE5c"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255371
+  m_fontColor: {r: 0.04431629, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -199,8 +199,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Chi\u1EBFc nh\u1EABn n\xE0y \u0111\u01B0\u1EE3c l\xE0m t\u1EEB 1 con r\u1EAFn
-    \n+ 10 t\u1EA5n c\xF4ng \n+ 20 m\xE1u"
+  m_text: "qu\xE1i nh\u1ECF th\u01B0\u1EDDng xu\u1EA5t hi\u1EC7n \u1EDF nh\u1EEFng
+    n\u01A1i n\u01B0\u1EDBc b\u1ECB \xF4 nhi\u1EC5m \n+ 10 t\u1EA5n c\xF4ng \n+ 20
+    m\xE1u"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -281,7 +282,7 @@ GameObject:
   - component: {fileID: 981016362562675770}
   - component: {fileID: 8934763001789571890}
   m_Layer: 5
-  m_Name: InfoRingSnake
+  m_Name: InfoSnake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -957785332, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
+  m_Sprite: {fileID: -865424053, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -488,8 +489,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -128596107, guid: 6a7fcbc5300f2ba498293ba0303d4c35, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: -1822768874, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

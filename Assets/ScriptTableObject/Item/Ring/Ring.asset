@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Ring
   m_EditorClassIdentifier: 
   Type: 4
+  Rarity: 0
   itemName: Ring
   itemPrefab: {fileID: 6816753760795425645, guid: 1088776b14c93af459799f66c6702a93, type: 3}
   currentQuantity: 0
-  totalQuantity: 1
+  totalQuantity: 0

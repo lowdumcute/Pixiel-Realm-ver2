@@ -180,10 +180,10 @@ TextureImporter:
         serializedVersion: 2
         x: 37
         y: 21
-        width: 91
+        width: 5
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,7 +204,7 @@ TextureImporter:
         width: 38
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,6 +212,132 @@ TextureImporter:
       bones: []
       spriteID: 7676cb1986c82ed4fbe33d52853a8504
       internalID: 1034031792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_2
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 86
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b239bb1799341489356948a683c113
+      internalID: 723353078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 68
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74dfcf31ae8356f43be7b17b640ad668
+      internalID: 1665078256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_4
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 50
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8f1ad53d502174994314d023f8f527
+      internalID: 1910698748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_5
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 50
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d990698a84db9554a81d3a62e2c71dee
+      internalID: 852352421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_6
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 86
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af649a4cce7f01408e3783c7dd72381
+      internalID: 2113949083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Equipment Panel_7
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 68
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e30bc3fa681ffac4cb31250674a4d380
+      internalID: -1002150485
       vertices: []
       indices: 
       edges: []
@@ -229,6 +355,12 @@ TextureImporter:
     nameFileIdTable:
       Equipment Panel_0: -394194972
       Equipment Panel_1: 1034031792
+      Equipment Panel_2: 723353078
+      Equipment Panel_3: 1665078256
+      Equipment Panel_4: 1910698748
+      Equipment Panel_5: 852352421
+      Equipment Panel_6: 2113949083
+      Equipment Panel_7: -1002150485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
