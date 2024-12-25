@@ -13,4 +13,10 @@ public class StageSO:ScriptableObject
     public Sprite[] BonusImage;
     public string NameSceneNormalStage;
     public string NameSceneChallengeStage;
+
+    public event System.Action OnDataChange;
+    private void OnValidate()
+    {
+        OnDataChange?.Invoke();
+    }
 }
