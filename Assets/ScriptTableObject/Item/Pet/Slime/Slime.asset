@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Rarity: 0
+  isEquipped: 0
   itemName: Slime
   itemPrefab: {fileID: 6816753760795425645, guid: f70471a00e8846d4e9f06df12f9e2e25, type: 3}
   currentQuantity: 1
-  totalQuantity: 1

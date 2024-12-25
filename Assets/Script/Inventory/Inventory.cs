@@ -18,7 +18,7 @@ public class Inventory : ScriptableObject
         {
             // Nếu item đã tồn tại, tăng số lượng
             existingItem.IncreaseQuantity(amount);
-            existingItem.IncreaseQuantityTotal(amount);
+            
 
             // Kiểm tra nếu số lượng > 1 và chuyển thành mảnh
             if (existingItem.currentQuantity > 1)
@@ -73,32 +73,47 @@ public class Inventory : ScriptableObject
     // Chuyển đổi item thành mảnh dựa trên rarity
     private void ConvertToFragments(ItemInventory item)
     {
-        int fragmentCount = 0;
-
-        switch (item.Rarity)
-        {
-            case ItemStats.ItemRarity.Common:
-                fragmentCount = 1; // Chuyển thành 1 mảnh
-                break;
-            case ItemStats.ItemRarity.Rare:
-                fragmentCount = 2; // Chuyển thành 2 mảnh
-                break;
-            case ItemStats.ItemRarity.Legendary:
-                fragmentCount = 3; // Chuyển thành 3 mảnh
-                break;
-            default:
-                fragmentCount = 1; // Mặc định chuyển thành 1 mảnh
-                break;
-        }
-
-        // Nếu item có số lượng > 1, tạo các mảnh
+        // Kiểm tra nếu số lượng item > 1 và isEquipped là false
         if (item.currentQuantity > 1)
         {
-            // Lưu số mảnh vào Asset
-            AddFragmentsToAsset(item.Type, fragmentCount);
+            int fragmentCount = 0;
 
-            // Đặt lại số lượng item sau khi chuyển thành mảnh
-            item.currentQuantity = 0; // Số lượng item gốc sẽ trở thành 0
+            // Tính số mảnh tùy theo rarity của item
+            switch (item.Rarity)
+            {
+                case ItemStats.ItemRarity.Common:
+                    fragmentCount = 1; // Chuyển thành 1 mảnh
+                    break;
+                case ItemStats.ItemRarity.Rare:
+                    fragmentCount = 2; // Chuyển thành 2 mảnh
+                    break;
+                case ItemStats.ItemRarity.Legendary:
+                    fragmentCount = 3; // Chuyển thành 3 mảnh
+                    break;
+                default:
+                    fragmentCount = 1; // Mặc định chuyển thành 1 mảnh
+                    break;
+            }
+
+            // Nếu isEquipped là true, chuyển tất cả item thành mảnh
+            if (item.isEquipped)
+            {
+                // Tất cả item sẽ được chuyển thành mảnh
+                int fragmentsToCreate = item.currentQuantity;
+                AddFragmentsToAsset(item.Type, fragmentsToCreate * fragmentCount);
+                item.currentQuantity = 0; // Xóa tất cả item
+            }
+            else
+            {
+                // Nếu isEquipped là false, chỉ giữ lại 1 item và chuyển phần còn lại thành mảnh
+                int fragmentsToCreate = item.currentQuantity - 1; // Giữ lại 1 item
+                AddFragmentsToAsset(item.Type, fragmentsToCreate * fragmentCount);
+                item.currentQuantity = 1; // Giữ lại 1 item
+            }
+        }
+        else
+        {
+            Debug.Log("Item quantity is <= 1, no fragments created.");
         }
     }
 
@@ -137,7 +152,7 @@ public class Inventory : ScriptableObject
         foreach (ItemInventory item in items)
         {
             item.currentQuantity = 0;  // Đặt lại số lượng hiện tại về 0
-            item.totalQuantity = 0;    // Đặt lại tổng số lượng về 0
+            
         }
     }
 }

@@ -12322,7 +12322,7 @@ MonoBehaviour:
   shoePanel: {fileID: 1856642048}
   ringPanel: {fileID: 42935114}
   petPanel: {fileID: 1515294676}
-  inventoryUI: {fileID: 0}
+  inventoryUI: {fileID: 996658932}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
 --- !u!1 &1165580852
 GameObject:

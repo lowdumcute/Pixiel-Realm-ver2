@@ -42,6 +42,7 @@ public class ItemStats : MonoBehaviour
         {
             EquipButton.SetActive(false);
             UnequipButton.SetActive(true);
+            itemInventory.isEquipped = true;
 
             // Di chuyển object sang panel tương ứng
             itemManager.EquipItem(this);
@@ -81,6 +82,7 @@ public class ItemStats : MonoBehaviour
         {
             UnequipButton.SetActive(false);
             EquipButton.SetActive(true);
+            itemInventory.isEquipped = false;
 
             // Cộng số lượng hiện trong túi
             itemInventory.IncreaseQuantity(1);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Rarity: 1
+  isEquipped: 0
   itemName: Snake
   itemPrefab: {fileID: 6816753760795425645, guid: 3d0e33a3d5f39394796290d1a2877204, type: 3}
-  currentQuantity: 0
-  totalQuantity: 0
+  currentQuantity: 1

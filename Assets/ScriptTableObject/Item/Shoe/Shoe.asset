@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 3
   Rarity: 0
+  isEquipped: 1
   itemName: Shoe
   itemPrefab: {fileID: 6816753760795425645, guid: e24bc0a99000765499b2d82f67ddbb98, type: 3}
   currentQuantity: 0
-  totalQuantity: 1

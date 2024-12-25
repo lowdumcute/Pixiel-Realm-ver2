@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 5
   Rarity: 2
+  isEquipped: 0
   itemName: KingRock
   itemPrefab: {fileID: 6816753760795425645, guid: 5210166c2db225242a9bf2e301f6c9b9, type: 3}
-  currentQuantity: 0
-  totalQuantity: 1
+  currentQuantity: 1
