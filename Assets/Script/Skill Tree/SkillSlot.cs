@@ -13,10 +13,11 @@ public class SkillSlot : MonoBehaviour
     public TextMeshProUGUI levelText;
     public Button SkillButton;
     public GameObject unlockedPanel;
+    public Image connectionLine; // Đường nối đổi màu khi cấp tối đa
 
     public bool isUnlocked;
 
-    public Stats relatedStat; // Tham chiếu đến Stats liên quan // là sao
+    public Stats relatedStat; // Tham chiếu đến Stats  sẽ cộng 
     public Asset asset;// Tham  chiếu đến tài nguyên
 
     //2 Textmeshpro vàng trong panel
@@ -72,7 +73,7 @@ public class SkillSlot : MonoBehaviour
         currentGold.text = asset.Gold.ToString();
         GoldNeeded.text = "/ "+skillSO.GoldRequire.ToString();
     }
-    void UpdateUI()
+    private void UpdateUI()
     {
         if (skillSO != null)
         {
@@ -85,14 +86,13 @@ public class SkillSlot : MonoBehaviour
             levelText.text = $"{skillSO.currentLevel} / {skillSO.maxLevel}";
             SkillIcon.color = Color.white;
 
-            // Ẩn panel nếu đã đạt max level
             if (skillSO.currentLevel >= skillSO.maxLevel)
             {
-                unlockedPanel.SetActive(false); // Không cho mở panel nữa khi max level
+                unlockedPanel.SetActive(false);
             }
             else
             {
-                unlockedPanel.SetActive(true); // Nếu chưa max level, vẫn cho phép mở panel
+                unlockedPanel.SetActive(true);
             }
         }
         else
@@ -100,9 +100,10 @@ public class SkillSlot : MonoBehaviour
             levelText.text = "LOCKED";
             SkillButton.interactable = false;
             SkillIcon.color = Color.grey;
-            unlockedPanel.SetActive(false); // Ẩn panel khi chưa mở khóa
+            unlockedPanel.SetActive(false);
         }
-        if(asset.Gold >= skillSO.GoldRequire)
+
+        if (asset.Gold >= skillSO.GoldRequire)
         {
             SkillButton.interactable = true;
             currentGold.color = Color.yellow;
@@ -112,7 +113,24 @@ public class SkillSlot : MonoBehaviour
             currentGold.color = Color.red;
             SkillButton.interactable = false;
         }
-        PreviewNextStats(); // Cập nhật giá trị preview sau mỗi thay đổi
+
+        PreviewNextStats();
+        UpdateConnectionLineColor(); // Cập nhật màu đường nối
+    }
+
+    private void UpdateConnectionLineColor()
+    {
+        if (connectionLine != null)
+        {
+            if (skillSO.currentLevel >= skillSO.maxLevel)
+            {
+                connectionLine.color = Color.green; // Màu xanh lá nếu max cấp
+            }
+            else
+            {
+                connectionLine.color = new Color(0.5f, 0f, 0.5f); // Màu tím đậm nếu chưa max cấp
+            }
+        }
     }
 
     public void TryToUpgrade()
@@ -123,14 +141,15 @@ public class SkillSlot : MonoBehaviour
             onAbilitypointSpent?.Invoke(this);
             asset.Gold -= skillSO.GoldRequire;
             UpdateTextGold();
-            UpdateStats(); // Cập nhật Stats sau khi nâng cấp
+            UpdateStats();
             UpdateUI();
 
             if (skillSO.currentLevel >= skillSO.maxLevel)
             {
                 onMaxLevelSkill?.Invoke(this);
-                UpdateUI(); // Cập nhật lại UI khi đạt max level
+                UpdateUI();
             }
+
             assetDisplay.UpdateDisplay();
         }
     }

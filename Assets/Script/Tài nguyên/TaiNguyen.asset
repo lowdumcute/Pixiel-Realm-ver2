@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
-  Gold: 4200
-  Star: 735840
+  Gold: 1996500
+  Star: 721281
   currentEnergy: 30
   maxEnergy: 30
-  Health: 250
-  Attack: 400
-  energyRechargeTime: 100
+  Health: 430
+  Attack: 30
+  energyRechargeTime: 60

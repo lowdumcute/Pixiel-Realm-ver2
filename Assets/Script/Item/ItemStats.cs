@@ -15,6 +15,7 @@ public class ItemStats : MonoBehaviour
     [SerializeField] private ItemManager itemManager;
     [SerializeField] private AssetDisplay assetDisplay;
     [SerializeField] private ItemInventory itemInventory;
+    [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemData itemData; // Tham chiếu đến ItemData
 
     public bool isEquipped = false; // Trạng thái trang bị
@@ -26,6 +27,7 @@ public class ItemStats : MonoBehaviour
             assetDisplay = FindObjectOfType<AssetDisplay>();
         }
         itemManager = FindObjectOfType<ItemManager>();
+        inventoryUI = FindObjectOfType<InventoryUI>();
     }
 
     public void Equip()
@@ -56,6 +58,7 @@ public class ItemStats : MonoBehaviour
 
             // Cập nhật lại UI
             assetDisplay.UpdateDisplay();
+            inventoryUI.UpdateUI();
 
             isEquipped = true;
             Debug.Log($"Equipped {gameObject.name}. Added Attack: {Attack}, Health: {Health}.");
@@ -93,7 +96,10 @@ public class ItemStats : MonoBehaviour
             if (Health != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Health, Health);
 
             isEquipped = false;
+            // cập nhập UI
             assetDisplay.UpdateDisplay();
+            inventoryUI.UpdateUI();
+
             Debug.Log($"Unequipped {gameObject.name}. Removed Attack: {Attack}, Health: {Health}.");
         }
         else

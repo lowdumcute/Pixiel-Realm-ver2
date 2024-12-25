@@ -7,6 +7,7 @@ public class CastleHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Slider healthSlider; // Thanh Slider hiển thị máu
+    [SerializeField]private GamePlayManager gamePlayManager;
     private Animator animator;
 
     private void Start()
@@ -54,20 +55,18 @@ public class CastleHealth : MonoBehaviour
     // Hàm xử lý khi Tower bị phá hủy
     private void Die()
     {
-        Debug.Log("Tower has been destroyed!");
+
         animator.SetTrigger("Lose");
+        gamePlayManager.Lose(); // Kích hoạt Lose Panel và dừng game
 
-        // Đổi tag của Tower thành "Untagged"
-        gameObject.tag = "Untagged";
-
-        // Ẩn tất cả các object con
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
         }
 
-        // Ẩn thanh máu
         healthSlider.gameObject.SetActive(false);
+
+                
     }
 
     // Hàm được gọi khi tiêu diệt quái (Ẩn Slider)

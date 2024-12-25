@@ -12,6 +12,13 @@ public class Asset : ScriptableObject
     [Header("Stat Player")]
     public float Health = 100;
     public int Attack = 10;
+    [Header("Fragment")]
+    public int fragmentWeapon = 0;
+    public int fragmentHelmet = 0;
+    public int fragmentArmor = 0;
+    public int fragmentShoe = 0;
+    public int fragmentRing = 0;
+    public int fragmentPet = 0;
 
     public float energyRechargeTime = 60f; // 1 phút cho 1 năng lượng
     private float timeSinceLastEnergyReplenish = 0f;

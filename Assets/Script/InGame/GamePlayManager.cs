@@ -13,10 +13,12 @@ public class GamePlayManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private MainHouseController mainHouseController;
+    [SerializeField] private CastleHealth castleHealth; 
     [SerializeField] private int currentCoins = 2;
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 10f;
     [SerializeField] private GameObject winPanel; // Tham chiếu tới Win Panel
+    [SerializeField] private GameObject losePanel; // Tham chiếu tới Lose Panel
     [SerializeField] private LevelReward[] levelRewards; // Danh sách phần thưởng
 
     private Vector3 originalPosition;
@@ -26,6 +28,7 @@ public class GamePlayManager : MonoBehaviour
         originalPosition = coinText.rectTransform.localPosition;
         UpdateCoinDisplay();
         winPanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game
+        losePanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game
     }
 
     public void UpdateCoin(int amount)
@@ -126,5 +129,11 @@ public class GamePlayManager : MonoBehaviour
     public void ChangeSence()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+    }
+    public void Lose()
+    {
+        Debug.Log("You Lose!");
+        losePanel.SetActive(true); // Hiển thị Lose Panel
+        Time.timeScale = 0; // Dừng thời gian trong game
     }
 }

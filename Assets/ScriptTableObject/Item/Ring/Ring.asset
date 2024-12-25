@@ -16,5 +16,5 @@ MonoBehaviour:
   Rarity: 0
   itemName: Ring
   itemPrefab: {fileID: 6816753760795425645, guid: 1088776b14c93af459799f66c6702a93, type: 3}
-  currentQuantity: 0
-  totalQuantity: 0
+  currentQuantity: 1
+  totalQuantity: 2

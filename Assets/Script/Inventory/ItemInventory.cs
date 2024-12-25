@@ -6,7 +6,7 @@
     public class ItemInventory : ScriptableObject
     {
         public ItemStats.ItemType Type;
-    public ItemStats.ItemRarity Rarity;
+        public ItemStats.ItemRarity Rarity;
         public string itemName;    // Tên item
         public GameObject itemPrefab; // chứa Item Stats
         public int currentQuantity = 1;   // Số lượng trong Túi
