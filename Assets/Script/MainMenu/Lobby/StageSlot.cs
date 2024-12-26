@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,103 +11,105 @@ public class StageSlot : MonoBehaviour
     [SerializeField] private StageSO stageSO;
     [SerializeField] private GameObject[] Panel;
 
-    [SerializeField] private CanvasGroup Stage;
-
     [SerializeField] private TextMeshProUGUI NameStage;
     [SerializeField] private TextMeshProUGUI Decription;
-    [SerializeField]
-    private Button Click;
 
+    [SerializeField] private GameObject Click;
     [SerializeField] private Button NormalMode;
     [SerializeField] private Button ChallengeMode;
 
-    public bool isUnlocked;
+    private bool isUnlocked; // Biến để lưu trạng thái mở khóa của stage
+
     private void Start()
     {
+        // Ẩn tất cả các panel khi khởi động
+        foreach (var panel in Panel)
+        {
+            panel.SetActive(false);
+        }
+
+        // Cập nhật trạng thái mở khóa của stage
         UnlockthisStage();
     }
+
     private void OnEnable()
     {
+        // Đăng ký sự kiện khi stageSO thay đổi
         stageSO.OnDataChange += UnlockthisStage;
     }
+
     private void OnDisable()
     {
+        // Hủy đăng ký sự kiện khi không cần thiết
         stageSO.OnDataChange -= UnlockthisStage;
     }
+
     private void UnlockthisStage()
     {
+        if (stageSO == null)
+        {
+            Debug.LogWarning("StageSO is null in UnlockthisStage.");
+            return;
+        }
+
+        // Lấy trạng thái mở khóa từ StageSO
         isUnlocked = stageSO.isUnlocked;
+
+        // Cập nhật giao diện
         UpdateUI();
     }
-    private void OnValidate()
-    {
-        if (stageSO != null)
-        {
-            Debug.Log($"OnValidate called. isUnlocked: {stageSO.isUnlocked}");
-            UpdateUI();
-        }
-        else
-        {
-            Debug.LogWarning("StageSO is null in OnValidate.");
-        }
-    }
-    
-    
+
     private void UpdateUI()
-    {     
-        
-            if (isUnlocked == false)
-            {
-                Stage.GetComponent<CanvasGroup>().alpha = 0f;
-                Stage.GetComponent<CanvasGroup>().interactable = false;
-                Stage.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            }
-            else
-            {
-                Stage.GetComponent<CanvasGroup>().alpha = 1f;
-                Stage.GetComponent<CanvasGroup>().interactable = true;
-                Stage.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            }
-        
-
-    }
-
-
-    public void OpenPanel(int index)
     {
-        for(int i = 0; i < Panel.Length;i++)
+        if (Click != null)
         {
-            if(i != index)
-            {
-                Panel[i].SetActive(false);
-                
-                
-            }
-            else
-            {
-                Panel[i].SetActive(true);
-                Panel[i].GetComponent<Animator>().SetTrigger("Open");
-            }
-                
+            Click.SetActive(isUnlocked); // Hiện hoặc ẩn stage dựa vào trạng thái mở khóa
         }
+
         if (stageSO != null)
         {
             NameStage.text = stageSO.chapter;
             Decription.text = stageSO.Decription;
         }
     }
-   public void LoadNormalStage(int index)
-    {
-        Panel[index].GetComponent<LoadingScreen>().namesence = stageSO.NameSceneNormalStage;
-        Panel[index].GetComponent<LoadingScreen>().LoadingLevel();
 
+    public void OpenPanel(int index)
+    {
+        for (int i = 0; i < Panel.Length; i++)
+        {
+            Panel[i].SetActive(i == index);
+        }
+
+        if (stageSO != null)
+        {
+            NameStage.text = stageSO.chapter;
+            Decription.text = stageSO.Decription;
+        }
     }
+
+    public void LoadNormalStage(int index)
+    {
+        if (index >= 0 && index < Panel.Length)
+        {
+            var loadingScreen = Panel[index].GetComponent<LoadingScreen>();
+            if (loadingScreen != null)
+            {
+                loadingScreen.namesence = stageSO.NameSceneNormalStage;
+                loadingScreen.LoadingLevel();
+            }
+        }
+    }
+
     public void LoadChallengeStage(int index)
     {
-        Panel[index].GetComponent<LoadingScreen>().namesence = stageSO.NameSceneChallengeStage;
-        Panel[index].GetComponent<LoadingScreen>().LoadingLevel();
-
+        if (index >= 0 && index < Panel.Length)
+        {
+            var loadingScreen = Panel[index].GetComponent<LoadingScreen>();
+            if (loadingScreen != null)
+            {
+                loadingScreen.namesence = stageSO.NameSceneChallengeStage;
+                loadingScreen.LoadingLevel();
+            }
+        }
     }
-    // Update is called once per frame
-
 }

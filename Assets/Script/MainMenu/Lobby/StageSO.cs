@@ -5,7 +5,6 @@ using UnityEngine;
 public class StageSO:ScriptableObject
 {
     public bool isUnlocked;
-    public int Star;
     public string chapter;
     public string Decription;
     public int NormalStageEnergy;
@@ -17,6 +16,11 @@ public class StageSO:ScriptableObject
     public event System.Action OnDataChange;
     private void OnValidate()
     {
+        OnDataChange?.Invoke();
+    }
+    public void Unlock()
+    {
+        isUnlocked = true;
         OnDataChange?.Invoke();
     }
 }
