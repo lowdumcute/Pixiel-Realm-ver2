@@ -7,31 +7,27 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     //Panel Của Audio
-    
+    [SerializeField] private GameObject audioPanel;    
     //2 thanh Slider
     [SerializeField] private Slider MusicSlider;
     [SerializeField] private Slider SFXSlider;
 
-    //2 nút bật tắt Panel
-    [SerializeField]
-    private Animator ani;
     private void Start()
     {
+        audioPanel.SetActive(false);
         MusicSlider.value = AudioManager.instance.musicSource.volume;
         SFXSlider.value = AudioManager.instance.SFX_Source.volume;
-        ani = GetComponent<Animator>();
     }
 
     public void OpenPanel()
     {
         AudioManager.instance.PlaySFX("Pop");
-        ani.SetTrigger("Open");
+        audioPanel.SetActive(true);
     }
     public void ClosePanel()
     {
-
+        audioPanel.SetActive(false);
         AudioManager.instance.PlaySFX("Pop");
-        ani.SetTrigger("Close");
     }
     public void MusicVolume()
     {
