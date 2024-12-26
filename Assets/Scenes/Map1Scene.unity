@@ -15659,7 +15659,7 @@ MonoBehaviour:
   LevelObj: {fileID: 1108168447}
   LevelText: {fileID: 881196076}
   gamePlayManager: {fileID: 1546638391}
-  coin: 2
+  coin: 199999
   levels:
   - objects:
     - {fileID: 1049268072}
