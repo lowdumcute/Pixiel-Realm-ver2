@@ -51,7 +51,7 @@ public class Asset : ScriptableObject
             case Stats.StatsType.HealthPlayer:
                 Health += amount;
                 break;
-            case Stats.StatsType.AttackPLayer:
+            case Stats.StatsType.AttackPlayer:
                 Attack += amount;
                 break;
         }
@@ -76,7 +76,7 @@ public class Asset : ScriptableObject
             case Stats.StatsType.HealthPlayer:
                 Health -= amount;
                 break;
-            case Stats.StatsType.AttackPLayer:
+            case Stats.StatsType.AttackPlayer:
                 Attack -= amount;
                 break;
         }

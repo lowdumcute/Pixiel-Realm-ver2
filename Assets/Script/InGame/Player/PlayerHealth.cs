@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider; // Thanh Slider hiển thị máu
     [SerializeField] private Animator animator; // Animator để điều khiển hiệu ứng
     [SerializeField] private float healRate = 0.05f; // Tỷ lệ hồi máu mỗi giây (5%)
+    [SerializeField] private TMP_Text textRespawn; // Text hiển thị thời gian hồi sinh
 
     private int maxHealth; // Máu tối đa
     private int currentHealth; // Máu hiện tại
@@ -21,15 +23,26 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         // Cấu hình Slider
-        UpdateHealthUI();
+        if (healthSlider != null)
+        {
+            UpdateHealthUI();
+            healthSlider.gameObject.SetActive(true); // Hiển thị thanh máu
+        }
+
+        // Ẩn text hồi sinh ban đầu
+        if (textRespawn != null)
+        {
+            textRespawn.gameObject.SetActive(false);
+        }
 
         isHealing = false;
-        UpdateHealthUI();
     }
 
     // Hàm nhận sát thương
     public void TakeDamage(int damage)
     {
+        if (animator.GetBool("Die")) return; // Không nhận sát thương khi đã chết
+
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo máu không vượt quá giới hạn
         UpdateHealthUI();
@@ -71,12 +84,6 @@ public class PlayerHealth : MonoBehaviour
         {
             healthSlider.value = Mathf.Clamp01((float)currentHealth / maxHealth); // Đảm bảo giá trị từ 0 đến 1
         }
-
-        // Tự động bắt đầu hồi máu nếu không đầy
-        if (currentHealth < maxHealth && !isHealing)
-        {
-            StartCoroutine(HealOverTime());
-        }
     }
 
     // Xử lý khi người chơi chết
@@ -84,6 +91,53 @@ public class PlayerHealth : MonoBehaviour
     {
         animator.SetBool("Die", true);
         Debug.Log("Player has died!");
-        // Logic xử lý game over...
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(false); // Ẩn thanh máu
+        }
+
+        if (textRespawn != null)
+        {
+            textRespawn.gameObject.SetActive(true); // Hiển thị text hồi sinh
+        }
+
+        StartCoroutine(Respawn());
+    }
+
+    // Hồi sinh sau 10 giây
+    private IEnumerator Respawn()
+    {
+        int respawnTime = 10;
+
+        // Đếm ngược thời gian hồi sinh
+        while (respawnTime > 0)
+        {
+            if (textRespawn != null)
+            {
+                textRespawn.text = $"{respawnTime}";
+            }
+            yield return new WaitForSeconds(1f);
+            respawnTime--;
+        }
+
+        // Ẩn text hồi sinh
+        if (textRespawn != null)
+        {
+            textRespawn.gameObject.SetActive(false);
+        }
+
+        // Đặt lại máu đầy
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+
+        // Hiện lại thanh máu
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(true);
+        }
+
+        // Đặt trạng thái Die thành false
+        animator.SetBool("Die", false);
+        Debug.Log("Player has respawned!");
     }
 }
