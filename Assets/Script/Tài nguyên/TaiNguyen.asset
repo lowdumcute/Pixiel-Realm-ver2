@@ -16,8 +16,10 @@ MonoBehaviour:
   Star: 677601
   currentEnergy: 30
   maxEnergy: 30
-  Health: 250
+  Health: 100
   Attack: 80
+  HealthCastle: 400
+  AttackTower: 30
   fragmentWeapon: 0
   fragmentHelmet: 0
   fragmentArmor: 0

@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     private float lastAttackTime;
 
     // Danh sách ưu tiên mục tiêu
-    [SerializeField] private List<string> targetPriority = new List<string> { "Warior", "Tower", "Main" };
+    [SerializeField] private List<string> targetPriority = new List<string> { "Player","Warior", "Tower", "Main" };
 
     // Danh sách tĩnh chứa tất cả Enemy
     public static List<Enemy> allEnemies = new List<Enemy>();
@@ -112,7 +112,15 @@ public class Enemy : MonoBehaviour
     {
         if (currentTarget == null) return;
 
-        if (currentTarget.CompareTag("Tower"))
+        if (currentTarget.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = currentTarget.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackDamage);
+            }
+        }
+        else if (currentTarget.CompareTag("Tower"))
         {
             TowerHealth towerHealth = currentTarget.GetComponent<TowerHealth>();
             if (towerHealth != null)

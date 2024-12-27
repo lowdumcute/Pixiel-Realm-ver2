@@ -450,6 +450,7 @@ MonoBehaviour:
   attackCooldown: 1
   attackDamage: 10
   targetPriority:
+  - Player
   - Warior
   - Tower
   - Main

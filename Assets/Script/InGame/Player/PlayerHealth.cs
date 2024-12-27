@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Asset asset; // Tài sản chứa thông tin máu
-    [SerializeField] private Flash flashEffect; // Hiệu ứng flash khi nhận sát thương
+    [SerializeField] private Flash flash;
     [SerializeField] private Slider healthSlider; // Thanh Slider hiển thị máu
     [SerializeField] private Animator animator; // Animator để điều khiển hiệu ứng
     [SerializeField] private float healRate = 0.05f; // Tỷ lệ hồi máu mỗi giây (5%)
@@ -16,11 +16,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        animator.SetBool("Die", false);
         maxHealth = asset.Health;
         currentHealth = maxHealth;
 
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
+        // Cấu hình Slider
+        UpdateHealthUI();
 
         isHealing = false;
         UpdateHealthUI();
@@ -30,14 +31,11 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        currentHealth = Mathf.Max(currentHealth, 0); // Đảm bảo máu không âm
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo máu không vượt quá giới hạn
         UpdateHealthUI();
 
         // Kích hoạt hiệu ứng flash
-        if (flashEffect != null)
-        {
-            StartCoroutine(flashEffect.FlashRountine());
-        }
+        StartCoroutine(flash.FlashRountine());
 
         // Kiểm tra chết
         if (currentHealth <= 0)
@@ -53,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
         while (currentHealth < maxHealth)
         {
             currentHealth += Mathf.CeilToInt(maxHealth * healRate); // Hồi 5% máu tối đa
-            currentHealth = Mathf.Min(currentHealth, maxHealth); // Đảm bảo không vượt quá máu tối đa
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Đảm bảo không vượt quá máu tối đa
             UpdateHealthUI();
 
             if (currentHealth == maxHealth)
@@ -71,7 +69,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthSlider != null)
         {
-            healthSlider.value = (float)currentHealth / maxHealth;
+            healthSlider.value = Mathf.Clamp01((float)currentHealth / maxHealth); // Đảm bảo giá trị từ 0 đến 1
         }
 
         // Tự động bắt đầu hồi máu nếu không đầy
@@ -84,8 +82,8 @@ public class PlayerHealth : MonoBehaviour
     // Xử lý khi người chơi chết
     private void Die()
     {
-        animator.SetTrigger("Die");
-        // Thêm logic xử lý game over, ví dụ: dừng game, hiển thị UI...
+        animator.SetBool("Die", true);
         Debug.Log("Player has died!");
+        // Logic xử lý game over...
     }
 }
