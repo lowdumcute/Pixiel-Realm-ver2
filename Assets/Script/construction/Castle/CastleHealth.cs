@@ -4,15 +4,17 @@ using UnityEngine.UI;
 
 public class CastleHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    [SerializeField] private Asset asset; // Tài sản chứa thông tin Castle
+    private int maxHealth; // Máu tối đa
+    public int currentHealth; // Máu hiện tại
     public Slider healthSlider; // Thanh Slider hiển thị máu
-    [SerializeField]private GamePlayManager gamePlayManager;
+    [SerializeField] private GamePlayManager gamePlayManager;
     private Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        maxHealth = asset.HealthCastle; // Gán giá trị máu tối đa từ Asset
         currentHealth = maxHealth; // Khởi tạo máu ban đầu
         healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider ngay khi game bắt đầu
         UpdateHealthUI(); // Cập nhật giao diện UI lúc bắt đầu
@@ -55,30 +57,29 @@ public class CastleHealth : MonoBehaviour
     // Hàm xử lý khi Tower bị phá hủy
     private void Die()
     {
-
         animator.SetTrigger("Lose");
         gamePlayManager.Lose(); // Kích hoạt Lose Panel và dừng game
 
+        // Ẩn toàn bộ các object con
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(false);
         }
 
-        healthSlider.gameObject.SetActive(false);
-
-                
+        healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider
     }
 
     // Hàm được gọi khi tiêu diệt quái (Ẩn Slider)
     public void OnEnemyDefeated()
     {
-        // Ẩn thanh Slider khi quái bị tiêu diệt
         healthSlider.gameObject.SetActive(false);
     }
+
+    // Phục hồi máu đầy đủ
     public void RestoreHealth()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; // Khôi phục máu đầy
         UpdateHealthUI();
-        healthSlider.gameObject.SetActive(false);
+        healthSlider.gameObject.SetActive(false); // Ẩn thanh Slider
     }
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   SkillName: skill 3
   SkillIcon: {fileID: 728781186, guid: 9d73a718b28285c40a091711e98258d8, type: 3}
   GoldRequire: 2000
-  currentLevel: 5
+  currentLevel: 0
   maxLevel: 5

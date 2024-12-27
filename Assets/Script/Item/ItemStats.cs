@@ -54,8 +54,8 @@ public class ItemStats : MonoBehaviour
             itemData.SetItem(itemInventory);
 
             // Thêm stat cho nhân vật
-            if (Attack != 0) playerAsset.AddStatPlayer(Stats.StatsType.Attack, Attack);
-            if (Health != 0) playerAsset.AddStatPlayer(Stats.StatsType.Health, Health);
+            if (Attack != 0) playerAsset.AddStatPlayer(Stats.StatsType.AttackPLayer, Attack);
+            if (Health != 0) playerAsset.AddStatPlayer(Stats.StatsType.HealthPlayer, Health);
 
             // Cập nhật lại UI
             assetDisplay.UpdateDisplay();
@@ -94,8 +94,8 @@ public class ItemStats : MonoBehaviour
             itemData.RemoveItem(Type);
 
             // Trừ stat của nhân vật
-            if (Attack != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Attack, Attack);
-            if (Health != 0) playerAsset.MinusStatPlayer(Stats.StatsType.Health, Health);
+            if (Attack != 0) playerAsset.MinusStatPlayer(Stats.StatsType.AttackPLayer, Attack);
+            if (Health != 0) playerAsset.MinusStatPlayer(Stats.StatsType.HealthPlayer, Health);
 
             isEquipped = false;
             // cập nhập UI

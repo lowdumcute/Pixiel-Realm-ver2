@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private Asset asset;
     public float speed = 10f;
-    public int damage = 10;
+    public int damage ;
     private Transform target;
+    public void Start()
+    {
+        damage = asset.AttackTower;
+    }
 
     public void Seek(Transform _target)
     {

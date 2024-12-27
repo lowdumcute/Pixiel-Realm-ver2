@@ -3,7 +3,7 @@ using TMPro;
 
 public class Stats : MonoBehaviour
 {
-    public enum StatsType { Attack, Health } 
+    public enum StatsType { AttackPLayer, HealthPlayer, HealthCastle, AttackTower } 
     public StatsType Type;
 
     [SerializeField] private TMP_Text quantityText; 

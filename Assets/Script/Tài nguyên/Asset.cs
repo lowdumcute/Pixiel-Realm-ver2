@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 [CreateAssetMenu(fileName = "TaiNguyen", menuName = "ScriptableObjects/Asset")]
 public class Asset : ScriptableObject
@@ -10,8 +11,11 @@ public class Asset : ScriptableObject
     public int maxEnergy = 30;
 
     [Header("Stat Player")]
-    public float Health = 100;
+    public int Health = 100;
     public int Attack = 10;
+    [Header("Stats Constuction")]
+    public int HealthCastle = 400;
+    public int AttackTower = 20;
     [Header("Fragment")]
     public int fragmentWeapon = 0;
     public int fragmentHelmet = 0;
@@ -19,7 +23,7 @@ public class Asset : ScriptableObject
     public int fragmentShoe = 0;
     public int fragmentRing = 0;
     public int fragmentPet = 0;
-
+    [Header("Energy")]
     public float energyRechargeTime = 60f; // 1 phút cho 1 năng lượng
     private float timeSinceLastEnergyReplenish = 0f;
     private string lastEnergySaveKey = "LastEnergySave";
@@ -44,23 +48,35 @@ public class Asset : ScriptableObject
     {
         switch (type)
         {
-            case Stats.StatsType.Health:
+            case Stats.StatsType.HealthPlayer:
                 Health += amount;
                 break;
-            case Stats.StatsType.Attack:
+            case Stats.StatsType.AttackPLayer:
                 Attack += amount;
                 break;
         }
     }
+    public void AddStatConstructer(Stats.StatsType type, int amount)
+    {
+        switch(type)
+        {
+            case Stats.StatsType.HealthCastle:
+                HealthCastle += amount;
+                break;
+            case Stats.StatsType.AttackTower:
+                AttackTower += amount;
+                break;
 
+        }
+    }
     public void MinusStatPlayer(Stats.StatsType type, int amount)
     {
         switch (type)
         {
-            case Stats.StatsType.Health:
+            case Stats.StatsType.HealthPlayer:
                 Health -= amount;
                 break;
-            case Stats.StatsType.Attack:
+            case Stats.StatsType.AttackPLayer:
                 Attack -= amount;
                 break;
         }

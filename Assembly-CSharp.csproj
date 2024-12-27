@@ -112,6 +112,7 @@
     <Compile Include="Assets\Script\Skill Tree\SkillSlot.cs" />
     <Compile Include="Assets\Script\MainMenu\ScrollView.cs" />
     <Compile Include="Assets\Script\Enemy\SpawnManager.cs" />
+    <Compile Include="Assets\Script\InGame\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Script\construction\Tower\TowerHealth.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
@@ -145,7 +146,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Script\Efcet\Flash.cs" />
-    <Compile Include="Assets\Script\InGame\PlayerController.cs" />
+    <Compile Include="Assets\Script\InGame\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Skill Tree\SkillTreeManager.cs" />
     <Compile Include="Assets\Script\Tài nguyên\AssetDisplay.cs" />
     <Compile Include="Assets\Script\Inventory\EquipData.cs" />

@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
     public int currentHealth;
     private Flash flash;
     private bool isDead = false;
-    private bool isBeingAttacked = false;
+
 
     // Tham chiếu tới EnemyHealthBar để cập nhật thanh máu
     [SerializeField] private EnemyHealthBar healthBar;
@@ -46,11 +46,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Gọi FindTarget từ instance cụ thể của Enemy
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
-        isBeingAttacked = true;
         StartCoroutine(flash.FlashRountine());
-
-        Debug.Log("Enemy takes damage: " + damage + ", Current Health: " + currentHealth);
-
         // Cập nhật thanh máu
         if (healthBar != null)
         {
