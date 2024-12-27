@@ -17,6 +17,7 @@ public class UnlockedChapet : MonoBehaviour
     public int StageToUnlocked;
     private void Start()
     {
+        
         CheckUnlocked();
         isUnlocked = chapterSO.isUnlocked;
         UpdateUI();
@@ -51,10 +52,15 @@ public class UnlockedChapet : MonoBehaviour
                 StageToUnlocked++;
             }
         }
-        if(StageToUnlocked == stage.Length)
+        if(StageToUnlocked == (stage.Length + 1))
         {
             chapterSO.isUnlocked = true;
             isUnlocked = true;
+        }
+        else
+        {
+            chapterSO.isUnlocked = false;
+            isUnlocked = false;
         }
     }
 }
