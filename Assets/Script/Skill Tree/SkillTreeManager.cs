@@ -6,7 +6,6 @@ using UnityEngine;
 public class SkillTreeManager : MonoBehaviour
 {
     public SkillSlot[] skillSlots;
-    public TextMeshProUGUI text;
 
 
     //Unity Event
