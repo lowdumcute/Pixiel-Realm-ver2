@@ -450,9 +450,9 @@ MonoBehaviour:
   attackCooldown: 1
   attackDamage: 10
   targetPriority:
-  - Player
   - Warior
   - Tower
+  - Player
   - Main
 --- !u!195 &3449158610531178952
 NavMeshAgent:
