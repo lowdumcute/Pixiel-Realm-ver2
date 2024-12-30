@@ -9,7 +9,7 @@ TagManager:
   - Enemy
   - Main
   - Miner
-  - Warior
+  - Warrior
   layers:
   - Default
   - TransparentFX
