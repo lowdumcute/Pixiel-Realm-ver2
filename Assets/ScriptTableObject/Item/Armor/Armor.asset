@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   Rarity: 0
+  isEquipped: 0
   itemName: Armor
+  Icon: {fileID: -1547822966, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 3de6ef89c2741ff49847e8145b2148f2, type: 3}
   currentQuantity: 0
-  totalQuantity: 0

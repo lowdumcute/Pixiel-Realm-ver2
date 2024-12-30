@@ -16,5 +16,6 @@ MonoBehaviour:
   Rarity: 2
   isEquipped: 1
   itemName: Siba
+  Icon: {fileID: 1800952396, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 01d7c9a63afd7f54f9d55f6376028cc2, type: 3}
   currentQuantity: 0

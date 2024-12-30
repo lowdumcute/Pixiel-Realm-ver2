@@ -16,5 +16,6 @@ MonoBehaviour:
   Rarity: 0
   isEquipped: 0
   itemName: Slime
+  Icon: {fileID: 558598038, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: f70471a00e8846d4e9f06df12f9e2e25, type: 3}
   currentQuantity: 1

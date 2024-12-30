@@ -17,50 +17,31 @@ public class UnlockedChapet : MonoBehaviour
     public int StageToUnlocked;
     private void Start()
     {
-        
         CheckUnlocked();
-        isUnlocked = chapterSO.isUnlocked;
-        UpdateUI();
+    }
 
-    }
-    private void OnValidate()
-    {
-        if(chapterSO != null)
-        {
-            UpdateUI();
-        }
-    }
-    private void UpdateUI()
-    {
-        if(isUnlocked)
-        {
-            PanelLocked.SetActive(false);
-            ButtonInteract.interactable = true;
-        }
-        else
-        {
-            PanelLocked.SetActive(true);
-            ButtonInteract.interactable = false;
-        }
-    }
+  
     private void CheckUnlocked()
     {
-        for(int i = 0; i< stage.Length;i++)
+        StageToUnlocked = 0;
+        foreach (StageSO n in stage)
         {
-            if (stage[i].isUnlocked)
+            if(n.isUnlocked == true)
             {
                 StageToUnlocked++;
             }
         }
-        if(StageToUnlocked == (stage.Length + 1))
+        if(StageToUnlocked == stage.Length)
         {
             chapterSO.isUnlocked = true;
             isUnlocked = true;
+            PanelLocked.SetActive(false);
         }
         else
         {
             chapterSO.isUnlocked = false;
             isUnlocked = false;
+            PanelLocked.SetActive(true);
         }
     }
 }

@@ -16,5 +16,6 @@ MonoBehaviour:
   Rarity: 2
   isEquipped: 0
   itemName: KingRock
+  Icon: {fileID: -1911031700, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 5210166c2db225242a9bf2e301f6c9b9, type: 3}
   currentQuantity: 1
