@@ -99,7 +99,7 @@ public class Warrior : MonoBehaviour
         EnemyHealth enemyHealth = currentTarget.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            enemyHealth.TakeDamage(attackDamage);
+            enemyHealth.TakeDamage(attackDamage, transform);
             if (enemyHealth.currentHealth <= 0)
             {
                 ReleaseEnemyTarget(currentTarget);

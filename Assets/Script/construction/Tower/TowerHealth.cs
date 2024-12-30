@@ -106,21 +106,7 @@ public class TowerHealth : MonoBehaviour
     // Hàm xử lý khi Tower bị phá hủy
     private void Die()
     {
-        Debug.Log("Tower has been destroyed!");
         animator.SetBool("Lose", true);
-
-        // Đổi tag của Tower thành "Untagged"
-        gameObject.tag = "Untagged";
-
-        // Ẩn tất cả các object con
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
-
-        // Ẩn thanh máu
-        healthSlider.gameObject.SetActive(false);
-
         if (VFXDestroy != null)
         {
             GameObject vfx = Instantiate(VFXDestroy, transform.position, Quaternion.identity);
@@ -128,7 +114,8 @@ public class TowerHealth : MonoBehaviour
         }
 
         // Thông báo cho tất cả các Enemy cập nhật mục tiêu
-        Enemy.NotifyAllEnemiesToFindTarget();
+        Destroy(gameObject);
+        Enemy.RemoveFromAllTargets(transform); // Cập nhật lại mục tiêu cho tất cả các Enemy
     }
 
     // Hàm khôi phục lại máu cho Tower

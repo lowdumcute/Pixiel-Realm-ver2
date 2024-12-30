@@ -655,6 +655,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: a2c32a1f241a3e2429ade109ba6e3fdd, type: 3}
   - name: Button
     Clip: {fileID: 8300000, guid: e09c5fb41705ced4680d5d59eb6dc6e0, type: 3}
+  - name: Run
+    Clip: {fileID: 8300000, guid: eefef7aa73a968b4ca3d38a880a76948, type: 3}
   musicSource: {fileID: 2101902370}
   SFX_Source: {fileID: 296259431}
 --- !u!4 &27704864
@@ -12774,7 +12776,6 @@ GameObject:
   - component: {fileID: 1291911757}
   - component: {fileID: 1291911756}
   - component: {fileID: 1291911755}
-  - component: {fileID: 1291911758}
   m_Layer: 5
   m_Name: "Button b\u1EADt AudioPanel"
   m_TagString: Untagged
@@ -12896,22 +12897,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291911753}
   m_CullTransparentMesh: 1
---- !u!114 &1291911758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1291911753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 174b9d7dfcb6be64e88a8943713fcf56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSound: []
-  SFXSound: []
-  musicSource: {fileID: 2101902370}
-  SFX_Source: {fileID: 296259431}
 --- !u!1 &1300296463
 GameObject:
   m_ObjectHideFlags: 0
