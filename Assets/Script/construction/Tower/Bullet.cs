@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth = target.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(damage); // Gây sát thương cho enemy
+                enemyHealth.TakeDamage(damage,transform); // Gây sát thương cho enemy
             }
         }
 

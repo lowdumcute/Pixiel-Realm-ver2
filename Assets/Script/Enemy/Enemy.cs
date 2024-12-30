@@ -14,22 +14,42 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private float lastAttackTime;
 
-    // Danh sách ưu tiên mục tiêu
-    [SerializeField] private List<string> targetPriority = new List<string> { "Player","Warior", "Tower", "Main" };
+    [SerializeField] private List<string> staticTargets = new List<string> { "Tower", "Main" }; // Target tĩnh
+    [SerializeField] private List<string> dynamicTargets = new List<string> { "Player", "Warrior" }; // Target động
+    private float damageResetTime = 5f; // Thời gian quay lại target tĩnh
+    private float lastDamageTime;
 
-    // Danh sách tĩnh chứa tất cả Enemy
-    public static List<Enemy> allEnemies = new List<Enemy>();
+    [SerializeField] private static Dictionary<string, List<Transform>> allTargets = new Dictionary<string, List<Transform>>();
+    private static List<Enemy> allEnemies = new List<Enemy>(); // Thêm danh sách tất cả enemies
 
     private void Awake()
     {
-        // Thêm Enemy vào danh sách
-        allEnemies.Add(this);
+        foreach (string tag in staticTargets)
+        {
+            if (!allTargets.ContainsKey(tag))
+            {
+                allTargets[tag] = new List<Transform>();
+            }
+        }
+        foreach (string tag in dynamicTargets)
+        {
+            if (!allTargets.ContainsKey(tag))
+            {
+                allTargets[tag] = new List<Transform>();
+            }
+        }
     }
 
-    private void OnDestroy()
+    private void OnEnable()
     {
-        // Loại bỏ Enemy khỏi danh sách khi bị hủy
-        allEnemies.Remove(this);
+        allEnemies.Add(this); // Thêm enemy vào danh sách khi kích hoạt
+        AddAllTargets();
+    }
+
+    private void OnDisable()
+    {
+        allEnemies.Remove(this); // Xóa enemy khỏi danh sách khi hủy
+        RemoveFromAllTargets(transform);
     }
 
     private void Start()
@@ -41,41 +61,20 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        FindTarget();
-    }
-
-    public void FindTarget()
-    {
-        Transform newTarget = null;
-
-        foreach (string tag in targetPriority)
-        {
-            GameObject targetObject = GameObject.FindWithTag(tag);
-            if (targetObject != null)
-            {
-                newTarget = targetObject.transform;
-                break; // Ngừng tìm khi đã tìm thấy mục tiêu đầu tiên trong danh sách ưu tiên
-            }
-        }
-
-        if (newTarget == null)
-        {
-            Debug.LogWarning("Không tìm thấy mục tiêu nào theo thứ tự ưu tiên.");
-        }
-
-        UpdateTarget(newTarget);
-    }
-
-    private void UpdateTarget(Transform newTarget)
-    {
-        currentTarget = newTarget;
+        FindStaticTarget();
     }
 
     private void Update()
     {
+        // Quay lại target tĩnh nếu không nhận sát thương trong 5 giây
+        if (Time.time > lastDamageTime + damageResetTime && currentTarget != null && dynamicTargets.Contains(currentTarget.tag))
+        {
+            FindStaticTarget();
+        }
+
         if (currentTarget == null)
         {
-            FindTarget(); // Tìm lại mục tiêu nếu bị null
+            FindStaticTarget(); // Tìm lại mục tiêu tĩnh nếu không có mục tiêu nào
             return;
         }
 
@@ -108,6 +107,78 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void AddAllTargets()
+    {
+        foreach (string tag in staticTargets)
+        {
+            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject obj in objects)
+            {
+                if (!allTargets[tag].Contains(obj.transform))
+                {
+                    allTargets[tag].Add(obj.transform);
+                }
+            }
+        }
+    }
+
+    public static void RemoveFromAllTargets(Transform target)
+    {
+        foreach (Enemy enemy in allEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.RemoveTarget(target);
+            }
+        }
+    }
+    public void RemoveTarget(Transform target)
+    {
+        if (currentTarget == target)
+        {
+            currentTarget = null;
+            FindStaticTarget(); // Tìm mục tiêu tĩnh mới
+        }
+    }
+
+    private void FindStaticTarget()
+    {
+        Transform closestTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (string tag in staticTargets)
+        {
+            foreach (Transform target in allTargets[tag])
+            {
+                if (target == null) continue;
+
+                float distance = Vector3.Distance(transform.position, target.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestTarget = target;
+                }
+            }
+        }
+
+        UpdateTarget(closestTarget);
+    }
+
+    public void UpdateTarget(Transform newTarget)
+    {
+        currentTarget = newTarget;
+    }
+
+    public void TakeDamageFrom(Transform attacker)
+    {
+        // Cập nhật mục tiêu sang người vừa gây sát thương
+        if (dynamicTargets.Contains(attacker.tag))
+        {
+            UpdateTarget(attacker);
+            lastDamageTime = Time.time;
+        }
+    }
+
     private void AttackCurrentTarget()
     {
         if (currentTarget == null) return;
@@ -127,6 +198,10 @@ public class Enemy : MonoBehaviour
             {
                 towerHealth.TakeDamage(attackDamage);
             }
+            else
+            {
+                FindStaticTarget();
+            }
         }
         else if (currentTarget.CompareTag("Main"))
         {
@@ -136,25 +211,26 @@ public class Enemy : MonoBehaviour
                 castleHealth.TakeDamage(attackDamage);
             }
         }
-        else if (currentTarget.CompareTag("Warior"))
+        else if (currentTarget.CompareTag("Warrior"))
         {
             WarriorHealth warriorHealth = currentTarget.GetComponent<WarriorHealth>();
             if (warriorHealth != null)
             {
                 warriorHealth.TakeDamage(attackDamage);
             }
+            else
+            {
+                FindStaticTarget();
+            }
         }
     }
 
-    // Phương thức tĩnh để tất cả Enemy tìm mục tiêu mới
-    public static void NotifyAllEnemiesToFindTarget()
+    private void OnDrawGizmosSelected()
     {
-        foreach (Enemy enemy in allEnemies)
+        if (currentTarget != null)
         {
-            if (enemy != null)
-            {
-                enemy.FindTarget();
-            }
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, currentTarget.position);
         }
     }
 }

@@ -3,18 +3,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;     // Tầm đánh cận chiến
-    [SerializeField] private Asset asset;  
+    [SerializeField] private Asset asset;
+    [SerializeField] private ParticleSystem dustEffect;    // Hiệu ứng hạt bụi
     public float moveSpeed = 10f;                          // Tốc độ di chuyển
 
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private bool isMovingRight = true;                     // Biến để theo dõi hướng di chuyển
     private bool isAttacking = false;
+    private AudioManager audioManager;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()
@@ -23,35 +26,57 @@ public class PlayerController : MonoBehaviour
         CheckAttackRange();
     }
 
-    // Hàm xử lý di chuyển
     private void HandleMovement()
+{
+    // Lấy đầu vào di chuyển
+    float horizontal = Input.GetAxis("Horizontal");
+    float vertical = Input.GetAxis("Vertical");
+
+    // Kiểm tra có di chuyển hay không
+    bool isMoving = horizontal != 0 || vertical != 0;
+
+    // Nếu không đang tấn công thì cập nhật trạng thái di chuyển
+    if (!isAttacking)
     {
-        // Lấy đầu vào di chuyển
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        animator.SetBool("Run", isMoving);
+    }
 
-        // Kiểm tra có di chuyển hay không
-        bool isMoving = horizontal != 0 || vertical != 0;
+    if (isMoving)
+    {
+        // Di chuyển đối tượng
+        transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
 
-        // Nếu không đang tấn công thì cập nhật trạng thái di chuyển
-        if (!isAttacking)
+        // Kiểm tra nếu SFX 
+        if (!AudioManager.instance.SFX_Source.isPlaying || AudioManager.instance.SFX_Source.clip.name != "Run") 
         {
-            animator.SetBool("Run", isMoving);
+            AudioManager.instance.PlaySFX("Run");
         }
 
-        if (isMoving)
+        // Lật hình ảnh khi hướng di chuyển thay đổi
+        if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
         {
-            // Di chuyển đối tượng
-            transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
+            isMovingRight = !isMovingRight;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+        }
 
-            // Lật hình ảnh khi hướng di chuyển thay đổi
-            if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
-            {
-                isMovingRight = !isMovingRight;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
-            }
+        // Chạy hiệu ứng bụi
+        if (!dustEffect.isPlaying)
+        {
+            dustEffect.Play();
         }
     }
+    else
+    {
+        // Dừng hiệu ứng âm thanh "Run" nếu không di chuyển
+        audioManager.StopSFX("Run");
+
+        // Dừng hiệu ứng bụi
+        if (dustEffect.isPlaying)
+        {
+            dustEffect.Stop();
+        }
+    }
+}
 
     // Kiểm tra và cập nhật trạng thái tấn công hoặc chạy
     private void CheckAttackRange()
@@ -134,7 +159,7 @@ public class PlayerController : MonoBehaviour
             EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(asset.Attack);
+                enemyHealth.TakeDamage(asset.Attack, transform);
             }
         }
         isAttacking = false; // Reset lại trạng thái tấn công sau khi tấn công
