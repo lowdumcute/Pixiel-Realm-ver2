@@ -35,6 +35,7 @@ public class TogglePanel : MonoBehaviour
 
         isPanelActive = !isPanelActive;
         panel.SetActive(isPanelActive);
+        AudioManager.instance.PlaySFX("Button");
     }
 
     public void HidePanel()
