@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a10d2147176b964281c69c5dca430d2, type: 3}
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
-  Gold: 1975500
-  Star: 677601
+  Gold: 113123
+  Star: 674401
   currentEnergy: 30
   maxEnergy: 30
-  Health: 100
-  Attack: 80
-  HealthCastle: 400
+  Health: 150
+  Attack: 95
+  HealthCastle: 500
   AttackTower: 20
   Coin: 4
-  fragmentWeapon: 0
-  fragmentHelmet: 0
-  fragmentArmor: 0
-  fragmentShoe: 0
-  fragmentRing: 0
-  fragmentPet: 0
+  fragmentWeapon: 8
+  fragmentHelmet: 5
+  fragmentArmor: 1
+  fragmentShoe: 4
+  fragmentRing: 2
+  fragmentPet: 4
   energyRechargeTime: 60
