@@ -16,6 +16,7 @@ public class Asset : ScriptableObject
     [Header("Stats Constuction")]
     public int HealthCastle = 400;
     public int AttackTower = 20;
+    public int Coin =2;
     [Header("Fragment")]
     public int fragmentWeapon = 0;
     public int fragmentHelmet = 0;
@@ -65,6 +66,9 @@ public class Asset : ScriptableObject
                 break;
             case Stats.StatsType.AttackTower:
                 AttackTower += amount;
+                break;
+            case Stats.StatsType.Coin:
+                Coin += amount;
                 break;
 
         }
@@ -183,5 +187,23 @@ public class Asset : ScriptableObject
             }
         }
     }
-    
+    public int GetStat(Stats.StatsType type)
+    {
+        switch (type)
+        {
+            case Stats.StatsType.HealthPlayer:
+                return Health;
+            case Stats.StatsType.AttackPlayer:
+                return Attack;
+            case Stats.StatsType.HealthCastle:
+                return HealthCastle;
+            case Stats.StatsType.AttackTower:
+                return AttackTower;
+            case Stats.StatsType.Coin:
+                return Coin;
+            default:
+                Debug.LogWarning($"Stat type {type} not recognized!");
+                return 0;
+        }
+    }
 }

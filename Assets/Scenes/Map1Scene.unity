@@ -1938,7 +1938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
-  flashEffect: {fileID: 0}
+  flashEffect: {fileID: 304893253}
   healthSlider: {fileID: 1641651810}
   animator: {fileID: 304893247}
   healRate: 0.05
@@ -3624,6 +3624,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInventory: {fileID: 11400000, guid: 24c5b2f60a0977140a6f595322c08941, type: 2}
   inventory: {fileID: 11400000, guid: d04344f77e1b7ee49820856a03f2d7e4, type: 2}
+  PanelInformation: {fileID: 0}
+  Icon: {fileID: 0}
+  CellRarityIcon: {fileID: 0}
+  Name: {fileID: 0}
+  Rarity: {fileID: 0}
+  Decription: {fileID: 0}
+  Common: {fileID: 0}
 --- !u!114 &444723011
 MonoBehaviour:
   m_ObjectHideFlags: 0

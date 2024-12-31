@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System;
 using TMPro;
 using UnityEngine;
@@ -158,7 +158,7 @@ public class SkillSlot : MonoBehaviour
     {
         if (relatedStat != null)
         {
-            int statIncrease = 10; // Giá trị tăng mỗi level
+            int statIncrease = relatedStat.AddQuantity;
             relatedStat.UpdateQuantity(statIncrease);
         }
     }
@@ -167,8 +167,7 @@ public class SkillSlot : MonoBehaviour
     {
         if (relatedStat != null && isUnlocked && skillSO.currentLevel < skillSO.maxLevel)
         {
-            int nextStatIncrease = 10; // Giá trị preview mỗi level
-            relatedStat.PreviewNextQuantity(nextStatIncrease);
+            relatedStat.PreviewNextQuantity();
         }
     }
 
@@ -179,8 +178,6 @@ public class SkillSlot : MonoBehaviour
         UpdateUI();  // Cập nhật giao diện sau khi skill được mở khóa
         OpenPanel(); // Mở panel sau khi skill được mở khóa
 
-        GameObject panel = transform.GetChild(2).gameObject;
-        panel.SetActive(false);
     }
 
     // Kiểm tra và tự động mở khóa skill nếu tất cả skill trong list đạt max level
