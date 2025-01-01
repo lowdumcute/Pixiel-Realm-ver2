@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: RingSaphire
   m_EditorClassIdentifier: 
+  Attack: 10
+  Health: 15
+  CurrentStart: 0
+  Decription: "Nh\u1EABn l\u1EE5c b\u1EA3o n\xE0y \u0111\u01B0\u1EE3c c\xE1c ph\xF9
+    th\u1EE7y t\xF4i luy\u1EC7n 1 ch\xFAt ma thu\u1EADt"
   Type: 4
   Rarity: 1
   isEquipped: 1
-  itemName: "Nh\u1EABn Saphire"
+  itemName: "Nh\u1EABn l\u1EE5c b\u1EA3o"
   Icon: {fileID: -1558777349, guid: 84fb61a7d888cc04f82b450ca7b54c60, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 8533308adb4ab504a9b4379a5a920ef6, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0

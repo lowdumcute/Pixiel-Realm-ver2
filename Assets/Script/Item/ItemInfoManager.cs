@@ -49,6 +49,13 @@ public class ItemInfoManager : MonoBehaviour
         {
             UpdateRaritySprite(rarityImage, currentItemInventory.Rarity);
         }
+        // Lấy icon (object con của rarityImage)
+        Image itemIconImage = rarityImage.transform.GetChild(0).GetComponent<Image>(); // Object con của rarityImage
+        if (itemIconImage != null)
+        {
+            // Thay đổi icon của item
+            itemIconImage.sprite = currentItemInventory.Icon; // Thay đổi icon từ ItemInventory
+        }
 
         // Lấy tên item từ prefab và gán nó cho TextMeshPro
         TextMeshProUGUI itemNameText = currentItemInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>(); // Object con thứ 2 từ trên xuống
@@ -135,7 +142,7 @@ public class ItemInfoManager : MonoBehaviour
         switch (rarity)
         {
             case ItemStats.ItemRarity.Common:
-                itemNameText.color = Color.gray; // Màu bạc cho Common
+                itemNameText.color = Color.white; // Màu bạc cho Common
                 break;
             case ItemStats.ItemRarity.Rare:
                 itemNameText.color = new Color(0.5f, 0.0f, 0.5f); // Màu tím đậm cho Rare

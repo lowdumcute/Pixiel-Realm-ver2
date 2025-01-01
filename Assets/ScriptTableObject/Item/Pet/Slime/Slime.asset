@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
+  Attack: 5
+  Health: 5
+  CurrentStart: 0
+  Decription: "Qu\xE1i nh\u1ECF h\u1ED7 tr\u1EE3 trong vi\u1EC7c thu d\u1ECDn v\xE0
+    d\u1ECDn d\u1EB9p c\xE1c t\xE0n d\u01B0 c\u1EE7a tr\u1EADn chi\u1EBFn"
   Type: 5
   Rarity: 0
   isEquipped: 0

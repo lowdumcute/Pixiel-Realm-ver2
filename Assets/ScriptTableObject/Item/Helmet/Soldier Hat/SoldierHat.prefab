@@ -553,14 +553,14 @@ MonoBehaviour:
   Type: 1
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 5
-  Health: 40
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
   itemInventory: {fileID: 11400000, guid: b07b73ffd67191345b6586ceeaa47dfc, type: 2}
   inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
+  raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
+  itemImage: {fileID: 1550380558243381776}
   isEquipped: 0
 --- !u!114 &8239945309906367121
 MonoBehaviour:

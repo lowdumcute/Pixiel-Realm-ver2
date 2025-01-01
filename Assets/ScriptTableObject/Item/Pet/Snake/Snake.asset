@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Snake
   m_EditorClassIdentifier: 
+  Attack: 5
+  Health: 10
+  CurrentStart: 0
+  Decription: "R\u1EAFn c\u1ECF ng\xE2m r\u1EF1u c\u0169ng ngon"
   Type: 5
   Rarity: 1
-  isEquipped: 1
+  isEquipped: 0
   itemName: "R\u1EAFn l\u1EE5c"
   Icon: {fileID: -865424053, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 3d0e33a3d5f39394796290d1a2877204, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0

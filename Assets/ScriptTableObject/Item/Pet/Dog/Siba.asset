@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Siba
   m_EditorClassIdentifier: 
+  Attack: 30
+  Health: 5
+  CurrentStart: 2
+  Decription: "ch\xF3 ngo\u1EA1i binh kh\xE1 gi\u1ECFi v\xE0 kh\xF4n"
   Type: 5
   Rarity: 2
   isEquipped: 1

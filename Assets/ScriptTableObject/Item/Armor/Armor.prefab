@@ -559,6 +559,8 @@ MonoBehaviour:
   itemInventory: {fileID: 11400000, guid: c61cf89c40e6843449fecb7e9732d538, type: 2}
   inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
+  raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
+  itemImage: {fileID: 1550380558243381776}
   isEquipped: 0
 --- !u!114 &8239945309906367121
 MonoBehaviour:

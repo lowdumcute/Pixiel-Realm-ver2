@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Shoe
   m_EditorClassIdentifier: 
+  Attack: 0
+  Health: 5
+  CurrentStart: 0
+  Decription: "Gi\xE0y tr\u1ED9m c\u1EE7a m\u1EB9"
   Type: 3
   Rarity: 0
-  isEquipped: 1
-  itemName: Shoe
+  isEquipped: 0
+  itemName: "Gi\xE0y v\u1EA3i"
   Icon: {fileID: -331709699, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: e24bc0a99000765499b2d82f67ddbb98, type: 3}
-  currentQuantity: 0
+  currentQuantity: 1

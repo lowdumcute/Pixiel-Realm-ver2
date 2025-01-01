@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  Attack: 5
+  Health: 0
+  CurrentStart: 0
+  Decription: "ki\u1EBFm n\xE0y kh\xE1 t\u1ED1t \u0111\u01B0\u1EE3c b\xE1n nh\u01B0
+    rau ngo\xE0i ch\u1EE3"
   Type: 0
-  Rarity: 1
-  isEquipped: 1
-  itemName: Sword
+  Rarity: 0
+  isEquipped: 0
+  itemName: "Ki\u1EBFm s\u1EAFt "
   Icon: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 04b1c7f3f4f709646a4d83e98a38fdf5, type: 3}
   currentQuantity: 1

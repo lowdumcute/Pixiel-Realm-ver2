@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
+  Attack: 0
+  Health: 5
+  CurrentStart: 1
+  Decription: "gi\xE1p s\u1EAFt r\xE8n cho c\xF3 cho l\xEDnh c\u1EA5p th\u1EA5p"
   Type: 2
   Rarity: 0
   isEquipped: 1
-  itemName: "GI\xE1p l\u01B0\u1EDBi"
+  itemName: "GI\xE1p s\u1EAFt"
   Icon: {fileID: -1547822966, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 3de6ef89c2741ff49847e8145b2148f2, type: 3}
   currentQuantity: 0

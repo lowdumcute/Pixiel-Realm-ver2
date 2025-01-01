@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemStats : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class ItemStats : MonoBehaviour
     [SerializeField] private ItemInventory itemInventory; // Tham chiếu tới itemInventory
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemData itemData; // Tham chiếu đến ItemData
+    [SerializeField] private RaritySprites raritySprites; // Tham chiếu đến RaritySprites
+    [SerializeField] private Image itemImage; // Tham chiếu đến Image của item 
 
     public bool isEquipped = false; // Trạng thái trang bị
 
@@ -26,6 +30,26 @@ public class ItemStats : MonoBehaviour
         }
         itemManager = FindObjectOfType<ItemManager>();
         inventoryUI = FindObjectOfType<InventoryUI>();
+        UpdateItemImageByRarity();
+    }
+
+    private void UpdateItemImageByRarity()
+    {
+        switch (itemInventory.Rarity)
+        {
+            case ItemStats.ItemRarity.Common:
+                itemImage.sprite = raritySprites.commonSprite; // Sprite cho Common
+                break;
+            case ItemStats.ItemRarity.Rare:
+                itemImage.sprite = raritySprites.rareSprite; // Sprite cho Rare
+                break;
+            case ItemStats.ItemRarity.Legendary:
+                itemImage.sprite = raritySprites.legendSprite; // Sprite cho Legendary
+                break;
+            default:
+                Debug.LogError("Không nhận diện được rarity cho item!");
+                break;
+        }
     }
 
     public void Equip()

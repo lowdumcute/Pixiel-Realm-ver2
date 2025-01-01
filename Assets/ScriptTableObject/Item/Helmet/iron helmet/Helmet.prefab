@@ -553,14 +553,14 @@ MonoBehaviour:
   Type: 1
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 5
-  Health: 40
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
   itemInventory: {fileID: 11400000, guid: f3e5e5a470d6c564ba21ecc4df336ab1, type: 2}
   inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
+  raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
+  itemImage: {fileID: 1550380558243381776}
   isEquipped: 0
 --- !u!114 &8239945309906367121
 MonoBehaviour:
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfoPrefab: {fileID: 4306930842908753219, guid: 23e66104956d6e14e9d7f86a0b2a31e4, type: 3}
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: e24e1aba1abc96a4689086982e5450f0, type: 3}
   itemInfoReceiver: {fileID: 0}
   raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
   currentItemInventory: {fileID: 11400000, guid: f3e5e5a470d6c564ba21ecc4df336ab1, type: 2}
