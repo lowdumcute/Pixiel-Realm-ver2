@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -529473336, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
+  m_Sprite: {fileID: 776573439, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -559,6 +559,7 @@ MonoBehaviour:
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
   itemInventory: {fileID: 11400000, guid: 24c5b2f60a0977140a6f595322c08941, type: 2}
+  inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   isEquipped: 0
 --- !u!114 &-8135749088654765707
@@ -575,6 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInfoPrefab: {fileID: 4306930842908753219, guid: b132b0705f0ee984b8030e7ba19f5f11, type: 3}
   itemInfoReceiver: {fileID: 0}
+  currentItemInventory: {fileID: 11400000, guid: 24c5b2f60a0977140a6f595322c08941, type: 2}
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0

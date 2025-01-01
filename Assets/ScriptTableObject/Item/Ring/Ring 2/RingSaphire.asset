@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
-  m_Name: Ring
+  m_Name: RingSaphire
   m_EditorClassIdentifier: 
   Type: 4
-  Rarity: 0
+  Rarity: 1
   isEquipped: 1
-  itemName: Ring
-  Icon: {fileID: -957785332, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
-  itemPrefab: {fileID: 6816753760795425645, guid: 1088776b14c93af459799f66c6702a93, type: 3}
-  currentQuantity: 0
+  itemName: "Nh\u1EABn Saphire"
+  Icon: {fileID: -1558777349, guid: 84fb61a7d888cc04f82b450ca7b54c60, type: 3}
+  itemPrefab: {fileID: 6816753760795425645, guid: 8533308adb4ab504a9b4379a5a920ef6, type: 3}
+  currentQuantity: 1

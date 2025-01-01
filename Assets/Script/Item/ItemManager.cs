@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Collections;
+
 
 public class ItemManager : MonoBehaviour
 {
@@ -20,9 +23,12 @@ public class ItemManager : MonoBehaviour
     [SerializeField] public GameObject petPanel;
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemData itemData;
+    [SerializeField] private GameObject NotificationPanel;
+    [SerializeField] private TMP_Text NotificationText;
     private void Start()
     {
         UpdateUI();
+        NotificationPanel.SetActive(false);
     }
 
     public void UpdateUI()
@@ -64,6 +70,18 @@ public class ItemManager : MonoBehaviour
 
     public void EquipItem(ItemStats item)
     {
+        // Kiểm tra nếu có item đã trang bị trong loại này, và gọi hàm Unequip từ item đó
+        ItemStats itemToUnequip = GetEquippedItem(item.Type);
+        if (itemToUnequip != null)
+        {
+            // Hiển thị thông báo yêu cầu tháo trang bị cũ trước khi trang bị item mới
+            
+
+            Debug.LogWarning("Item đã được trang bị, hãy tháo item cũ trước.");
+            return;
+        }
+
+        // Lấy target panel cho item mới
         GameObject targetPanel = GetTargetPanel(item.Type);
         if (targetPanel != null)
         {
@@ -135,7 +153,7 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private ItemStats GetEquippedItem(ItemStats.ItemType itemType)
+    public ItemStats GetEquippedItem(ItemStats.ItemType itemType)
     {
         switch (itemType)
         {
@@ -147,5 +165,59 @@ public class ItemManager : MonoBehaviour
             case ItemStats.ItemType.Pet: return pet;
             default: return null;
         }
+    }
+    public void Notification()
+    { 
+        // Hiển thị Notification Panel
+        NotificationPanel.SetActive(true);
+        
+        // Cập nhật nội dung thông báo
+        NotificationText.text = "Tháo Item cùng loại trước khi trang bị!";
+
+        // Bắt đầu hiệu ứng rung
+        StartCoroutine(RingEffect());
+
+        // Mờ dần NotificationPanel sau khi rung xong
+        StartCoroutine(FadeOutNotification());
+    }
+
+    private IEnumerator RingEffect()
+    {
+        Vector3 originalPosition = NotificationPanel.transform.localPosition;
+        float duration = 0.5f;
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            float shakeAmount = Mathf.Sin(timer * Mathf.PI * 2f * 3f) * 10f; // Tạo hiệu ứng rung
+            NotificationPanel.transform.localPosition = originalPosition + new Vector3(shakeAmount, 0f, 0f);
+            timer += Time.deltaTime;
+            yield return null; // Dùng IEnumerator chuẩn, không có tham số kiểu
+        }
+
+        // Đảm bảo rằng nó trở về vị trí ban đầu
+        NotificationPanel.transform.localPosition = originalPosition;
+    }
+
+    private IEnumerator FadeOutNotification()
+    {
+        CanvasGroup canvasGroup = NotificationPanel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = NotificationPanel.AddComponent<CanvasGroup>(); // Thêm CanvasGroup nếu chưa có
+        }
+
+        float fadeDuration = 1.5f;
+        float timer = 0f;
+
+        while (timer < fadeDuration)
+        {
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / fadeDuration);
+            timer += Time.deltaTime;
+            yield return null; // Dùng IEnumerator chuẩn, không có tham số kiểu
+        }
+
+        canvasGroup.alpha = 0f;
+        NotificationPanel.SetActive(false); // Ẩn NotificationPanel sau khi mờ
     }
 }

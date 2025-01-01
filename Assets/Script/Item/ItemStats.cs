@@ -3,18 +3,16 @@ using UnityEngine;
 public class ItemStats : MonoBehaviour
 {
     public enum ItemType { Weapon, Helmet, Armor, Shoe, Ring, Pet } // Loại Item
-    public enum ItemRarity { Common, Rare, Legendary } //Loại Rarity
+    public enum ItemRarity { Common, Rare, Legendary } // Loại Rarity
 
     [Header("Stat Item")]
     public ItemType Type;
     [SerializeField] public GameObject EquipButton;
     [SerializeField] public GameObject UnequipButton;
-    [SerializeField] public int Attack = 0; // Giá trị Attack của item
-    [SerializeField] public int Health = 0; // Giá trị Health của item
     [SerializeField] private Asset playerAsset; // Tham chiếu đến Asset người chơi
     [SerializeField] private ItemManager itemManager;
     [SerializeField] private AssetDisplay assetDisplay;
-    [SerializeField] private ItemInventory itemInventory;
+    [SerializeField] private ItemInventory itemInventory; // Tham chiếu tới itemInventory
     [SerializeField] private InventoryUI inventoryUI;
     [SerializeField] private ItemData itemData; // Tham chiếu đến ItemData
 
@@ -35,34 +33,57 @@ public class ItemStats : MonoBehaviour
         if (isEquipped)
         {
             Debug.LogWarning("Item is already equipped!");
+
+            // Gọi Notification() khi đã có item trang bị
+            itemManager.Notification();
+
+            // Không tiếp tục trang bị item mới, chỉ dừng lại ở đây
             return;
         }
 
         if (playerAsset != null && itemManager != null)
         {
+            // Kiểm tra xem có item nào đã trang bị chưa
+            ItemStats itemToUnequip = itemManager.GetEquippedItem(itemInventory.Type);
+
+            // Nếu đã có trang bị cũ, yêu cầu tháo ra trước
+            if (itemToUnequip != null)
+            {
+                Debug.LogWarning("Đã có item trang bị, yêu cầu tháo item cũ trước.");
+                itemManager.Notification();
+                return;
+            }
+
             EquipButton.SetActive(false);
             UnequipButton.SetActive(true);
             itemInventory.isEquipped = true;
 
-            // Di chuyển object sang panel tương ứng
+            // Di chuyển item sang panel tương ứng
             itemManager.EquipItem(this);
 
-            // Trừ số lượng hiện trong túi
+            // Trừ số lượng item trong túi
             itemInventory.DecreaseQuantity(1);
 
-            // Thêm item vào ItemData dựa trên loại item
+            // Thêm item vào ItemData
             itemData.SetItem(itemInventory);
 
-            // Thêm stat cho nhân vật
-            if (Attack != 0) playerAsset.AddStatPlayer(Stats.StatsType.AttackPlayer, Attack);
-            if (Health != 0) playerAsset.AddStatPlayer(Stats.StatsType.HealthPlayer, Health);
+            // Cập nhật stat cho nhân vật
+            if (itemInventory.Attack > 0)
+            {
+                playerAsset.AddStatPlayer(Stats.StatsType.AttackPlayer, itemInventory.Attack);
+            }
 
-            // Cập nhật lại UI
+            if (itemInventory.Health > 0)
+            {
+                playerAsset.AddStatPlayer(Stats.StatsType.HealthPlayer, itemInventory.Health);
+            }
+
+            // Cập nhật UI
             assetDisplay.UpdateDisplay();
             inventoryUI.UpdateUI();
 
             isEquipped = true;
-            Debug.Log($"Equipped {gameObject.name}. Added Attack: {Attack}, Health: {Health}.");
+            Debug.Log($"Equipped {gameObject.name}. Added Attack: {itemInventory.Attack}, Health: {itemInventory.Health}.");
         }
         else
         {
@@ -94,15 +115,23 @@ public class ItemStats : MonoBehaviour
             itemData.RemoveItem(Type);
 
             // Trừ stat của nhân vật
-            if (Attack != 0) playerAsset.MinusStatPlayer(Stats.StatsType.AttackPlayer, Attack);
-            if (Health != 0) playerAsset.MinusStatPlayer(Stats.StatsType.HealthPlayer, Health);
+            if (itemInventory.Attack > 0)
+            {
+                playerAsset.MinusStatPlayer(Stats.StatsType.AttackPlayer, itemInventory.Attack);
+            }
+
+            if (itemInventory.Health > 0)
+            {
+                playerAsset.MinusStatPlayer(Stats.StatsType.HealthPlayer, itemInventory.Health);
+            }
 
             isEquipped = false;
-            // cập nhập UI
+
+            // Cập nhật UI
             assetDisplay.UpdateDisplay();
             inventoryUI.UpdateUI();
 
-            Debug.Log($"Unequipped {gameObject.name}. Removed Attack: {Attack}, Health: {Health}.");
+            Debug.Log($"Unequipped {gameObject.name}. Removed Attack: {itemInventory.Attack}, Health: {itemInventory.Health}.");
         }
         else
         {

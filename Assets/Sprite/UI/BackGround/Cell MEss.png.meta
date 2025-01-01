@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7e7ce578116cab649a96fd23eceaec2b
+guid: 3d8534ecb5519034dbe9482c108e6c86
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,85 +97,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cell_Rarity_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cb2cdd037dfb3d4880df8bd92d8c1f5
-      internalID: 776573439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cell_Rarity_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 278f2d6e4bf7d7540be89d52ca2a13f7
-      internalID: -958305934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cell_Rarity_2
+      name: Cell MEss_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 291f2bea783582b4a9341c86907655f4
-      internalID: 1062363774
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cell_Rarity_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e0b9fa88eb9909346bdae877f752e528
-      internalID: 260969785
+      spriteID: c6422fbf52118d0418c88853156ad83b
+      internalID: 1773538021
       vertices: []
       indices: 
       edges: []
@@ -191,10 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cell_Rarity_0: 776573439
-      Cell_Rarity_1: -958305934
-      Cell_Rarity_2: 1062363774
-      Cell_Rarity_3: 260969785
+      Cell MEss_0: 1773538021
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

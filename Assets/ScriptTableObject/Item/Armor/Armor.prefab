@@ -440,15 +440,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.06923115, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -128596107, guid: 6a7fcbc5300f2ba498293ba0303d4c35, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 776573439, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -553,8 +553,6 @@ MonoBehaviour:
   Type: 2
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 0
-  Health: 50
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
@@ -574,8 +572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfoPrefab: {fileID: 4306930842908753219, guid: d3233ea22c7d280439a411822741e6d4, type: 3}
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: e24e1aba1abc96a4689086982e5450f0, type: 3}
   itemInfoReceiver: {fileID: 0}
+  raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
+  currentItemInventory: {fileID: 11400000, guid: c61cf89c40e6843449fecb7e9732d538, type: 2}
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0

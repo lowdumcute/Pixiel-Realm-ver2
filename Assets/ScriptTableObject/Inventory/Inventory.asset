@@ -22,4 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6840c5b95ae3cb4439e64e117d016412, type: 2}
   - {fileID: 11400000, guid: a3be7b7f58dc935438b5198b6d0b2952, type: 2}
   - {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
+  - {fileID: 11400000, guid: 7a8b5044a66b9be4ab7f350e99bb6669, type: 2}
+  - {fileID: 11400000, guid: b07b73ffd67191345b6586ceeaa47dfc, type: 2}
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}

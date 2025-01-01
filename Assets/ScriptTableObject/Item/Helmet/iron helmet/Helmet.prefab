@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7614042104445262979}
   - component: {fileID: 5082522666668438349}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ImageItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -957785332, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
+  m_Sprite: {fileID: 276958713, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -390,9 +390,9 @@ GameObject:
   - component: {fileID: 1882789273348145578}
   - component: {fileID: 2291499982748700810}
   - component: {fileID: 2025142200830361607}
-  - component: {fileID: -2958966932023913236}
+  - component: {fileID: 8239945309906367121}
   m_Layer: 5
-  m_Name: Ring
+  m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -529473336, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
+  m_Sprite: {fileID: 776573439, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -513,7 +513,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: -2958966932023913236}
+      - m_Target: {fileID: 8239945309906367121}
         m_TargetAssemblyTypeName: ItemInfoManager, Assembly-CSharp
         m_MethodName: SpawnItemInfo
         m_Mode: 1
@@ -550,18 +550,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36a4485e0ce3a245a90f50bf0d5c367, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 4
+  Type: 1
   EquipButton: {fileID: 423556459193341776}
   UnequipButton: {fileID: 7256183067165968862}
-  Attack: 10
-  Health: 20
+  Attack: 5
+  Health: 40
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
-  itemInventory: {fileID: 11400000, guid: 131fe695b6b4df94d9408d6503f56376, type: 2}
+  itemInventory: {fileID: 11400000, guid: f3e5e5a470d6c564ba21ecc4df336ab1, type: 2}
+  inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   isEquipped: 0
---- !u!114 &-2958966932023913236
+--- !u!114 &8239945309906367121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -573,8 +574,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acf8809b843b4442a09a523a94be492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemInfoPrefab: {fileID: 4306930842908753219, guid: 525625d427604894195eee5489c48ea3, type: 3}
+  itemInfoPrefab: {fileID: 4306930842908753219, guid: 23e66104956d6e14e9d7f86a0b2a31e4, type: 3}
   itemInfoReceiver: {fileID: 0}
+  raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
+  currentItemInventory: {fileID: 11400000, guid: f3e5e5a470d6c564ba21ecc4df336ab1, type: 2}
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0
