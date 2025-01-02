@@ -43,7 +43,11 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage, Transform attacker)
     {
         if (isDead) return;
-
+        Enemy enemyScript = GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.FindClosestTarget();
+            }
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
         StartCoroutine(flash.FlashRountine());
 
@@ -53,15 +57,7 @@ public class EnemyHealth : MonoBehaviour
             healthBar.UpdateHealthBar(currentHealth, maxHealth);
         }
 
-        // Gọi cập nhật mục tiêu trong Enemy
-        if (attacker != null)
-        {
-            Enemy enemyScript = GetComponent<Enemy>();
-            if (enemyScript != null)
-            {
-                enemyScript.TakeDamageFrom(attacker);
-            }
-        }
+        
 
         // Kiểm tra nếu máu <= 0 thì chết
         if (currentHealth <= 0)

@@ -70,7 +70,7 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         PanelInformation.SetActive(true);
         Name.text = itemInventory.itemName;
         Icon.sprite = itemInventory.Icon;        
-        Decription.text = itemInventory.name;
+        Decription.text = itemInventory.Decription;
 
         // Tính toán vị trí panel
         RectTransform canvasRect = PanelInformation.GetComponentInParent<Canvas>().GetComponent<RectTransform>();

@@ -129,6 +129,7 @@ public class GamePlayManager : MonoBehaviour
     public void ChangeSence()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        Time.timeScale = 1; 
     }
     public void Lose()
     {

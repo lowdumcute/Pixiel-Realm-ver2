@@ -33,15 +33,14 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0); // Đảm bảo máu không âm
+        Debug.Log($"Player took damage: {damage}. Current health: {currentHealth}");
         UpdateHealthUI();
 
-        // Kích hoạt hiệu ứng flash
         if (flashEffect != null)
         {
             StartCoroutine(flashEffect.FlashRountine());
         }
 
-        // Kiểm tra chết
         if (currentHealth <= 0)
         {
             Die();

@@ -34,8 +34,14 @@ public class Barracks : MonoBehaviour
                 // Đặt lại vị trí ban đầu
                 childUnits[i].position = initialPositions[i];
 
-                // Hiển thị lại object sau khi đặt về vị trí ban đầu
+                // Hiển thị lại object và gọi Initialize
                 childUnits[i].gameObject.SetActive(true);
+
+                WarriorHealth warriorHealth = childUnits[i].GetComponent<WarriorHealth>();
+                if (warriorHealth != null)
+                {
+                    warriorHealth.Initialize(); // Gọi Initialize thay vì Start
+                }
             }
         }
     }

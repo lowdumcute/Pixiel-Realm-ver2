@@ -10,26 +10,31 @@ public class WarriorHealth : MonoBehaviour
     private bool isDead = false;
     private bool isBeingAttacked = false;
 
-
-    // Tham chiếu tới  để cập nhật thanh máu
     [SerializeField] private WariorHealthBar healthBar;
     [SerializeField] private GameObject healthbarobj;
 
-
-    private void Start()
+    public void Start()
     {
         flash = GetComponent<Flash>();
-        // Nếu chưa có tham chiếu tới healthBar, tìm kiếm nó trong con
-        if (healthBar == null)
-        {
-            healthBar = GetComponentInChildren<WariorHealthBar>();
-        }
+        Initialize();
+    }
+
+    public void Initialize()
+    {
         currentHealth = maxHealth;
         if (healthBar != null)
         {
-            healthBar.UpdateHealthBar(currentHealth, maxHealth);  // Cập nhật thanh máu ngay từ đầu
+            healthBar.UpdateHealthBar(currentHealth, maxHealth); // Cập nhật thanh máu ngay từ đầu
+        }
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.material = new Material(Shader.Find("Sprites/Default"));
         }
         healthbarobj.SetActive(false);
+        isDead = false;
+        isBeingAttacked = false;
+        gameObject.SetActive(true); // Đảm bảo object được kích hoạt khi reset
     }
 
     public void TakeDamage(int damage)
@@ -59,7 +64,8 @@ public class WarriorHealth : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        isDead = true;
+        gameObject.SetActive(false);
     }
 
     public int GetCurrentHealth()

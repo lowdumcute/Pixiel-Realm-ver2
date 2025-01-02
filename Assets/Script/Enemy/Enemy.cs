@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,49 +9,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     public int attackDamage = 10;
 
-    private Transform currentTarget; // Mục tiêu hiện tại
+    private Transform currentTarget;
     private NavMeshAgent agent;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private float lastAttackTime;
 
-    [SerializeField] private List<string> staticTargets = new List<string> { "Tower", "Main" }; // Target tĩnh
-    [SerializeField] private List<string> dynamicTargets = new List<string> { "Player", "Warrior" }; // Target động
-    private float damageResetTime = 5f; // Thời gian quay lại target tĩnh
-    private float lastDamageTime;
-
-    [SerializeField] private static Dictionary<string, List<Transform>> allTargets = new Dictionary<string, List<Transform>>();
-    private static List<Enemy> allEnemies = new List<Enemy>(); // Thêm danh sách tất cả enemies
-
-    private void Awake()
-    {
-        foreach (string tag in staticTargets)
-        {
-            if (!allTargets.ContainsKey(tag))
-            {
-                allTargets[tag] = new List<Transform>();
-            }
-        }
-        foreach (string tag in dynamicTargets)
-        {
-            if (!allTargets.ContainsKey(tag))
-            {
-                allTargets[tag] = new List<Transform>();
-            }
-        }
-    }
-
-    private void OnEnable()
-    {
-        allEnemies.Add(this); // Thêm enemy vào danh sách khi kích hoạt
-        AddAllTargets();
-    }
-
-    private void OnDisable()
-    {
-        allEnemies.Remove(this); // Xóa enemy khỏi danh sách khi hủy
-        RemoveFromAllTargets(transform);
-    }
+    [SerializeField] private List<string> targetTags = new List<string> { "Tower", "Main", "Player", "Warrior" }; // Danh sách tag cần tấn công
+    private float detectionRadius = 100f; // Bán kính phát hiện mục tiêu
 
     private void Start()
     {
@@ -61,20 +27,14 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
 
-        FindStaticTarget();
+        StartCoroutine(CheckForClosestTarget());
     }
 
     private void Update()
     {
-        // Quay lại target tĩnh nếu không nhận sát thương trong 5 giây
-        if (Time.time > lastDamageTime + damageResetTime && currentTarget != null && dynamicTargets.Contains(currentTarget.tag))
-        {
-            FindStaticTarget();
-        }
-
         if (currentTarget == null)
         {
-            FindStaticTarget(); // Tìm lại mục tiêu tĩnh nếu không có mục tiêu nào
+            FindClosestTarget(); // Tìm lại mục tiêu nếu không có
             return;
         }
 
@@ -107,56 +67,39 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void AddAllTargets()
+    private void OnTriggerEnter(Collider other)
     {
-        foreach (string tag in staticTargets)
+        if (targetTags.Contains(other.tag))
         {
-            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
-            foreach (GameObject obj in objects)
-            {
-                if (!allTargets[tag].Contains(obj.transform))
-                {
-                    allTargets[tag].Add(obj.transform);
-                }
-            }
+            UpdateTarget(other.transform); // Cập nhật mục tiêu mới khi gặp
+        }
+    }
+    private IEnumerator CheckForClosestTarget()
+    {
+        while (true)
+        {
+            FindClosestTarget();
+            yield return new WaitForSeconds(1.5f); // Gọi lại sau 1.5 giây
         }
     }
 
-    public static void RemoveFromAllTargets(Transform target)
-    {
-        foreach (Enemy enemy in allEnemies)
-        {
-            if (enemy != null)
-            {
-                enemy.RemoveTarget(target);
-            }
-        }
-    }
-    public void RemoveTarget(Transform target)
-    {
-        if (currentTarget == target)
-        {
-            currentTarget = null;
-            FindStaticTarget(); // Tìm mục tiêu tĩnh mới
-        }
-    }
-
-    private void FindStaticTarget()
+    public void FindClosestTarget()
     {
         Transform closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (string tag in staticTargets)
+        foreach (string tag in targetTags)
         {
-            foreach (Transform target in allTargets[tag])
+            GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (GameObject obj in objects)
             {
-                if (target == null) continue;
+                if (obj == null) continue;
 
-                float distance = Vector3.Distance(transform.position, target.position);
-                if (distance < closestDistance)
+                float distance = Vector3.Distance(transform.position, obj.transform.position);
+                if (distance < closestDistance && distance <= detectionRadius)
                 {
                     closestDistance = distance;
-                    closestTarget = target;
+                    closestTarget = obj.transform;
                 }
             }
         }
@@ -164,18 +107,12 @@ public class Enemy : MonoBehaviour
         UpdateTarget(closestTarget);
     }
 
-    public void UpdateTarget(Transform newTarget)
+    private void UpdateTarget(Transform newTarget)
     {
         currentTarget = newTarget;
-    }
-
-    public void TakeDamageFrom(Transform attacker)
-    {
-        // Cập nhật mục tiêu sang người vừa gây sát thương
-        if (dynamicTargets.Contains(attacker.tag))
+        if (currentTarget != null)
         {
-            UpdateTarget(attacker);
-            lastDamageTime = Time.time;
+            agent.SetDestination(currentTarget.position);
         }
     }
 
@@ -190,6 +127,10 @@ public class Enemy : MonoBehaviour
             {
                 playerHealth.TakeDamage(attackDamage);
             }
+            else
+            {
+                FindClosestTarget();
+            }
         }
         else if (currentTarget.CompareTag("Tower"))
         {
@@ -200,7 +141,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                FindStaticTarget();
+                FindClosestTarget();
             }
         }
         else if (currentTarget.CompareTag("Main"))
@@ -220,7 +161,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                FindStaticTarget();
+                FindClosestTarget();
             }
         }
     }

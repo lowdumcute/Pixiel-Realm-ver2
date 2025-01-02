@@ -10,6 +10,7 @@ TagManager:
   - Main
   - Miner
   - Warrior
+  - Barracks
   layers:
   - Default
   - TransparentFX
