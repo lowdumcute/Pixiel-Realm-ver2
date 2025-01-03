@@ -9,7 +9,7 @@ public class AssetDisplay : MonoBehaviour
     [SerializeField] private TMP_Text timeEnergyText; // Hiển thị thời gian hồi năng lượng
     [SerializeField] private TMP_Text attacktext;
     [SerializeField] private TMP_Text healthText;
-
+    [SerializeField] private TMP_Text fragment;
     private void Start()
     {
         // Lắng nghe sự kiện hồi năng lượng
@@ -74,6 +74,7 @@ public class AssetDisplay : MonoBehaviour
 
             if (healthText != null)
                 healthText.text = $"{assetData.Health}";
+            fragment.text = $"{assetData.fragment}";
         }
         else
         {

@@ -21,9 +21,13 @@ public class Inventory : ScriptableObject
             
 
             // Kiểm tra nếu số lượng > 1 và chuyển thành mảnh
-            if (existingItem.currentQuantity > 1)
+            if (existingItem.currentQuantity > 1 && newItem.isEquipped == false)
             {
-                ConvertToFragments(existingItem);
+                ConvertToFragmentsUnEquip(existingItem);
+            }
+            else if (existingItem.isEquipped == true)
+            {
+                ConvertToFragmentsisEquipped(existingItem);
             }
         }
         else
@@ -34,9 +38,13 @@ public class Inventory : ScriptableObject
             items.Add(newItemInstance);
 
             // Kiểm tra nếu số lượng > 1 và chuyển thành mảnh
-            if (newItemInstance.currentQuantity > 1)
+            if (existingItem.currentQuantity > 1 && newItem.isEquipped == false)
             {
-                ConvertToFragments(newItemInstance);
+                ConvertToFragmentsUnEquip(newItemInstance);
+            }
+            else if (existingItem.isEquipped == true)
+            {
+                ConvertToFragmentsisEquipped(existingItem);
             }
         }
     }
@@ -50,17 +58,6 @@ public class Inventory : ScriptableObject
         {
             existingItem.DecreaseQuantity(amount);
 
-            // Xóa item nếu số lượng bằng 0
-            if (existingItem.currentQuantity <= 0)
-            {
-                items.Remove(existingItem);
-            }
-
-            // Nếu item bị giảm số lượng còn lại > 1, kiểm tra lại mảnh
-            if (existingItem.currentQuantity > 1)
-            {
-                ConvertToFragments(existingItem);
-            }
         }
     }
 
@@ -71,50 +68,30 @@ public class Inventory : ScriptableObject
     }
 
     // Chuyển đổi item thành mảnh dựa trên rarity
-    private void ConvertToFragments(ItemInventory item)
+    private void ConvertToFragmentsisEquipped(ItemInventory item)
     {
-        // Kiểm tra nếu số lượng item > 1 và isEquipped là false
-        if (item.currentQuantity > 1)
-        {
-            int fragmentCount = 0;
+            int fragmentCount = CalculateFragmentCount(item.Rarity, item.currentQuantity);
+            AddFragmentsToAsset(item.Type, fragmentCount);
+            item.CheckEquip();
+    }     
+        
+    private void ConvertToFragmentsUnEquip(ItemInventory item)
+    {
+        int fragmentCount = CalculateFragmentCount(item.Rarity, item.currentQuantity-1);
+        AddFragmentsToAsset(item.Type, fragmentCount);
+        item.CheckEquip();
+    }
 
-            // Tính số mảnh tùy theo rarity của item
-            switch (item.Rarity)
-            {
-                case ItemStats.ItemRarity.Common:
-                    fragmentCount = 1; // Chuyển thành 1 mảnh
-                    break;
-                case ItemStats.ItemRarity.Rare:
-                    fragmentCount = 2; // Chuyển thành 2 mảnh
-                    break;
-                case ItemStats.ItemRarity.Legendary:
-                    fragmentCount = 3; // Chuyển thành 3 mảnh
-                    break;
-                default:
-                    fragmentCount = 1; // Mặc định chuyển thành 1 mảnh
-                    break;
-            }
-
-            // Nếu isEquipped là true, chuyển tất cả item thành mảnh
-            if (item.isEquipped)
-            {
-                // Tất cả item sẽ được chuyển thành mảnh
-                int fragmentsToCreate = item.currentQuantity;
-                AddFragmentsToAsset(item.Type, fragmentsToCreate * fragmentCount);
-                item.currentQuantity = 0; // Xóa tất cả item
-            }
-            else
-            {
-                // Nếu isEquipped là false, chỉ giữ lại 1 item và chuyển phần còn lại thành mảnh
-                int fragmentsToCreate = item.currentQuantity - 1; // Giữ lại 1 item
-                AddFragmentsToAsset(item.Type, fragmentsToCreate * fragmentCount);
-                item.currentQuantity = 1; // Giữ lại 1 item
-            }
-        }
-        else
+    private int CalculateFragmentCount(ItemStats.ItemRarity rarity, int quantity)
+    {
+        int baseFragment = rarity switch
         {
-            Debug.Log("Item quantity is <= 1, no fragments created.");
-        }
+            ItemStats.ItemRarity.Common => 1,
+            ItemStats.ItemRarity.Rare => 2,
+            ItemStats.ItemRarity.Legendary => 3,
+            _ => 1
+        };
+        return quantity * baseFragment;
     }
 
     // Tạo mảnh từ item gốc
@@ -123,22 +100,22 @@ public class Inventory : ScriptableObject
         switch (type)
         {
             case ItemStats.ItemType.Weapon:
-                playerAsset.fragmentWeapon += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             case ItemStats.ItemType.Helmet:
-                playerAsset.fragmentHelmet += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             case ItemStats.ItemType.Armor:
-                playerAsset.fragmentArmor += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             case ItemStats.ItemType.Shoe:
-                playerAsset.fragmentShoe += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             case ItemStats.ItemType.Ring:
-                playerAsset.fragmentRing += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             case ItemStats.ItemType.Pet:
-                playerAsset.fragmentPet += fragmentCount;
+                playerAsset.fragment += fragmentCount;
                 break;
             default:
                 Debug.LogWarning("Unknown item type: " + type);

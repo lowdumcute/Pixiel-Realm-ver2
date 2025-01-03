@@ -8,7 +8,7 @@ public class WarriorHealth : MonoBehaviour
     public int currentHealth;
     private Flash flash;
     private bool isDead = false;
-    private bool isBeingAttacked = false;
+
 
     [SerializeField] private WariorHealthBar healthBar;
     [SerializeField] private GameObject healthbarobj;
@@ -33,7 +33,6 @@ public class WarriorHealth : MonoBehaviour
         }
         healthbarobj.SetActive(false);
         isDead = false;
-        isBeingAttacked = false;
         gameObject.SetActive(true); // Đảm bảo object được kích hoạt khi reset
     }
 
@@ -42,7 +41,6 @@ public class WarriorHealth : MonoBehaviour
         if (isDead) return;
         healthbarobj.SetActive(true);
         currentHealth -= Mathf.Max(damage - GetDefense(), 0); // Đảm bảo máu không dưới 0
-        isBeingAttacked = true;
         StartCoroutine(flash.FlashRountine());
 
         // Cập nhật thanh máu

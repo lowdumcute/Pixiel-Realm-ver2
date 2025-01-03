@@ -8,7 +8,7 @@
         [Header("Item Stats")]
         [SerializeField] public int Attack = 0; // Giá trị Attack của item
         [SerializeField] public int Health = 0; // Giá trị Health của item
-        [SerializeField] public int CurrentStart = 0; // sao của item
+        [SerializeField] public int CurrentStar = 0; // sao của item
         public string Decription; // Mô tả item
         public ItemStats.ItemType Type;
         public ItemStats.ItemRarity Rarity;
@@ -18,6 +18,18 @@
         public GameObject itemPrefab; // chứa Item Stats
         public int currentQuantity = 1;   // Số lượng trong Túi
 
+        public void CheckEquip()
+        {
+            if (isEquipped ==true)
+            {
+                currentQuantity = 0;
+            }
+            else if (isEquipped == false)
+            {
+                currentQuantity = 1;
+            }
+        }
+    
         public void IncreaseQuantity(int amount)
         {
             currentQuantity += amount;
@@ -28,6 +40,6 @@
         }  
         public void IncreaseStart(int amount)
         {
-            CurrentStart= Mathf.Min(CurrentStart + amount, 5); // Không lớn hơn 5
+            CurrentStar= Mathf.Min(CurrentStar + amount, 5); // Không lớn hơn 5
         }
     }

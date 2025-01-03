@@ -90,7 +90,7 @@ public class ItemInfoManager : MonoBehaviour
         Transform starsParent = currentItemInfo.transform.GetChild(3); // Object con thứ 4 từ trên xuống để chứa các sao
         if (starsParent != null)
         {
-            SpawnStars(starsParent, currentItemInventory.CurrentStart); // Hiển thị số sao
+            SpawnStars(starsParent, currentItemInventory.CurrentStar); // Hiển thị số sao
         }
         TextMeshProUGUI Rarity = currentItemInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>(); // Object con thứ 5 từ trên xuống
         if (Rarity != null)

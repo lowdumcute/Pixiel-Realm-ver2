@@ -18,12 +18,8 @@ public class Asset : ScriptableObject
     public int AttackTower = 20;
     public int Coin =2;
     [Header("Fragment")]
-    public int fragmentWeapon = 0;
-    public int fragmentHelmet = 0;
-    public int fragmentArmor = 0;
-    public int fragmentShoe = 0;
-    public int fragmentRing = 0;
-    public int fragmentPet = 0;
+    public int fragment = 0;
+    
     [Header("Energy")]
     public float energyRechargeTime = 60f; // 1 phút cho 1 năng lượng
     private float timeSinceLastEnergyReplenish = 0f;
