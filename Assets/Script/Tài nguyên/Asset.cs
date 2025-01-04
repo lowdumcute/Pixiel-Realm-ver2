@@ -5,8 +5,8 @@ using Unity.VisualScripting;
 [CreateAssetMenu(fileName = "TaiNguyen", menuName = "ScriptableObjects/Asset")]
 public class Asset : ScriptableObject
 {
-    public float Gold = 0;
-    public float Star = 0;
+    public int Gold = 0;
+    public int Star = 0;
     public int currentEnergy;
     public int maxEnergy = 30;
 
@@ -80,6 +80,10 @@ public class Asset : ScriptableObject
                 Attack -= amount;
                 break;
         }
+    }
+    public void DecreaseFragment(int amount)
+    {
+        fragment = Mathf.Max(fragment - amount, 0);
     }
 
     public void UseEnergy(int amount)

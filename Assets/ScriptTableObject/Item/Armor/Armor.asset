@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 0
   Health: 5
-  CurrentStart: 1
+  CurrentStar: 0
   Decription: "gi\xE1p s\u1EAFt r\xE8n cho c\xF3 cho l\xEDnh c\u1EA5p th\u1EA5p"
   Type: 2
   Rarity: 0

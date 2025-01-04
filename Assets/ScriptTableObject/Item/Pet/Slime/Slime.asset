@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 5
   Health: 5
-  CurrentStart: 0
+  CurrentStar: 0
   Decription: "Qu\xE1i nh\u1ECF h\u1ED7 tr\u1EE3 trong vi\u1EC7c thu d\u1ECDn v\xE0
     d\u1ECDn d\u1EB9p c\xE1c t\xE0n d\u01B0 c\u1EE7a tr\u1EADn chi\u1EBFn"
   Type: 5

@@ -61,11 +61,9 @@ public class AssetDisplay : MonoBehaviour
             Asset assetData = AssetManager.instance.GetAssetData();
 
             if (goldText != null)
-                goldText.text = $"{assetData.Gold}";
-
+                goldText.text = FormatNumber(assetData.Gold); // Rút gọn số vàng
             if (starText != null)
-                starText.text = $"{assetData.Star}";
-
+                starText.text = FormatNumber(assetData.Star); // Rút gọn số sao
             if (energyText != null)
                 energyText.text = $"{assetData.currentEnergy} / {assetData.maxEnergy}";
 
@@ -80,5 +78,16 @@ public class AssetDisplay : MonoBehaviour
         {
             Debug.LogError("AssetManager instance is not available!");
         }
+    }
+    private string FormatNumber(long value)
+    {
+        if (value >= 1_000_000_000) // Tỷ (Billion)
+            return $"{value / 1_000_000_000f:0.#}B";
+        if (value >= 1_000_000) // Triệu (Million)
+            return $"{value / 1_000_000f:0.#}M";
+        if (value >= 1_000) // Nghìn (Thousand)
+            return $"{value / 1_000f:0.#}K";
+
+        return value.ToString("N0"); // Hiển thị số đầy đủ nếu nhỏ hơn 1,000
     }
 }

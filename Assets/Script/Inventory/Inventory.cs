@@ -87,8 +87,8 @@ public class Inventory : ScriptableObject
         int baseFragment = rarity switch
         {
             ItemStats.ItemRarity.Common => 1,
-            ItemStats.ItemRarity.Rare => 2,
-            ItemStats.ItemRarity.Legendary => 3,
+            ItemStats.ItemRarity.Rare => 3,
+            ItemStats.ItemRarity.Legendary => 10,
             _ => 1
         };
         return quantity * baseFragment;

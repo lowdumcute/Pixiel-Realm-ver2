@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e775e98d4730a5945a0985dd6b1af544, type: 3}
   m_Name: RaritySprites
   m_EditorClassIdentifier: 
-  commonSprite: {fileID: -128596107, guid: 6a7fcbc5300f2ba498293ba0303d4c35, type: 3}
+  commonSprite: {fileID: 776573439, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
   rareSprite: {fileID: -958305934, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
   legendSprite: {fileID: 1062363774, guid: 7e7ce578116cab649a96fd23eceaec2b, type: 3}
   startFillSprite: {fileID: 1903886544, guid: 1f07a468f27a30b4e9454e7f92eeadd5, type: 3}

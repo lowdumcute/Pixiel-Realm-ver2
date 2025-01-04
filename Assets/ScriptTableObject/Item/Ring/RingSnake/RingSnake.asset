@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: 2
   Health: 5
-  CurrentStart: 0
+  CurrentStar: 0
   Decription: "Nh\u1EABn l\xE0m t\u1EEB r\u1EAFn"
   Type: 4
   Rarity: 0
