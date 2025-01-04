@@ -12,14 +12,14 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [Header("Component thông tin của vật phẩm")]
     [SerializeField] private GameObject PanelInformation;// panel
-    [SerializeField]
-    private Image Icon;
+    [SerializeField] private Image Icon;
     [SerializeField]
     private Image CellRarityIcon;
     [SerializeField]
     private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Rarity;
     [SerializeField] private TextMeshProUGUI Decription;
+    [SerializeField] private TextMeshProUGUI type;
     [Header("Panel rarity")]
     [SerializeField]
     private Sprite Common;
@@ -71,6 +71,7 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Name.text = itemInventory.itemName;
         Icon.sprite = itemInventory.Icon;        
         Decription.text = itemInventory.Decription;
+        type.text = $"Type: <color=white>{itemInventory.Type}</color>";
 
         // Tính toán vị trí panel
         RectTransform canvasRect = PanelInformation.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
@@ -89,8 +90,8 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Vector2 targetPosition = mousePosition + offset;
 
         // Đảm bảo vị trí không vượt quá giới hạn
-        targetPosition.x = Mathf.Clamp(targetPosition.x, -1000, 1000);
-        targetPosition.y = Mathf.Clamp(targetPosition.y, -1000, 1000);
+        targetPosition.x = Mathf.Clamp(targetPosition.x, -530, 530);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, -530, 530);
 
         // Đặt vị trí
         panelRect.anchoredPosition = targetPosition;

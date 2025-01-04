@@ -61,7 +61,7 @@ public class UpgradeUI : MonoBehaviour
         else
         {
             float successRate = successRates[currentStar];
-            SuccessRateText.text = $"Tỷ lệ thành công: {successRate}%";
+            SuccessRateText.text = $"{successRate}%";
         }
     }
 
@@ -125,7 +125,7 @@ public class UpgradeUI : MonoBehaviour
         NextAttack.text = "0";
         Health.text = "0";
         NextHealth.text = "0";
-        SuccessRateText.text = "Tỷ lệ thành công: 0%";
+        SuccessRateText.text = "0%";
         fragmentCostText.text = "";
         notification.text = "";
 

@@ -101,6 +101,12 @@ public class ItemInfoManager : MonoBehaviour
             // Gán text với định dạng màu sắc riêng cho rarity type
             Rarity.text = $"Rarity: <color=#{ColorUtility.ToHtmlStringRGB(rarityColor)}>{currentItemInventory.Rarity}</color>";
         }
+        TextMeshProUGUI Type = currentItemInfo.transform.GetChild(5).GetComponent<TextMeshProUGUI>(); // Object con thứ 6 từ trên xuống
+        if (Type != null)
+        {
+            // Gán text với định dạng màu sắc riêng cho type
+            Type.text = $"Type: <color=white>{currentItemInventory.Type}</color>";
+        }
 
     }
 
