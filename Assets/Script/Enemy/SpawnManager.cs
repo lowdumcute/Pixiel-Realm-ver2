@@ -2,22 +2,38 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI; // Để làm việc với Image
 using TMPro;
+using System.Collections.Generic;
+[System.Serializable]
+public class WaveConfig
+{
+    public List<EnemyConfig> enemyConfigs; // Danh sách các loại enemy và số lượng
+    public int coinsReward; // Phần thưởng khi hoàn thành wave
+}
+[System.Serializable]
+public class EnemyConfig
+{
+    public GameObject enemyPrefab; // Prefab của enemy
+    public int amount; // Số lượng spawn
+}
 
 public class SpawnManager : MonoBehaviour
 {
+    [Header("Tham chiếu")]
     [SerializeField] private GamePlayManager gamePlayManager;
     [SerializeField] private MainHouseController mainHouseController;
     [SerializeField] private CastleHealth CastleHealth;
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private TMP_Text playtext;
-    public GameObject enemyPrefab;
-    public Transform[] spawnPoints;
-    public int[] enemiesPerWave;
-    public float spawnInterval = 0.5f;
-    public GameObject button;
-    public int[] coinsPerWave;
+    [SerializeField] private Image dayNightImage;
 
-    [SerializeField] private Image dayNightImage; // Tham chiếu đến Image
+    [Header("Enemy Configurations")]
+    [SerializeField] private List<GameObject> enemyPrefabs; // Danh sách các prefab enemy
+    [SerializeField] private List<WaveConfig> waveConfigs; // Danh sách config cho từng wave
+
+    [Header("Spawn Configurations")]
+    [SerializeField] private Transform[] spawnPoints; // Điểm spawn
+    [SerializeField] private float spawnInterval = 0.5f; // Khoảng cách giữa các lần spawn
+    [SerializeField] private GameObject button;
     [SerializeField] private float fadeDuration = 1.0f; // Thời gian hiệu ứng tăng giảm alpha
 
     private int currentWave = 0;
@@ -26,10 +42,10 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        button.SetActive(true); // Hiển thị nút khi bắt đầu
+        button.SetActive(true);
         UpdateWaveText();
-        updateplaytext();
-        
+        UpdatePlayText();
+
         // Đặt alpha ban đầu của dayNightImage về 0 (ban ngày)
         if (dayNightImage != null)
         {
@@ -37,25 +53,25 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void updateplaytext()
+    private void UpdatePlayText()
     {
-        playtext.text = $"Play: +{coinsPerWave[currentWave]}";
+        if (currentWave < waveConfigs.Count)
+            playtext.text = $"Play: +{waveConfigs[currentWave].coinsReward}";
     }
 
     private void UpdateWaveText()
     {
-        int totalWaves = enemiesPerWave.Length;
-        waveText.text = $"Wave: {currentWave + 1}/{totalWaves}";
+        waveText.text = $"Wave: {currentWave + 1}/{waveConfigs.Count}";
     }
 
     public void SpawnCurrentLevel()
     {
         MainHouseController.EnterCombat();
         CastleHealth.RestoreHealth();
-        gamePlayManager.DisableUpgradeLevel(); // Vô hiệu hóa nâng cấp
-        Building.EnterCombat(); // Kích hoạt chế độ chiến đấu
+        gamePlayManager.DisableUpgradeLevel();
+        Building.EnterCombat();
 
-        if (currentWave < enemiesPerWave.Length)
+        if (currentWave < waveConfigs.Count)
         {
             // Tăng dần alpha (chuyển sang ban đêm)
             if (dayNightImage != null)
@@ -69,10 +85,12 @@ public class SpawnManager : MonoBehaviour
                 miner.inGame();
             }
 
-            button.SetActive(false); // Ẩn nút sau khi bắt đầu wave
+            button.SetActive(false);
             enemiesSpawned = 0;
             enemiesDefeated = 0;
-            StartCoroutine(SpawnEnemies(enemiesPerWave[currentWave]));
+
+            // Bắt đầu spawn cho wave hiện tại
+            StartCoroutine(SpawnEnemiesForWave(waveConfigs[currentWave]));
         }
         else
         {
@@ -80,16 +98,19 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemies(int amount)
+    private IEnumerator SpawnEnemiesForWave(WaveConfig waveConfig)
     {
-        for (int i = 0; i < amount; i++)
+        foreach (var enemyData in waveConfig.enemyConfigs)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(spawnInterval);
+            for (int i = 0; i < enemyData.amount; i++)
+            {
+                SpawnEnemy(enemyData.enemyPrefab);
+                yield return new WaitForSeconds(spawnInterval);
+            }
         }
     }
 
-    void SpawnEnemy()
+    private void SpawnEnemy(GameObject enemyPrefab)
     {
         int spawnIndex = Random.Range(0, spawnPoints.Length);
         Instantiate(enemyPrefab, spawnPoints[spawnIndex].position, Quaternion.identity);
@@ -99,12 +120,12 @@ public class SpawnManager : MonoBehaviour
     public void OnEnemyDefeated()
     {
         enemiesDefeated++;
-        if (enemiesDefeated >= enemiesPerWave[currentWave])
+        if (enemiesDefeated >= enemiesSpawned)
         {
             CastleHealth.OnEnemyDefeated();
             MainHouseController.ExitCombat();
             Building.ExitCombat();
-            gamePlayManager.AddCoins(coinsPerWave[currentWave]);
+            gamePlayManager.AddCoins(waveConfigs[currentWave].coinsReward);
 
             Miner[] miners = FindObjectsOfType<Miner>();
             foreach (Miner miner in miners)
@@ -131,22 +152,20 @@ public class SpawnManager : MonoBehaviour
             }
 
             currentWave++;
-            if (currentWave < enemiesPerWave.Length)
+            if (currentWave < waveConfigs.Count)
             {
                 UpdateWaveText();
                 button.SetActive(true);
                 gamePlayManager.EnableUpgradeLevel();
-                updateplaytext();
+                UpdatePlayText();
             }
             else
             {
-                // Nếu là wave cuối, gọi phương thức Win
                 gamePlayManager.Win();
             }
         }
     }
 
-    // Coroutine để thay đổi alpha dần
     private IEnumerator FadeImageAlpha(float fromAlpha, float toAlpha)
     {
         if (dayNightImage != null)
@@ -164,25 +183,18 @@ public class SpawnManager : MonoBehaviour
                 yield return null;
             }
 
-            // Đảm bảo giá trị cuối cùng được đặt chính xác
             color.a = endAlpha;
             dayNightImage.color = color;
         }
     }
 
-    // Hàm tiện ích để thiết lập alpha ngay lập tức (nếu cần)
     private void SetImageAlpha(float alpha)
     {
         if (dayNightImage != null)
         {
             Color color = dayNightImage.color;
-            color.a = alpha / 255f; // Chuyển alpha sang giá trị 0-1
+            color.a = alpha / 255f;
             dayNightImage.color = color;
         }
-    }
-    // Hàm public để lấy số lượng quái đã tiêu diệt
-    public int GetEnemiesDefeated()
-    {
-        return enemiesDefeated;
     }
 }
