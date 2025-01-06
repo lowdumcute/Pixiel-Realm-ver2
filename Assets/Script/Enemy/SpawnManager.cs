@@ -1,14 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // Để làm việc với Image
 using TMPro;
-using System.Collections.Generic;
+using UnityEngine.Rendering.Universal;
+
 [System.Serializable]
 public class WaveConfig
 {
     public List<EnemyConfig> enemyConfigs; // Danh sách các loại enemy và số lượng
     public int coinsReward; // Phần thưởng khi hoàn thành wave
 }
+
 [System.Serializable]
 public class EnemyConfig
 {
@@ -24,7 +27,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private CastleHealth CastleHealth;
     [SerializeField] private TMP_Text waveText;
     [SerializeField] private TMP_Text playtext;
-    [SerializeField] private Image dayNightImage;
+    [SerializeField] private Light2D dayLight; // Light 2D để điều chỉnh ngày đêm
 
     [Header("Enemy Configurations")]
     [SerializeField] private List<GameObject> enemyPrefabs; // Danh sách các prefab enemy
@@ -34,7 +37,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints; // Điểm spawn
     [SerializeField] private float spawnInterval = 0.5f; // Khoảng cách giữa các lần spawn
     [SerializeField] private GameObject button;
-    [SerializeField] private float fadeDuration = 1.0f; // Thời gian hiệu ứng tăng giảm alpha
+    [SerializeField] private float fadeDuration = 1.0f; // Thời gian điều chỉnh ánh sáng ngày đêm
 
     private int currentWave = 0;
     private int enemiesSpawned;
@@ -46,10 +49,10 @@ public class SpawnManager : MonoBehaviour
         UpdateWaveText();
         UpdatePlayText();
 
-        // Đặt alpha ban đầu của dayNightImage về 0 (ban ngày)
-        if (dayNightImage != null)
+        // Đặt cường độ ánh sáng ban đầu
+        if (dayLight != null)
         {
-            SetImageAlpha(0);
+            dayLight.intensity = 1.0f; // Ban ngày
         }
     }
 
@@ -73,10 +76,10 @@ public class SpawnManager : MonoBehaviour
 
         if (currentWave < waveConfigs.Count)
         {
-            // Tăng dần alpha (chuyển sang ban đêm)
-            if (dayNightImage != null)
+            // Chuyển sang ban đêm
+            if (dayLight != null)
             {
-                StartCoroutine(FadeImageAlpha(0, 120));
+                StartCoroutine(AdjustLightIntensity(1.0f, 0.1f));
             }
 
             Miner[] miners = FindObjectsOfType<Miner>();
@@ -145,10 +148,10 @@ public class SpawnManager : MonoBehaviour
                 towerInstance.RestoreHealth();
             }
 
-            // Giảm dần alpha (chuyển về ban ngày)
-            if (dayNightImage != null)
+            // Chuyển về ban ngày
+            if (dayLight != null)
             {
-                StartCoroutine(FadeImageAlpha(120, 0));
+                StartCoroutine(AdjustLightIntensity(0.1f, 1.0f));
             }
 
             currentWave++;
@@ -166,35 +169,20 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeImageAlpha(float fromAlpha, float toAlpha)
+    private IEnumerator AdjustLightIntensity(float fromIntensity, float toIntensity)
     {
-        if (dayNightImage != null)
+        if (dayLight != null)
         {
             float elapsedTime = 0f;
-            Color color = dayNightImage.color;
-            float startAlpha = fromAlpha / 255f;
-            float endAlpha = toAlpha / 255f;
 
             while (elapsedTime < fadeDuration)
             {
-                color.a = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / fadeDuration);
-                dayNightImage.color = color;
+                dayLight.intensity = Mathf.Lerp(fromIntensity, toIntensity, elapsedTime / fadeDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            color.a = endAlpha;
-            dayNightImage.color = color;
-        }
-    }
-
-    private void SetImageAlpha(float alpha)
-    {
-        if (dayNightImage != null)
-        {
-            Color color = dayNightImage.color;
-            color.a = alpha / 255f;
-            dayNightImage.color = color;
+            dayLight.intensity = toIntensity; // Đảm bảo cường độ ánh sáng được đặt chính xác
         }
     }
 }

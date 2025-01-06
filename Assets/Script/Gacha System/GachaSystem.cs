@@ -138,19 +138,36 @@ public class GachaSystem : MonoBehaviour
 
     private void SpawnAndAddReward(GameObject rewardPrefab)
     {
+        // Tạo một clone của rewardPrefab trong rewardParent
         GameObject reward = Instantiate(rewardPrefab, gachaUIReward.rewardParent);
-        gachaUIReward.rewardPanel.SetActive(true);
+        gachaUIReward.chestPanel.SetActive(true);
 
+        // Kiểm tra và xử lý hiệu ứng Legendary ngay sau khi tạo clone
         AddItem addItemScript = reward.GetComponent<AddItem>();
-        if (addItemScript != null)
+        if (addItemScript != null && addItemScript.itemInventory != null)
         {
+            if (addItemScript.itemInventory.Rarity == ItemStats.ItemRarity.Legendary)
+            {
+                Debug.Log("Trúng vật phẩm Legendary!");
+
+                // Spawn hiệu ứng Legendary và làm nó là con của reward
+                if (gachaUIReward.legendaryEffectPrefab != null)
+                {
+                    GameObject legendaryEffect = Instantiate(gachaUIReward.legendaryEffectPrefab, reward.transform);
+                    legendaryEffect.transform.localPosition = Vector3.zero; // Đặt vị trí trung tâm
+                    legendaryEffect.transform.SetSiblingIndex(0);
+                }
+            }
+
+            // Thêm vật phẩm vào Inventory
             addItemScript.AddToInventory(1);
         }
         else
         {
-            Debug.LogError("Prefab không có script AddItem!");
+            Debug.LogError("Prefab không có script AddItem hoặc ItemInventory!");
         }
 
         Debug.Log($"Trúng thưởng: {reward.name}");
     }
+
 }

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7781450633856588849}
   - component: {fileID: 7179145083949755985}
   - component: {fileID: 5047786451205290220}
+  - component: {fileID: -207794665421985875}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Enemy
@@ -57,7 +58,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -122,7 +123,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -211,7 +212,7 @@ MonoBehaviour:
   maxHealth: 250
   currentHealth: 0
   healthBar: {fileID: 5047786451205290220}
-  enemy: {fileID: 7096980776628558133}
+  enemy: {fileID: 0}
   killEnemiesProgress: {fileID: 0}
   deathEffectPrefab: {fileID: 6812903013760180322, guid: a68e85ff9d4f0774b8f9a1307aa26f8c, type: 3}
 --- !u!95 &7179145083949755985
@@ -248,6 +249,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 4004525825056460812}
+--- !u!114 &-207794665421985875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159524295308914249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6960a827865c61448f876c4a40320a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whileFlashMat: {fileID: 2100000, guid: d8addf083124de54c95ee652ad305935, type: 2}
+  restoreDefaulMaTime: 0.2
 --- !u!1 &2181121450963492952
 GameObject:
   m_ObjectHideFlags: 0

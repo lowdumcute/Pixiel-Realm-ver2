@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private ItemInventory itemInventory; // item add vào túi 
+    [SerializeField] public ItemInventory itemInventory; // item add vào túi 
     [SerializeField] private Inventory inventory; // Tham chiếu tới Inventory ScriptableObject
 
     [Header("Component thông tin của vật phẩm")]
