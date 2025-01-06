@@ -140,7 +140,7 @@ public class GachaSystem : MonoBehaviour
     {
         // Tạo một clone của rewardPrefab trong rewardParent
         GameObject reward = Instantiate(rewardPrefab, gachaUIReward.rewardParent);
-        gachaUIReward.chestPanel.SetActive(true);
+        gachaUIReward.rewardPanel.SetActive(true);
 
         // Kiểm tra và xử lý hiệu ứng Legendary ngay sau khi tạo clone
         AddItem addItemScript = reward.GetComponent<AddItem>();
