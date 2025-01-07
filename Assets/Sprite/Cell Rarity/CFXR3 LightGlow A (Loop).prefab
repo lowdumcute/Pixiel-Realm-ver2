@@ -4890,7 +4890,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1874584393
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14754,7 +14754,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.99215686, g: 0.86176467, b: 0.47058818, a: 1}
-  m_Intensity: 2.7920697
+  m_Intensity: 2.9439566
   m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

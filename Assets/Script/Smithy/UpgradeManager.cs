@@ -15,6 +15,9 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Tham chiếu đến Upgrade Panel")]
     public Transform upgradePanel;
+    [Header("Prefab")]
+    [SerializeField] private GameObject VFXfailed;
+    [SerializeField] private GameObject VFXSuccess;
 
     [Header("Công thức tiêu hao mảnh")]
     private Dictionary<ItemStats.ItemRarity, int[]> fragmentCosts = new Dictionary<ItemStats.ItemRarity, int[]>
@@ -101,20 +104,43 @@ public class UpgradeManager : MonoBehaviour
             item.Attack = Mathf.RoundToInt(item.Attack * 1.5f); // Tăng Attack
             item.Health = Mathf.RoundToInt(item.Health * 1.5f); // Tăng Health
             item.CurrentStar += 1; // Tăng sao
+
             upgradeUI.notification.text = "<color=green>Nâng cấp thành công!</color>";
             upgradeUI.DisplayNotification(true);
 
             Debug.Log($"Nâng cấp thành công! Item {item.itemName} đã được nâng lên cấp {item.CurrentStar}.");
+
+            // Spawn VFX thành công
+            SpawnVFX(VFXSuccess);
         }
         else // Thất bại
         {
             Debug.Log($"Nâng cấp thất bại. Item {item.itemName} vẫn giữ nguyên cấp {item.CurrentStar}.");
             upgradeUI.notification.text = "<color=red>Nâng cấp thất bại!</color>";
             upgradeUI.DisplayNotification(true);
+
+            // Spawn VFX thất bại
+            SpawnVFX(VFXfailed);
         }
 
         // Cập nhật UI nếu cần
         upgradeUI.UpdateUI();
         assetDisplay.UpdateDisplay();
+    }
+    private void SpawnVFX(GameObject vfxPrefab)
+    {
+        if (vfxPrefab == null || upgradePanel == null || upgradePanel.childCount == 0) return;
+
+        // Lấy object con đầu tiên của upgradePanel
+        Transform firstChild = upgradePanel.GetChild(0);
+
+        // Tạo VFX tại vị trí của object con đầu tiên
+        GameObject vfx = Instantiate(vfxPrefab, firstChild.position, Quaternion.identity);
+
+        // Đặt VFX làm con của object con đầu tiên
+        vfx.transform.SetParent(firstChild);
+
+        // Hủy VFX sau 2 giây
+        Destroy(vfx, 2f);
     }
 }

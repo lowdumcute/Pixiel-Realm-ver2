@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float attackCooldown = 1f;
-    public int attackDamage = 10;
+       public int attackDamage = 10;
 
     private Transform currentTarget;
     private NavMeshAgent agent;
