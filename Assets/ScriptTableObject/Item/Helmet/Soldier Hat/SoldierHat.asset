@@ -20,7 +20,7 @@ MonoBehaviour:
     t\u1EA1o ra"
   Type: 1
   Rarity: 1
-  isEquipped: 0
+  isEquipped: 1
   itemName: "M\u0169 l\xEDnh Tinh Nhu\u1EC7"
   Icon: {fileID: -491381685, guid: 84fb61a7d888cc04f82b450ca7b54c60, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 3e0d7e4bab3619642b1754641aee02dc, type: 3}

@@ -18,8 +18,8 @@ MonoBehaviour:
   Decription: "Gi\xE0y tr\u1ED9m c\u1EE7a m\u1EB9"
   Type: 3
   Rarity: 0
-  isEquipped: 0
+  isEquipped: 1
   itemName: "Gi\xE0y v\u1EA3i"
   Icon: {fileID: -331709699, guid: 2bfe799f66e3b384b86ac5a9ab572c06, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: e24bc0a99000765499b2d82f67ddbb98, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0
