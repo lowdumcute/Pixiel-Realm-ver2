@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Phát hiệu ứng âm thanh (không ảnh hưởng đến nhạc nền)
+    // Phát hiệu ứng âm thanh
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(SFXSound, x => x.name == name);
@@ -66,7 +66,14 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            SFX_Source.PlayOneShot(s.Clip, s.volume); // Phát một lần, không ảnh hưởng đến nhạc nền
+            // Kiểm tra nếu âm thanh đang phát khác với âm thanh mới
+            if (SFX_Source.clip != s.Clip || !SFX_Source.isPlaying)
+            {
+                SFX_Source.clip = s.Clip;
+                SFX_Source.volume = s.volume;
+                SFX_Source.loop = s.loop; // Tùy chọn lặp lại (nếu cần)
+                SFX_Source.Play();
+            }
         }
     }
 

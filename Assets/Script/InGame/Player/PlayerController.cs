@@ -27,56 +27,53 @@ public class PlayerController : MonoBehaviour
     }
 
     private void HandleMovement()
-{
-    // Lấy đầu vào di chuyển
-    float horizontal = Input.GetAxis("Horizontal");
-    float vertical = Input.GetAxis("Vertical");
-
-    // Kiểm tra có di chuyển hay không
-    bool isMoving = horizontal != 0 || vertical != 0;
-
-    // Nếu không đang tấn công thì cập nhật trạng thái di chuyển
-    if (!isAttacking)
     {
-        animator.SetBool("Run", isMoving);
-    }
+        // Lấy đầu vào di chuyển
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-    if (isMoving)
-    {
-        // Di chuyển đối tượng
-        transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
+        // Kiểm tra có di chuyển hay không
+        bool isMoving = horizontal != 0 || vertical != 0;
 
-        // Kiểm tra nếu SFX 
-        if (!AudioManager.instance.SFX_Source.isPlaying || AudioManager.instance.SFX_Source.clip.name != "Run") 
+        // Nếu không đang tấn công thì cập nhật trạng thái di chuyển
+        if (!isAttacking)
         {
+            animator.SetBool("Run", isMoving);
+        }
+
+        if (isMoving)
+        {
+            // Di chuyển đối tượng
+            transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
+
+            // Phát âm thanh "Run"
             AudioManager.instance.PlaySFX("Run");
-        }
 
-        // Lật hình ảnh khi hướng di chuyển thay đổi
-        if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
-        {
-            isMovingRight = !isMovingRight;
-            spriteRenderer.flipX = !spriteRenderer.flipX;
-        }
+            // Lật hình ảnh khi hướng di chuyển thay đổi
+            if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
+            {
+                isMovingRight = !isMovingRight;
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+            }
 
-        // Chạy hiệu ứng bụi
-        if (!dustEffect.isPlaying)
+            // Chạy hiệu ứng bụi
+            if (!dustEffect.isPlaying)
+            {
+                dustEffect.Play();
+            }
+        }
+        else
         {
-            dustEffect.Play();
+            // Dừng âm thanh "Run" khi dừng di chuyển
+            AudioManager.instance.StopSFX("Run");
+
+            // Dừng hiệu ứng bụi
+            if (dustEffect.isPlaying)
+            {
+                dustEffect.Stop();
+            }
         }
     }
-    else
-    {
-        // Dừng hiệu ứng âm thanh "Run" nếu không di chuyển
-        audioManager.StopSFX("Run");
-
-        // Dừng hiệu ứng bụi
-        if (dustEffect.isPlaying)
-        {
-            dustEffect.Stop();
-        }
-    }
-}
 
     // Kiểm tra và cập nhật trạng thái tấn công hoặc chạy
     private void CheckAttackRange()
