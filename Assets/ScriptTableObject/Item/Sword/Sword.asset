@@ -19,8 +19,8 @@ MonoBehaviour:
     rau ngo\xE0i ch\u1EE3"
   Type: 0
   Rarity: 0
-  isEquipped: 0
+  isEquipped: 1
   itemName: "Ki\u1EBFm s\u1EAFt "
   Icon: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 04b1c7f3f4f709646a4d83e98a38fdf5, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0
