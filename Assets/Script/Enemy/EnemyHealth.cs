@@ -49,7 +49,7 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyScript.FindClosestTarget();
         }
-
+        AudioManager.instance.PlaySFX("Hit");
         // Giảm máu với sát thương trừ đi phòng thủ
         currentHealth -= Mathf.Max(damage - GetDefense(), 0);
 

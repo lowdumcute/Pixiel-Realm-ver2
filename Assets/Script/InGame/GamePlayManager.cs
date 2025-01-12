@@ -29,6 +29,7 @@ public class GamePlayManager : MonoBehaviour
         UpdateCoinDisplay();
         winPanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game
         losePanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game
+        AudioManager.instance.PlayMusic("IdleGame");
     }
 
     public void UpdateCoin(int amount)

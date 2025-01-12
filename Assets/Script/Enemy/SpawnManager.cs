@@ -70,6 +70,7 @@ public class SpawnManager : MonoBehaviour
     public void SpawnCurrentLevel()
     {
         MainHouseController.EnterCombat();
+        AudioManager.instance.PlayMusic("FightGame");
         CastleHealth.RestoreHealth();
         gamePlayManager.DisableUpgradeLevel();
         Building.EnterCombat();
@@ -125,6 +126,7 @@ public class SpawnManager : MonoBehaviour
         enemiesDefeated++;
         if (enemiesDefeated >= enemiesSpawned)
         {
+            AudioManager.instance.PlayMusic("IdleGame");
             CastleHealth.OnEnemyDefeated();
             MainHouseController.ExitCombat();
             Building.ExitCombat();
