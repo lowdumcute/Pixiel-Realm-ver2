@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
-  m_Name: Sword
+  m_Name: NormalSword
   m_EditorClassIdentifier: 
   Attack: 5
   Health: 0
@@ -19,8 +19,8 @@ MonoBehaviour:
     rau ngo\xE0i ch\u1EE3"
   Type: 0
   Rarity: 0
-  isEquipped: 1
+  isEquipped: 0
   itemName: "Ki\u1EBFm s\u1EAFt "
-  Icon: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
+  Icon: {fileID: -1333149276, guid: c820bda1d00867c49a71950b9aa1d918, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 04b1c7f3f4f709646a4d83e98a38fdf5, type: 3}
-  currentQuantity: 0
+  currentQuantity: 1

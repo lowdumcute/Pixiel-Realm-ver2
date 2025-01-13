@@ -55,6 +55,7 @@ public class Building : MonoBehaviour
             if (prefabToSpawn != null && !hasSpawned)
             {
                 gamePlayManager.subtractionCoins(coin);
+                AudioManager.instance.PlaySFX("Buid");
                 Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
                 hasSpawned = true;
 

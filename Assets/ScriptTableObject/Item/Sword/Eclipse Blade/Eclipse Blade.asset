@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
+  m_Name: Eclipse Blade
+  m_EditorClassIdentifier: 
+  Attack: 10
+  Health: 5
+  CurrentStar: 0
+  Decription: "\u0110\xE2y l\xE0 1 trong nh\u1EEFng thanh b\u1EA3o ki\u1EBFm c\u1EE7a
+    nh\xE0  Luficius"
+  Type: 0
+  Rarity: 1
+  isEquipped: 0
+  itemName: "Ki\u1EBFm Nh\u1EADt Th\u1EF1c"
+  Icon: {fileID: 1699822115, guid: c820bda1d00867c49a71950b9aa1d918, type: 3}
+  itemPrefab: {fileID: 6816753760795425645, guid: 6144576e9ee01f8419880485e4dd027b, type: 3}
+  currentQuantity: 1

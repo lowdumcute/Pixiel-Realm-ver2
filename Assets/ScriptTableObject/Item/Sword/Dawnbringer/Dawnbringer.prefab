@@ -259,7 +259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7614042104445262979
 CanvasRenderer:
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1350772686, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
+  m_Sprite: {fileID: -692458498, guid: c820bda1d00867c49a71950b9aa1d918, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 2025142200830361607}
   - component: {fileID: 1271514312033840114}
   m_Layer: 5
-  m_Name: Sword
+  m_Name: Dawnbringer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,7 +556,7 @@ MonoBehaviour:
   playerAsset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   itemManager: {fileID: 0}
   assetDisplay: {fileID: 0}
-  itemInventory: {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
+  itemInventory: {fileID: 11400000, guid: 82075ebca2d2d1c4ea0292b10dc63ec9, type: 2}
   inventoryUI: {fileID: 0}
   itemData: {fileID: 11400000, guid: bc62e40ec52cec34a97e0fe8827efb0b, type: 2}
   raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
@@ -577,7 +577,7 @@ MonoBehaviour:
   itemInfoPrefab: {fileID: 4306930842908753219, guid: e24e1aba1abc96a4689086982e5450f0, type: 3}
   itemInfoReceiver: {fileID: 0}
   raritySprites: {fileID: 11400000, guid: fc2b68c1d73c35f4c91fbb6cc00a64f9, type: 2}
-  currentItemInventory: {fileID: 11400000, guid: 52edc17a94ab6654f8de524fa918fc25, type: 2}
+  currentItemInventory: {fileID: 11400000, guid: 82075ebca2d2d1c4ea0292b10dc63ec9, type: 2}
 --- !u!1 &7256183067165968862
 GameObject:
   m_ObjectHideFlags: 0
