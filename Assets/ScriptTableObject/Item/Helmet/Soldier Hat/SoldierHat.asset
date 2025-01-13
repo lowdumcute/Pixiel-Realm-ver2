@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
   m_Name: SoldierHat
   m_EditorClassIdentifier: 
-  Attack: 25
-  Health: 10
-  CurrentStar: 0
+  Attack: 194
+  Health: 75
+  CurrentStar: 5
   Decription: "\u0110\xE2y l\xE0 nh\u1EEFng thi\u1EBFt gi\xE1p \u0111\u01B0\u1EE3c
     nh\u1EEFng th\u1EE3 r\xE8n gi\u1ECFi nh\u1EA5t Pixiel tinh luy\u1EC7n ch\u1EBF
     t\u1EA1o ra"
