@@ -7,6 +7,7 @@ public class RewardGachaManager : MonoBehaviour
 {
     [SerializeField] private GameObject rewardPanel; // Panel hiển thị phần thưởng
     [SerializeField] private GameObject slot; // Tham chiếu tới đối tượng cha chứa các object con
+    [SerializeField] private GameObject vfx; // vfx itemitem
     [SerializeField] private Button revealButton; // Nút hiển thị từng object
     [SerializeField] private Button fastForwardButton; // Nút tua nhanh
 
@@ -22,6 +23,14 @@ public class RewardGachaManager : MonoBehaviour
         {
             childObjects[i] = slot.transform.GetChild(i);
             childObjects[i].gameObject.SetActive(false); // Ẩn tất cả các object con
+
+            // Spawn VFX làm con của object con trong slot
+            if (vfx != null)
+            {
+                GameObject spawnedVFX = Instantiate(vfx, childObjects[i].position, Quaternion.identity);
+                spawnedVFX.transform.SetParent(childObjects[i]); // Đặt VFX làm con của object con
+                spawnedVFX.transform.localPosition = Vector3.zero; // Đảm bảo VFX ở đúng tâm của object con
+            }
         }
 
         // Đảm bảo nút được bật khi bắt đầu
