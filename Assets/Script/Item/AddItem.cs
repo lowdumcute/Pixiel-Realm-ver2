@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,8 +23,46 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private TextMeshProUGUI type;
     [Header("Panel rarity")]
     [SerializeField]
-    private Sprite Common;
-    
+    private RaritySprites raritySprites;
+    void Start()
+    {
+        SpawnItemInfo();
+    }
+    public void SpawnItemInfo()
+    {
+        // Thay đổi sprite dựa trên rarity
+        Image rarityImage = gameObject.transform.GetChild(0).GetComponent<Image>(); // Object con đầu tiên từ trên xuống
+        if (rarityImage != null)
+        {
+            UpdateRaritySprite(rarityImage, itemInventory.Rarity);
+        }
+    }
+
+    private void UpdateRaritySprite(Image rarityImage, ItemStats.ItemRarity rarity)
+    {
+        if (raritySprites == null)
+        {
+            Debug.LogError("RaritySprites chưa được gán!");
+            return;
+        }
+
+        switch (rarity)
+        {
+            case ItemStats.ItemRarity.Common:
+                rarityImage.sprite = raritySprites.commonSprite;
+                break;
+            case ItemStats.ItemRarity.Rare:
+                rarityImage.sprite = raritySprites.rareSprite;
+                break;
+            case ItemStats.ItemRarity.Legendary:
+                rarityImage.sprite = raritySprites.legendSprite;
+                break;
+            default:
+                rarityImage.sprite = null; // Xóa sprite nếu không có rarity phù hợp
+                break;
+        }
+    }
+
     public void AddToInventory(int amount = 1)
     {
         if (itemInventory == null || inventory == null)
@@ -43,14 +82,14 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if(itemInventory.Rarity== ItemStats.ItemRarity.Common)
         {
-            CellRarityIcon.sprite = Common;
+            CellRarityIcon.sprite = raritySprites.commonSprite;
             CellRarityIcon.color = Color.white;
             Rarity.text = "Rarity: " + $"<color=grey>{itemInventory.Rarity}</color>";
             CheckInfor();
         }
         if (itemInventory.Rarity == ItemStats.ItemRarity.Rare)
         {
-            CellRarityIcon.sprite = Common;
+            CellRarityIcon.sprite = raritySprites.rareSprite;
             CellRarityIcon.color = new Color(183f / 255f, 46f / 255f, 255f / 255f); // RGB value for purple (chuẩn hóa)
             ;
             Rarity.text = "Rarity: " + $"<color=purple>{itemInventory.Rarity}</color>";
@@ -58,7 +97,7 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         if (itemInventory.Rarity == ItemStats.ItemRarity.Legendary)
         {
-            CellRarityIcon.sprite = Common;
+            CellRarityIcon.sprite = raritySprites.legendSprite;
             CellRarityIcon.color = Color.yellow;
             Rarity.text = "Rarity: " + $"<color=yellow>{itemInventory.Rarity}</color>";
             CheckInfor();

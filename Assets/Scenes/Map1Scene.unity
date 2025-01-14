@@ -3789,7 +3789,7 @@ MonoBehaviour:
   Rarity: {fileID: 0}
   Decription: {fileID: 0}
   type: {fileID: 0}
-  Common: {fileID: 0}
+  raritySprites: {fileID: 0}
 --- !u!114 &444723011
 MonoBehaviour:
   m_ObjectHideFlags: 0

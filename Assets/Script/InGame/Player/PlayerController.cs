@@ -46,8 +46,6 @@ public class PlayerController : MonoBehaviour
             // Di chuyển đối tượng
             transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
 
-            // Phát âm thanh "Run"
-            AudioManager.instance.PlaySFX("Run");
 
             // Lật hình ảnh khi hướng di chuyển thay đổi
             if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
@@ -64,9 +62,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Dừng âm thanh "Run" khi dừng di chuyển
-            AudioManager.instance.StopSFX("Run");
-
             // Dừng hiệu ứng bụi
             if (dustEffect.isPlaying)
             {
