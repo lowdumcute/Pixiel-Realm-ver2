@@ -17,7 +17,11 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [SerializeField] private Sound[] musicSound, SFXSound;
-    public AudioSource musicSource, SFX_Source; // Các nguồn phát âm thanh
+    public AudioSource musicSource; // Nguồn phát nhạc nền
+    private List<AudioSource> sfxSources = new List<AudioSource>(); // Danh sách nguồn phát SFX
+
+    private const string MusicVolumeKey = "MusicVolume";
+    private const string SFXVolumeKey = "SFXVolume";
 
     private void Awake()
     {
@@ -34,10 +38,19 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // Lấy âm lượng từ PlayerPrefs hoặc đặt mặc định là 1
+        float savedMusicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+        float savedSFXVolume = PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
+
+        // Áp dụng giá trị âm lượng
+        VolumeMusic(savedMusicVolume);
+        SetSFXVolume(savedSFXVolume);
+
+        // Phát nhạc nền ban đầu
         PlayMusic("MainMenuTheme");
     }
 
-    // Phát nhạc nền với tùy chọn lặp lại
+    // Phát nhạc nền
     public void PlayMusic(string name)
     {
         Sound s = Array.Find(musicSound, x => x.name == name);
@@ -66,50 +79,80 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            // Kiểm tra nếu âm thanh đang phát khác với âm thanh mới
-            if (SFX_Source.clip != s.Clip || !SFX_Source.isPlaying)
+            AudioSource source = GetOrCreateAudioSource();
+            source.clip = s.Clip;
+            source.volume = s.volume;
+            source.loop = s.loop;
+            source.Play();
+
+            // Nếu không lặp lại, tự động hủy nguồn phát sau khi phát xong
+            if (!s.loop)
             {
-                SFX_Source.clip = s.Clip;
-                SFX_Source.volume = s.volume;
-                SFX_Source.loop = s.loop; // Tùy chọn lặp lại (nếu cần)
-                SFX_Source.Play();
+                StartCoroutine(ReleaseAudioSourceAfterPlay(source));
             }
         }
     }
 
-    // Điều chỉnh âm lượng nhạc nền
+    // Lấy hoặc tạo một AudioSource mới
+    private AudioSource GetOrCreateAudioSource()
+    {
+        foreach (var source in sfxSources)
+        {
+            if (!source.isPlaying)
+            {
+                return source;
+            }
+        }
+
+        AudioSource newSource = gameObject.AddComponent<AudioSource>();
+        sfxSources.Add(newSource);
+        return newSource;
+    }
+
+    // Hủy AudioSource sau khi phát xong
+    private IEnumerator ReleaseAudioSourceAfterPlay(AudioSource source)
+    {
+        yield return new WaitUntil(() => !source.isPlaying);
+        source.clip = null;
+    }
+
+    // Điều chỉnh âm lượng nhạc nền và lưu vào PlayerPrefs
     public void VolumeMusic(float volume)
     {
         musicSource.volume = volume;
+        PlayerPrefs.SetFloat(MusicVolumeKey, volume);
+        PlayerPrefs.Save();
     }
 
-    // Điều chỉnh âm lượng hiệu ứng âm thanh
-    public void VolumeSFX(float volume)
+    // Điều chỉnh âm lượng hiệu ứng âm thanh và lưu vào PlayerPrefs
+    public void SetSFXVolume(float volume)
     {
-        SFX_Source.volume = volume;
-    }
-
-    // Dừng nhạc nền
-    public void StopMusic()
-    {
-        musicSource.Stop();
-    }
-
-    // Dừng hiệu ứng âm thanh
-    public void StopSFX(string name)
-    {
-        Sound s = Array.Find(SFXSound, x => x.name == name);
-        if (s == null)
+        foreach (var source in sfxSources)
         {
-            Debug.LogWarning($"SFX '{name}' not found!");
+            source.volume = volume;
         }
-        else if (SFX_Source.isPlaying && SFX_Source.clip == s.Clip)
+
+        // Cập nhật âm lượng mặc định cho các SFX mới
+        foreach (var sound in SFXSound)
         {
-            SFX_Source.Stop();
+            sound.volume = volume;
         }
+
+        PlayerPrefs.SetFloat(SFXVolumeKey, volume);
+        PlayerPrefs.Save();
     }
 
-    // Coroutine để tăng dần âm lượng nhạc nền
+    // Lấy âm lượng hiện tại của SFX
+    public float GetCurrentSFXVolume()
+    {
+        if (sfxSources.Count > 0)
+        {
+            return sfxSources[0].volume;
+        }
+        return SFXSound.Length > 0 ? SFXSound[0].volume : 1f;
+    }
+
+    // Tăng dần âm lượng nhạc nền
     private IEnumerator FadeInMusic(float targetVolume, float duration)
     {
         float startVolume = musicSource.volume;
@@ -122,6 +165,6 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        musicSource.volume = targetVolume; // Đảm bảo âm lượng đạt đúng mức cuối
+        musicSource.volume = targetVolume;
     }
 }

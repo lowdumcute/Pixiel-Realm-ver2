@@ -47,6 +47,7 @@ public class RewardGachaManager : MonoBehaviour
     {
         if (currentIndex < childObjects.Length)
         {
+            AudioManager.instance.PlaySFX("OpenChest"); // Phát âm thanh mở hộp
             childObjects[currentIndex].gameObject.SetActive(true); // Hiện object con hiện tại
             currentIndex++; // Tăng chỉ số
 
@@ -65,6 +66,7 @@ public class RewardGachaManager : MonoBehaviour
     {
         foreach (Transform child in childObjects)
         {
+            AudioManager.instance.PlaySFX("OpenChest");
             child.gameObject.SetActive(true); // Hiện tất cả các object con
         }
 

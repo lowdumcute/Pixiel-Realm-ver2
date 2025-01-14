@@ -82,6 +82,7 @@ public class MainHouseController : MonoBehaviour
         {
             if (gamePlayManager.CanAfford(coin))
             {
+                AudioManager.instance.PlaySFX("Buid");
                 gamePlayManager.subtractionCoins(coin);
                 currentLevel++;
                 canUpgrade = enable && currentLevel < levels.Length - 1; // Kiểm tra cấp tối đa

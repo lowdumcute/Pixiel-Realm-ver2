@@ -790,13 +790,13 @@ MonoBehaviour:
     volume: 1
     loop: 0
   - name: IdleGame
-    Clip: {fileID: 8300000, guid: 47c171999af48b64aa6abe456755eb45, type: 3}
+    Clip: {fileID: 8300000, guid: 8f8a9fd5e049529459ad0ea24188f4a1, type: 3}
     volume: 1
-    loop: 0
+    loop: 1
   - name: FightGame
     Clip: {fileID: 8300000, guid: 84a5ac587a6ae1b4e9e3ddaeba3fa43d, type: 3}
     volume: 1
-    loop: 0
+    loop: 1
   SFXSound:
   - name: Pop
     Clip: {fileID: 8300000, guid: a2c32a1f241a3e2429ade109ba6e3fdd, type: 3}
@@ -815,7 +815,6 @@ MonoBehaviour:
     volume: 10
     loop: 0
   musicSource: {fileID: 2101902370}
-  SFX_Source: {fileID: 296259431}
 --- !u!4 &27704864
 Transform:
   m_ObjectHideFlags: 0
@@ -26533,8 +26532,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1857853229}
   m_HandleRect: {fileID: 1857853228}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.5547567
+  m_Value: 0.000000032123765
+  m_Size: 0.51282054
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

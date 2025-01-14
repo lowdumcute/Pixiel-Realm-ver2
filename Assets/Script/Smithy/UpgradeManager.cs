@@ -109,7 +109,7 @@ public class UpgradeManager : MonoBehaviour
             upgradeUI.DisplayNotification(true);
 
             Debug.Log($"Nâng cấp thành công! Item {item.itemName} đã được nâng lên cấp {item.CurrentStar}.");
-
+            AudioManager.instance.PlaySFX("UpgradeSuccess");
             // Spawn VFX thành công
             SpawnVFX(VFXSuccess);
         }
@@ -120,6 +120,7 @@ public class UpgradeManager : MonoBehaviour
             upgradeUI.DisplayNotification(true);
 
             // Spawn VFX thất bại
+            AudioManager.instance.PlaySFX("UpgradeFailed");
             SpawnVFX(VFXfailed);
         }
 

@@ -130,6 +130,7 @@ public class GamePlayManager : MonoBehaviour
     public void ChangeSence()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        AudioManager.instance.PlayMusic("MainMenuTheme");
         Time.timeScale = 1; 
     }
     public void Lose()
