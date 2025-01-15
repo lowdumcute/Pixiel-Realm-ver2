@@ -9,8 +9,8 @@ public class UnlockedChapet : MonoBehaviour
     [Header("Component")]
     [SerializeField] private GameObject PanelLocked;
     [SerializeField] private Button ButtonInteract;
-    [SerializeField] private StageSO[] stage;
-    public ChapterSO chapterSO;
+
+    public StageSO StageSO;
 
 
     public bool isUnlocked;
@@ -23,23 +23,14 @@ public class UnlockedChapet : MonoBehaviour
   
     private void CheckUnlocked()
     {
-        StageToUnlocked = 0;
-        foreach (StageSO n in stage)
+       
+        if(StageSO.isUnlocked == true)
         {
-            if(n.isUnlocked == true)
-            {
-                StageToUnlocked++;
-            }
-        }
-        if(StageToUnlocked == stage.Length)
-        {
-            chapterSO.isUnlocked = true;
             isUnlocked = true;
             PanelLocked.SetActive(false);
         }
         else
         {
-            chapterSO.isUnlocked = false;
             isUnlocked = false;
             PanelLocked.SetActive(true);
         }

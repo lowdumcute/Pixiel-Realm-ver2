@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
-  m_Name: Armor
+  m_Name: Knight'sArmor
   m_EditorClassIdentifier: 
-  Attack: 0
-  Health: 5
+  Attack: 5
+  Health: 20
   CurrentStar: 0
-  Decription: "gi\xE1p s\u1EAFt r\xE8n cho c\xF3 cho l\xEDnh c\u1EA5p th\u1EA5p"
+  Decription: "\xC1o gi\xE1p c\u1EE7a t\u01B0\u1EDBng binh kh\xE1 b\u1EC1n v\xE0
+    c\u1EE9ng "
   Type: 2
-  Rarity: 0
-  isEquipped: 1
-  itemName: "GI\xE1p s\u1EAFt"
-  Icon: {fileID: -1547822966, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
-  itemPrefab: {fileID: 6816753760795425645, guid: 3de6ef89c2741ff49847e8145b2148f2, type: 3}
-  currentQuantity: 0
+  Rarity: 2
+  isEquipped: 0
+  itemName: "Gi\xE1p hi\u1EC7p s\u0129"
+  Icon: {fileID: 436501599, guid: 26debae412f580144aaef4b175ea4484, type: 3}
+  itemPrefab: {fileID: 6816753760795425645, guid: 27a4878c5ce69e3498167f92e6d1679f, type: 3}
+  currentQuantity: 1

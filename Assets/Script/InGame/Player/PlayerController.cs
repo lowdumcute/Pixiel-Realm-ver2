@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,21 +6,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Asset asset;
     [SerializeField] private ParticleSystem dustEffect;    // Hiệu ứng hạt bụi
     public float moveSpeed = 10f;                          // Tốc độ di chuyển
-    public Vector2 inputVec;
-    Rigidbody2D rigid;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private bool isMovingRight = true;                     // Biến để theo dõi hướng di chuyển
     private bool isAttacking = false;
     private AudioManager audioManager;
-    void OnMove(InputValue value)
-    {
-        inputVec = value.Get<Vector2>();
-    }
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioManager = FindObjectOfType<AudioManager>();
@@ -29,21 +22,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
         CheckAttackRange();
     }
-    void FixedUpdate()
-    {
-        // Tính toán hướng di chuyển
-        Vector2 targetVelocity = inputVec * moveSpeed;
 
-        // Thay đổi tốc độ di chuyển của Rigidbody2D
-        rigid.velocity = new Vector2(targetVelocity.x, targetVelocity.y);
-    }
-
-    void LateUpdate()
+    private void HandleMovement()
     {
+        // Lấy đầu vào di chuyển
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
         // Kiểm tra có di chuyển hay không
-        bool isMoving = inputVec.x != 0 || inputVec.y != 0;
+        bool isMoving = horizontal != 0 || vertical != 0;
 
         // Nếu không đang tấn công thì cập nhật trạng thái di chuyển
         if (!isAttacking)
@@ -53,17 +43,21 @@ public class PlayerController : MonoBehaviour
 
         if (isMoving)
         {
+            // Di chuyển đối tượng
+            transform.position += new Vector3(horizontal, vertical, 0f) * moveSpeed * Time.deltaTime;
+
+
+            // Lật hình ảnh khi hướng di chuyển thay đổi
+            if ((horizontal > 0 && !isMovingRight) || (horizontal < 0 && isMovingRight))
+            {
+                isMovingRight = !isMovingRight;
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+            }
+
             // Chạy hiệu ứng bụi
             if (!dustEffect.isPlaying)
             {
                 dustEffect.Play();
-            }
-
-            // Lật hình ảnh khi hướng di chuyển thay đổi
-            if ((inputVec.x > 0 && !isMovingRight) || (inputVec.x < 0 && isMovingRight))
-            {
-                isMovingRight = !isMovingRight;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
             }
         }
         else
@@ -80,7 +74,7 @@ public class PlayerController : MonoBehaviour
     private void CheckAttackRange()
     {
         GameObject enemy = FindNearestEnemy();
-        bool isMoving = inputVec.x != 0 || inputVec.y != 0;
+        bool isMoving = Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0;
 
         if (enemy != null)
         {

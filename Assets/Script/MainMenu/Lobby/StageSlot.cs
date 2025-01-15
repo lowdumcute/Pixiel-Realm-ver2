@@ -14,9 +14,7 @@ public class StageSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI NameStage;
     [SerializeField] private TextMeshProUGUI Decription;
 
-    [SerializeField] private GameObject Click;
     [SerializeField] private Button NormalMode;
-    [SerializeField] private Button ChallengeMode;
 
     private bool isUnlocked; // Biến để lưu trạng thái mở khóa của stage
 
@@ -61,10 +59,6 @@ public class StageSlot : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (Click != null)
-        {
-            Click.SetActive(isUnlocked); // Hiện hoặc ẩn stage dựa vào trạng thái mở khóa
-        }
 
         if (stageSO != null)
         {

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 955ebe9dcd9af0b4ea8f53067cab60ce, type: 3}
-  m_Name: Siba
+  m_Name: LeatherJacket
   m_EditorClassIdentifier: 
-  Attack: 45
-  Health: 8
-  CurrentStar: 4
-  Decription: "ch\xF3 ngo\u1EA1i binh kh\xE1 gi\u1ECFi v\xE0 kh\xF4n"
-  Type: 5
-  Rarity: 2
+  Attack: 2
+  Health: 6
+  CurrentStar: 0
+  Decription: "\xE1o l\xE0m t\u1EEB l\xF4ng th\xFA c\u0169ng x\u1ECBn"
+  Type: 2
+  Rarity: 0
   isEquipped: 0
-  itemName: Siba
-  Icon: {fileID: 1800952396, guid: 31c21d52bf9f8e249bfb3d4e5fe65494, type: 3}
-  itemPrefab: {fileID: 6816753760795425645, guid: 01d7c9a63afd7f54f9d55f6376028cc2, type: 3}
-  currentQuantity: 0
+  itemName: "\xE1o kho\xE1c da"
+  Icon: {fileID: 998262715, guid: 26debae412f580144aaef4b175ea4484, type: 3}
+  itemPrefab: {fileID: 6816753760795425645, guid: 3da99f96f2ecdc14e8e2ee0b92f7dc71, type: 3}
+  currentQuantity: 1

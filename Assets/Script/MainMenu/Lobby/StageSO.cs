@@ -9,7 +9,7 @@ public class StageSO:ScriptableObject
     public string Decription;
     public int NormalStageEnergy;
     public int ChanllengeStageEnergy;
-    public Sprite[] BonusImage;
+
     public string NameSceneNormalStage;
     public string NameSceneChallengeStage;
 

@@ -13,18 +13,13 @@ MonoBehaviour:
   m_Name: TaiNguyen
   m_EditorClassIdentifier: 
   Gold: 113123
-  Star: 674401
-  currentEnergy: 30
+  Star: 647241
+  currentEnergy: 25
   maxEnergy: 30
-  Health: 150
-  Attack: 95
+  Health: 100
+  Attack: 20
   HealthCastle: 500
   AttackTower: 20
-  Coin: 4
-  fragmentWeapon: 8
-  fragmentHelmet: 5
-  fragmentArmor: 1
-  fragmentShoe: 4
-  fragmentRing: 2
-  fragmentPet: 4
+  Coin: 2
+  fragment: 89
   energyRechargeTime: 60

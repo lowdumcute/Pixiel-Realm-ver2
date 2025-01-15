@@ -16,5 +16,5 @@ MonoBehaviour:
   SkillName: Health
   SkillIcon: {fileID: 1819508307, guid: 9d73a718b28285c40a091711e98258d8, type: 3}
   GoldRequire: 1000
-  currentLevel: 3
+  currentLevel: 0
   maxLevel: 3

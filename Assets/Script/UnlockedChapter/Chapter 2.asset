@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c8b560b8d7548408139606e0c860dd, type: 3}
   m_Name: Chapter 2
   m_EditorClassIdentifier: 
-  isUnlocked: 1
-  stage:
-  - {fileID: 11400000, guid: 08aee6c6e79ba0648aa1950950267129, type: 2}
-  - {fileID: 11400000, guid: 30858a3607f673f47a1cb31b2a19c27c, type: 2}
+  isUnlocked: 0
+  stage: []
