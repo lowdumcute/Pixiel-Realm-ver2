@@ -5587,11 +5587,11 @@ MonoBehaviour:
     questName: "Ti\xEAu Di\u1EC7t Qu\xE1i"
     questType: 0
     targetAmount: 40
-    currentAmount: 0
-    isCompleted: 0
+    currentAmount: 40
+    isCompleted: 1
     isClaimed: 0
     Type: 1
-    rewardAmount: 20
+    rewardAmount: 100
   - questIndex: 1
     questName: Online
     questType: 1
@@ -5600,7 +5600,7 @@ MonoBehaviour:
     isCompleted: 0
     isClaimed: 0
     Type: 1
-    rewardAmount: 20
+    rewardAmount: 100
 --- !u!4 &284119301
 Transform:
   m_ObjectHideFlags: 0
@@ -13522,7 +13522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &738254333
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32771,10 +32771,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9eb10c665a9ca47814429f95ee5757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollRect: {fileID: 0}
+  scrollRect: {fileID: 814847514}
   questManager: {fileID: 284119300}
   questPrefab: {fileID: 6597925759943127124, guid: ccb9a0fd7b165854ab128a6609299d8a, type: 3}
+  rewardContainer: {fileID: 1231710767}
   questListParent: {fileID: 2020859312}
+  rewardEffectPrefab: {fileID: 6597925759943127124, guid: 7bcf5846b73c491488167083a137aeff, type: 3}
   activeQuestUIs: []
 --- !u!1 &1857853227
 GameObject:
@@ -33109,8 +33111,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1871937109}
-        m_TargetAssemblyTypeName: PanelActive, Assembly-CSharp
-        m_MethodName: Open
+        m_TargetAssemblyTypeName: TogglePanel, Assembly-CSharp
+        m_MethodName: TogglePanelVisibility
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33179,10 +33181,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1871937104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93597df152b22b441a64e7822d9e0405, type: 3}
+  m_Script: {fileID: 11500000, guid: e7e39496e9ace274cba8146858b669a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 7404871923868994846}
+  panel: {fileID: 7404871923868994846}
 --- !u!1 &1875017813
 GameObject:
   m_ObjectHideFlags: 0
@@ -41230,8 +41232,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 8135424243556978383}
-        m_TargetAssemblyTypeName: PanelActive, Assembly-CSharp
-        m_MethodName: Open
+        m_TargetAssemblyTypeName: TogglePanel, Assembly-CSharp
+        m_MethodName: TogglePanelVisibility
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41796,10 +41798,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4024738606930961640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93597df152b22b441a64e7822d9e0405, type: 3}
+  m_Script: {fileID: 11500000, guid: e7e39496e9ace274cba8146858b669a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 334448464}
+  panel: {fileID: 334448464}
 --- !u!1 &8164640982238198963
 GameObject:
   m_ObjectHideFlags: 0

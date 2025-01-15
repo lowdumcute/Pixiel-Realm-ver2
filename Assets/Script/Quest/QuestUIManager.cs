@@ -1,23 +1,27 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 
 public class QuestUIManager : MonoBehaviour
 {
     [Header("References")]
     public static QuestUIManager Instance;
-    public ScrollRect scrollRect;  // Tham chiếu tới ScrollRect
-    public QuestManager questManager;      // Tham chiếu tới QuestManager
-    public GameObject questPrefab;         // Prefab của UI Quest
-    public Transform questListParent;      // Parent để chứa các UI Quest
+    public ScrollRect scrollRect;
+    public QuestManager questManager;
+    public GameObject questPrefab;
+    public Transform rewardContainer;
+    
+    public Transform questListParent;
 
+
+    public GameObject rewardEffectPrefab; // Prefab phần thưởng với hiệu ứng
     public List<GameObject> activeQuestUIs = new List<GameObject>();
 
     void Start()
     {
-        PopulateQuests(); // Tạo UI cho tất cả nhiệm vụ khi bắt đầu
+        PopulateQuests();
         if (questManager == null)
         {
             questManager = FindObjectOfType<QuestManager>();
@@ -29,10 +33,8 @@ public class QuestUIManager : MonoBehaviour
         UpdateAllQuestUIs();
     }
 
-    // Tạo UI Quest dựa trên danh sách nhiệm vụ
     public void PopulateQuests()
     {
-        // Xóa UI cũ
         foreach (GameObject questUI in activeQuestUIs)
         {
             if (questUI != null)
@@ -42,16 +44,14 @@ public class QuestUIManager : MonoBehaviour
         }
         activeQuestUIs.Clear();
 
-        // Tạo mới UI cho tất cả nhiệm vụ trong danh sách
         foreach (Quest quest in questManager.questList)
         {
             GameObject newQuestUI = Instantiate(questPrefab, questListParent);
-            UpdateQuestUI(newQuestUI, quest);  // Cập nhật thông tin UI cho nhiệm vụ mới
+            UpdateQuestUI(newQuestUI, quest);
             activeQuestUIs.Add(newQuestUI);
         }
     }
 
-    // Cập nhật toàn bộ UI nhiệm vụ
     public void UpdateAllQuestUIs()
     {
         if (questManager == null)
@@ -67,56 +67,62 @@ public class QuestUIManager : MonoBehaviour
         }
     }
 
-    // Cập nhật UI của từng nhiệm vụ với dữ liệu từ Quest
     public void UpdateQuestUI(GameObject questUI, Quest quest)
     {
-        if (questUI == null) return; // Kiểm tra questUI có null hay không
+        if (questUI == null) return;
 
         TextMeshProUGUI titleText = questUI.transform.Find("Title").GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI amountText = questUI.transform.Find("AmountText").GetComponent<TextMeshProUGUI>();
         Slider progressSlider = questUI.transform.Find("ProgressSlider").GetComponent<Slider>();
         Button buttonClaimReward = questUI.transform.Find("ClaimRewardButton").GetComponent<Button>();
-        CanvasGroup canvasGroup = questUI.GetComponent<CanvasGroup>(); // CanvasGroup để điều khiển độ mờ
+        CanvasGroup canvasGroup = questUI.GetComponent<CanvasGroup>();
 
-        buttonClaimReward.onClick.RemoveAllListeners(); // Xóa tất cả các sự kiện trước khi thêm mới
+        buttonClaimReward.onClick.RemoveAllListeners();
 
-        // Nếu nhiệm vụ đã hoàn thành, kích hoạt nút Claim Reward, nếu không thì vô hiệu hóa nút
         if (quest.isCompleted)
         {
             amountText.gameObject.SetActive(false);
-            buttonClaimReward.gameObject.SetActive(true); // Kích hoạt nút
+            buttonClaimReward.gameObject.SetActive(true);
             buttonClaimReward.onClick.AddListener(() => {
-                questManager.ClaimQuestReward(quest.questIndex); // Gán sự kiện nhận thưởng
+                questManager.ClaimQuestReward(quest.questIndex);
+
+                // Cập nhật RewardText
+                TextMeshProUGUI RewardText = questUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+                if (RewardText != null)
+                {
+                    RewardText.text = $" +{quest.rewardAmount}";
+                }
+
+                // Spawn phần thưởng với hiệu ứng
+                SpawnRewardEffect(buttonClaimReward.transform, quest.rewardAmount);
+
                 // Làm mờ nhiệm vụ sau khi nhận phần thưởng
-                FadeOutQuest(questUI, canvasGroup); 
-                MoveQuestToBottom(questUI); // Di chuyển nhiệm vụ xuống dưới cùng
+                FadeOutQuest(questUI, canvasGroup);
+                MoveQuestToBottom(questUI);
             });
         }
         else
         {
-            buttonClaimReward.gameObject.SetActive(false); // Vô hiệu hóa nút
+            buttonClaimReward.gameObject.SetActive(false);
         }
 
-        titleText.text = quest.questName; // Cập nhật tên nhiệm vụ
-        amountText.text = $"{quest.currentAmount}/{quest.targetAmount}"; // Cập nhật tiến độ
-        progressSlider.maxValue = quest.targetAmount; // Cập nhật giá trị tối đa của slider
-        progressSlider.value = quest.currentAmount; // Cập nhật giá trị hiện tại của slider
+        titleText.text = quest.questName;
+        amountText.text = $"{quest.currentAmount}/{quest.targetAmount}";
+        progressSlider.maxValue = quest.targetAmount;
+        progressSlider.value = quest.currentAmount;
     }
 
-    // Phương thức làm mờ nhiệm vụ (fade out)
     private void FadeOutQuest(GameObject questUI, CanvasGroup canvasGroup)
     {
         if (canvasGroup == null)
-            canvasGroup = questUI.AddComponent<CanvasGroup>(); // Nếu chưa có, thêm CanvasGroup để điều khiển độ mờ
+            canvasGroup = questUI.AddComponent<CanvasGroup>();
 
-        // Dùng tween hoặc animate để làm mờ dần
-        StartCoroutine(FadeOut(canvasGroup)); 
+        StartCoroutine(FadeOut(canvasGroup));
     }
 
-    // Coroutine để làm mờ nhiệm vụ
     private IEnumerator FadeOut(CanvasGroup canvasGroup)
     {
-        float fadeDuration = 1f; // Thời gian fade
+        float fadeDuration = 1f;
         float startAlpha = canvasGroup.alpha;
         float endAlpha = 0.5f;
         float timeElapsed = 0f;
@@ -128,15 +134,67 @@ public class QuestUIManager : MonoBehaviour
             yield return null;
         }
 
-        canvasGroup.alpha = endAlpha; // Đảm bảo hoàn thành quá trình fade
+        canvasGroup.alpha = endAlpha;
     }
 
-    // Phương thức để di chuyển nhiệm vụ xuống dưới cùng
     private void MoveQuestToBottom(GameObject questUI)
     {
-        questUI.transform.SetAsLastSibling(); // Đưa nhiệm vụ xuống dưới cùng của danh sách
+        questUI.transform.SetAsLastSibling();
     }
 
+    // Spawn phần thưởng với hiệu ứng bay lên
+    private void SpawnRewardEffect(Transform buttonTransform, int rewardAmount)
+    {
+        // Tạo phần thưởng tại vị trí của buttonClaimReward
+        GameObject rewardEffect = Instantiate(rewardEffectPrefab, rewardContainer);
+
+        // Đặt vị trí của rewardEffect trùng với buttonClaimReward
+        rewardEffect.transform.position = buttonTransform.position;
+
+        // Cập nhật text hiển thị
+        TextMeshPro rewardText = rewardEffect.transform.GetChild(0).GetComponent<TextMeshPro>();
+        if (rewardText != null)
+        {
+            rewardText.text = $"+{rewardAmount}";
+        }
+
+        // Thực hiện hiệu ứng bay lên và mờ dần
+        StartCoroutine(RewardFlyUpAndFade(rewardEffect));
+    }
+
+    private IEnumerator RewardFlyUpAndFade(GameObject rewardEffect)
+    {
+        float duration = 2.5f; // Tổng thời gian hiệu ứng
+        float fadeDuration = 1.5f; // Thời gian mờ dần
+        Vector3 startPosition = rewardEffect.transform.position;
+        Vector3 endPosition = startPosition + Vector3.up * 10f; // Bay lên 30 đơn vị
+
+        float elapsedTime = 0f;
+        CanvasGroup canvasGroup = rewardEffect.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = rewardEffect.AddComponent<CanvasGroup>();
+        }
+
+        while (elapsedTime < duration)
+        {
+            // Di chuyển phần thưởng bay lên
+            rewardEffect.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / duration);
+
+            // Làm mờ phần thưởng
+            if (elapsedTime >= duration - fadeDuration)
+            {
+                float fadeElapsed = elapsedTime - (duration - fadeDuration);
+                canvasGroup.alpha = Mathf.Lerp(1f, 0f, fadeElapsed / fadeDuration);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Đảm bảo phần thưởng bị xóa sau hiệu ứng
+        Destroy(rewardEffect);
+    }
     // Phương thức chỉ cập nhật amountText và progressSlider
     public void UpdateQuestProgressUI(GameObject questUI, int currentAmount, int targetAmount)
     {
