@@ -100,6 +100,7 @@ public class GamePlayManager : MonoBehaviour
         Debug.Log("You Win!");
         winPanel.SetActive(true); // Hiển thị Win Panel
         Time.timeScale = 0; // Dừng thời gian trong game
+        AudioManager.instance.PlaySFX("Victory");
         UpdateRewards();
     }
 

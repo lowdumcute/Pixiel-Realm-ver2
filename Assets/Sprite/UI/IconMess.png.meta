@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d2a217879bee1b428bb8fa7e6f21e28
+guid: 13b30e42fe253cb42adb9bddbc0980f7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,72 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: VisionOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: tvOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -175,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Banner_Connection_Up_0
+      name: IconMess_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 143
-        width: 116
-        height: 47
+        x: 7
+        y: 23
+        width: 58
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,29 +124,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30ffda4eee275bf47ba59b116f9f37e6
-      internalID: 999155820
+      spriteID: 303b1c3a2571e0248abae1d5ae9b2ab9
+      internalID: 329723887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Banner_Connection_Up_1
+      name: IconMess_1
       rect:
         serializedVersion: 2
-        x: 47
-        y: 39
-        width: 98
-        height: 104
+        x: 7
+        y: 3
+        width: 78
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 4, y: 8, z: 4, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73c899db51b8b774681b092388c66075
-      internalID: 1093583304
+      spriteID: dc7eb95244170644c86e8a25804888ce
+      internalID: 1479600265
       vertices: []
       indices: 
       edges: []
@@ -227,9 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Banner_Connection_Up_0: 999155820
-      Banner_Connection_Up_1: 1093583304
-      Banner_Connection_Up_2: 939434226
+      IconMess_0: 329723887
+      IconMess_1: 1479600265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,7 +5,8 @@ public enum RewardType { Gold, Star } // Các loại phần thưởng
 public enum QuestType
 {
     KillEnemies,  // Nhiệm vụ tiêu diệt quái
-    StayOnline    // Nhiệm vụ online
+    StayOnline,    // Nhiệm vụ online
+    CompleteStage // Nhiệm vụ hoàn thành màn chơi
 }
 
 // Class nhiệm vụ
@@ -22,14 +23,17 @@ public class Quest
     public RewardType Type;
     public int rewardAmount;
 
-    public Quest(string name, QuestType type, int target)
+    // Dùng để tham chiếu đến StageSO khi quest là CompleteStage
+    public StageSO stageSO; 
+
+    public Quest(string name, QuestType type, int target, StageSO stage = null)
     {
-        
         questName = name;
         questType = type;
         targetAmount = target;
         isCompleted = false;
         currentAmount = 0;
+        stageSO = stage; // Chỉ cần gán nếu là loại nhiệm vụ CompleteStage
     }
 }
 
@@ -74,6 +78,26 @@ public class QuestManager : MonoBehaviour
 
             // Cập nhật nhiệm vụ StayOnline
             UpdateStayOnlineProgress(minutesElapsed);
+        }
+
+        // Kiểm tra trạng thái của nhiệm vụ CompleteStage
+        CheckCompleteStageQuests();
+    }
+
+    public void CheckCompleteStageQuests()
+    {
+        foreach (Quest quest in questList)
+        {
+            if (quest.questType == QuestType.CompleteStage && !quest.isCompleted && quest.stageSO != null)
+            {
+                // Kiểm tra xem màn chơi đã được mở khóa chưa
+                if (quest.stageSO.isUnlocked)
+                {
+                    quest.currentAmount +=1;
+                    quest.isCompleted = true;
+                    Debug.Log($"Nhiệm vụ '{quest.questName}' đã hoàn thành vì màn chơi đã mở khóa.");
+                }
+            }
         }
     }
 

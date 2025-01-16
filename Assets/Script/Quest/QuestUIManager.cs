@@ -81,7 +81,6 @@ public class QuestUIManager : MonoBehaviour
 
         if (quest.isCompleted)
         {
-            amountText.gameObject.SetActive(false);
             buttonClaimReward.gameObject.SetActive(true);
             buttonClaimReward.onClick.AddListener(() => {
                 questManager.ClaimQuestReward(quest.questIndex);
@@ -98,12 +97,22 @@ public class QuestUIManager : MonoBehaviour
 
                 // Làm mờ nhiệm vụ sau khi nhận phần thưởng
                 FadeOutQuest(questUI, canvasGroup);
-                MoveQuestToBottom(questUI);
+                MoveQuestToBottom(questUI); // Move to bottom after claiming
             });
+
+            // Đẩy nhiệm vụ hoàn thành lên đầu
+            MoveQuestToTop(questUI);
         }
         else
         {
             buttonClaimReward.gameObject.SetActive(false);
+        }
+
+        // Nếu nhiệm vụ đã được nhận phần thưởng, đẩy xuống dưới và làm mờ
+        if (quest.isClaimed)
+        {
+            MoveQuestToBottom(questUI);
+            FadeOutQuest(questUI, canvasGroup);
         }
 
         titleText.text = quest.questName;
@@ -111,6 +120,19 @@ public class QuestUIManager : MonoBehaviour
         progressSlider.maxValue = quest.targetAmount;
         progressSlider.value = quest.currentAmount;
     }
+
+    // Đẩy nhiệm vụ lên đầu danh sách
+    private void MoveQuestToTop(GameObject questUI)
+    {
+        questUI.transform.SetAsFirstSibling(); // Đặt làm đầu tiên trong danh sách
+    }
+
+    // Đẩy nhiệm vụ xuống dưới cùng danh sách
+    private void MoveQuestToBottom(GameObject questUI)
+    {
+        questUI.transform.SetAsLastSibling(); // Đặt làm cuối cùng trong danh sách
+    }
+
 
     private void FadeOutQuest(GameObject questUI, CanvasGroup canvasGroup)
     {
@@ -135,11 +157,6 @@ public class QuestUIManager : MonoBehaviour
         }
 
         canvasGroup.alpha = endAlpha;
-    }
-
-    private void MoveQuestToBottom(GameObject questUI)
-    {
-        questUI.transform.SetAsLastSibling();
     }
 
     // Spawn phần thưởng với hiệu ứng bay lên

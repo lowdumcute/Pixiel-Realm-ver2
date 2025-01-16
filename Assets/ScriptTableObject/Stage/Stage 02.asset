@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa95f40e7ffcc6408c0705ece616d1b, type: 3}
   m_Name: Stage 02
   m_EditorClassIdentifier: 
-  isUnlocked: 1
+  isUnlocked: 0
   chapter: "M\xE0n 2"
   Decription: "ti\u1EBFn th\u1EB3ng t\u1EDBi c\u0103n c\u1EE9 k\u1EBB \u0111\u1ECBch"
   NormalStageEnergy: 0
