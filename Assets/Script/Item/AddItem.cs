@@ -104,11 +104,12 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }       
     }
 
-     private void CheckInfor()
+    
+    private void CheckInfor()
     {
         PanelInformation.SetActive(true);
         Name.text = itemInventory.itemName;
-        Icon.sprite = itemInventory.Icon;        
+        Icon.sprite = itemInventory.Icon;
         Decription.text = itemInventory.Decription;
         type.text = $"Type: <color=white>{itemInventory.Type}</color>";
 
@@ -120,24 +121,20 @@ public class AddItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvasRect,
             Input.mousePosition,
-            null, // Camera (null nếu Canvas là Screen Space - Overlay)
+            Camera.main, // Đảm bảo Camera chính được sử dụng nếu cần
             out mousePosition
         );
 
         // Offset panel ngay dưới con chuột
-        Vector2 offset = new Vector2(800f, -400f);
+        Vector2 offset = new Vector2(1000f, -500f);
         Vector2 targetPosition = mousePosition + offset;
 
         // Đảm bảo vị trí không vượt quá giới hạn
-        targetPosition.x = Mathf.Clamp(targetPosition.x, -530, 530);
-        targetPosition.y = Mathf.Clamp(targetPosition.y, -530, 530);
+        targetPosition.x = Mathf.Clamp(targetPosition.x, -canvasRect.rect.width / 2, canvasRect.rect.width / 2);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, -canvasRect.rect.height / 2, canvasRect.rect.height / 2);
 
         // Đặt vị trí
         panelRect.anchoredPosition = targetPosition;
-
-
-
-
     }
     public void OnPointerExit(PointerEventData eventData)
     {
