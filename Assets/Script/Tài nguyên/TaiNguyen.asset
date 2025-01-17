@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gold: 0
   Star: 0
-  currentEnergy: 30
+  currentEnergy: 28
   maxEnergy: 30
   Health: 100
-  Attack: 20
+  Attack: 100
   HealthCastle: 500
   AttackTower: 20
   Coin: 2
-  fragment: 4
+  fragment: 40
   energyRechargeTime: 60
