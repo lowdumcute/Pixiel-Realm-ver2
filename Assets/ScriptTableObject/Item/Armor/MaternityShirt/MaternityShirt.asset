@@ -22,4 +22,4 @@ MonoBehaviour:
   itemName: "\xC1o b\xE0 b\u1EA7u "
   Icon: {fileID: -1088339989, guid: 26debae412f580144aaef4b175ea4484, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 992fedad24541774daeae5be25d84908, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0

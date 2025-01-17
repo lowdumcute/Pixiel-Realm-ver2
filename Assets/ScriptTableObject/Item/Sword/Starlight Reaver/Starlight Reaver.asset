@@ -23,4 +23,4 @@ MonoBehaviour:
   itemName: "S\xE1t Tinh Quang"
   Icon: {fileID: 1209499688, guid: c820bda1d00867c49a71950b9aa1d918, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: f605adc4c224a2d478e519cea0c04742, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0

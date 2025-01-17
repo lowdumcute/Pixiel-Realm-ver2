@@ -22,4 +22,4 @@ MonoBehaviour:
   itemName: "Ring R\u1EAFn"
   Icon: {fileID: -957785332, guid: e6c0fa6c6f20e094489f194f50a934c1, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: 1088776b14c93af459799f66c6702a93, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0

@@ -33,10 +33,9 @@ public class GachaSystem : MonoBehaviour
     {
         UpdateUI();
     }
-
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        StarText.text = asset.Star.ToString();
+        StarText.text = FormatNumber(asset.Star); // Định dạng số sao
         assetDisplay.UpdateDisplay();
         inventoryUI.UpdateUI();
     }
@@ -168,6 +167,25 @@ public class GachaSystem : MonoBehaviour
         }
 
         Debug.Log($"Trúng thưởng: {reward.name}");
+    }
+    public static string FormatNumber(float number)
+    {
+        if (number >= 1_000_000_000)
+        {
+            return (number / 1_000_000_000f).ToString("0.##") + "B"; // Tỷ (Billion)
+        }
+        else if (number >= 1_000_000)
+        {
+            return (number / 1_000_000f).ToString("0.##") + "M"; // Triệu (Million)
+        }
+        else if (number >= 1_000)
+        {
+            return (number / 1_000f).ToString("0.##") + "K"; // Nghìn (Thousand)
+        }
+        else
+        {
+            return number.ToString("0"); // Số nguyên
+        }
     }
 
 }

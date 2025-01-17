@@ -23,4 +23,4 @@ MonoBehaviour:
   itemName: "Ng\u01B0\u1EDDi Mang B\xECnh Minh"
   Icon: {fileID: -692458498, guid: c820bda1d00867c49a71950b9aa1d918, type: 3}
   itemPrefab: {fileID: 6816753760795425645, guid: ee40008eb612810468c863d084171635, type: 3}
-  currentQuantity: 1
+  currentQuantity: 0
