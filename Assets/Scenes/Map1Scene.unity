@@ -11047,6 +11047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a239a5a8039d1541836662e6f96bf48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asset: {fileID: 11400000, guid: 93aaad362d9fb034cbc06c5aacfe8454, type: 2}
   coinText: {fileID: 1242242318}
   mainHouseController: {fileID: 7011844071968235144}
   castleHealth: {fileID: 7011844071968235148}

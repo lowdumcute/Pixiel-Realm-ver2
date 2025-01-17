@@ -11,10 +11,11 @@ public class LevelReward
 
 public class GamePlayManager : MonoBehaviour
 {
+    [SerializeField] private Asset asset;
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private MainHouseController mainHouseController;
     [SerializeField] private CastleHealth castleHealth; 
-    [SerializeField] private int currentCoins = 2;
+    [SerializeField] private int currentCoins;
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeMagnitude = 10f;
     [SerializeField] private GameObject winPanel; // Tham chiếu tới Win Panel
@@ -25,6 +26,7 @@ public class GamePlayManager : MonoBehaviour
 
     private void Start()
     {
+        currentCoins = asset.Coin;
         originalPosition = coinText.rectTransform.localPosition;
         UpdateCoinDisplay();
         winPanel.SetActive(false); // Ẩn Win Panel khi bắt đầu game

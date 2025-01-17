@@ -106,6 +106,7 @@ public class TowerHealth : MonoBehaviour
     // Hàm xử lý khi Tower bị phá hủy
     private void Die()
     {
+        AudioManager.instance.PlaySFX("UpgradeFailed");
         gameObject.tag = "Untagged";
         animator.SetBool("Lose", true);
         if (VFXDestroy != null)
