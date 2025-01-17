@@ -5866,8 +5866,8 @@ MonoBehaviour:
     questName: "Ti\xEAu Di\u1EC7t Qu\xE1i"
     questType: 0
     targetAmount: 40
-    currentAmount: 40
-    isCompleted: 1
+    currentAmount: 0
+    isCompleted: 0
     isClaimed: 0
     Type: 1
     rewardAmount: 100
