@@ -24,7 +24,7 @@ public class QuestUIManager : MonoBehaviour
         PopulateQuests();
         if (questManager == null)
         {
-            questManager = FindObjectOfType<QuestManager>();
+            questManager = FindAnyObjectByType<QuestManager>();
         }
     }
 
@@ -56,7 +56,7 @@ public class QuestUIManager : MonoBehaviour
     {
         if (questManager == null)
         {
-            questManager = FindObjectOfType<QuestManager>();
+            questManager = FindAnyObjectByType<QuestManager>();
         }
         for (int i = 0; i < activeQuestUIs.Count; i++)
         {

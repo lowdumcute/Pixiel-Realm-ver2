@@ -4,19 +4,16 @@ using UnityEngine;
 public class Miner : MonoBehaviour
 {
     [SerializeField] public int coin = 2; // Số coin nhận được
-    [SerializeField] private GamePlayManager gamePlayManager;
+
     [SerializeField] private GameObject buttonUpgrade;
     [SerializeField] private GameObject Light;
     public float detectionRadius = 5f; // Bán kính phát hiện người chơi
     private static bool isInCombat = false; // Trạng thái chiến đấu
     private bool isPlaying = true; // Kiểm tra trạng thái in-game của Miner
     private Transform player;
-    private MainHouseController mainHouseController; // Tham chiếu đến nhà chính
 
     private void Start()
     {
-        gamePlayManager = FindObjectOfType<GamePlayManager>();
-        mainHouseController = FindObjectOfType<MainHouseController>();
         buttonUpgrade.SetActive(false);
         Light.SetActive (false);
 
@@ -34,16 +31,16 @@ public class Miner : MonoBehaviour
 
     public void Upgrade()
     {
-        if (mainHouseController != null && mainHouseController.canUpgrade)
+        if (MainHouseController.instance != null && MainHouseController.instance.canUpgrade)
         {
             coin += 2;
-            mainHouseController.UpgradeLevel(false); // Nâng cấp nhà chính và vô hiệu hóa khả năng nâng cấp
+            MainHouseController.instance.UpgradeLevel(false); // Nâng cấp nhà chính và vô hiệu hóa khả năng nâng cấp
         }
     }
 
     public void AddCoin()
     {
-        gamePlayManager.AddCoins(coin);
+        GamePlayManager.instance.AddCoins(coin);
         Light.SetActive (false);
     }
 
@@ -61,10 +58,10 @@ public class Miner : MonoBehaviour
             // Kiểm tra khoảng cách giữa Miner và Player
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-            if (distanceToPlayer <= detectionRadius && mainHouseController != null)
+            if (distanceToPlayer <= detectionRadius && MainHouseController.instance != null)
             {
                 // Hiển thị nút nâng cấp nếu chưa đạt cấp tối đa
-                buttonUpgrade.SetActive(mainHouseController.canUpgrade);
+                buttonUpgrade.SetActive(MainHouseController.instance.canUpgrade);
             }
             else
             {

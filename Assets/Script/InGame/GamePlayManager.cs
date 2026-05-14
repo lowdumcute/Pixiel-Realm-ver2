@@ -1,4 +1,4 @@
-using System.Collections;
+
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class LevelReward
 
 public class GamePlayManager : MonoBehaviour
 {
+    public static GamePlayManager instance; // Singleton instance
     [SerializeField] private Asset asset;
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private MainHouseController mainHouseController;
@@ -23,7 +24,20 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] private LevelReward[] levelRewards; // Danh sách phần thưởng
 
     private Vector3 originalPosition;
-
+    
+     private void Awake()
+    {
+        // Thiết lập Singleton pattern
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Giữ GameObject này qua các scene
+        }
+        else
+        {
+            Destroy(gameObject); // Hủy bỏ nếu đã có một instance tồn tại
+        }
+    }
     private void Start()
     {
         currentCoins = asset.Coin;

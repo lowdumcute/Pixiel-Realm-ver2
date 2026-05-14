@@ -20,8 +20,8 @@ public class ItemHandler : MonoBehaviour
 
     private void Start()
     {
-        smithyInventory = FindObjectOfType<SmithyInventory>();
-        upgradeUI = FindObjectOfType<UpgradeUI>();
+        smithyInventory = FindAnyObjectByType<SmithyInventory>();
+        upgradeUI = FindAnyObjectByType<UpgradeUI>();
     }
 
     // Thay đổi trạng thái isUpgrade

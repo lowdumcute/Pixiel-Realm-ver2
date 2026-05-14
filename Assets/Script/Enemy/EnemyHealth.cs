@@ -35,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (killEnemiesProgress == null)
         {
-            killEnemiesProgress = FindObjectOfType<KillEnemiesProgress>();
+            killEnemiesProgress = FindAnyObjectByType<KillEnemiesProgress>();
         }
     }
 
@@ -96,7 +96,7 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
 
         // Gửi sự kiện lên SpawnManager và KillEnemiesProgress
-        FindObjectOfType<SpawnManager>().OnEnemyDefeated();
+        FindAnyObjectByType<SpawnManager>().OnEnemyDefeated();
         if (killEnemiesProgress != null)
         {
             killEnemiesProgress.OnEnemyKilled();

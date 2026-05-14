@@ -3,16 +3,10 @@ using TMPro;
 
 public class MainHouseController : MonoBehaviour
 {
-    [System.Serializable]
-    public class LevelObjects
-    {
-        public GameObject[] objects; // Các object của mỗi level
-    }
-
+    public static MainHouseController instance; // Singleton instance
     [SerializeField] private GameObject UpgradePanel; // Panel nâng cấp
     [SerializeField] private GameObject LevelObj;
     [SerializeField] private TMP_Text LevelText;
-    [SerializeField] private GamePlayManager gamePlayManager;
     [SerializeField] private int coin = 2;
     public LevelObjects[] levels; // Mảng chứa các cấp độ và các object liên quan
     public float detectionRadius = 5f; // Bán kính phát hiện người chơi
@@ -21,6 +15,19 @@ public class MainHouseController : MonoBehaviour
     private int currentLevel = 0; // Cấp độ hiện tại
     public bool canUpgrade = true; // Có thể nâng cấp hay không
 
+    private void Awake()
+    {
+        // Thiết lập Singleton pattern
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // Giữ GameObject này qua các scene
+        }
+        else
+        {
+            Destroy(gameObject); // Hủy bỏ nếu đã có một instance tồn tại
+        }
+    }
     private void Start()
     {
         LevelText.text = "Level";
@@ -80,10 +87,10 @@ public class MainHouseController : MonoBehaviour
     {
         if (currentLevel < levels.Length - 1)
         {
-            if (gamePlayManager.CanAfford(coin))
+            if (GamePlayManager.instance.CanAfford(coin))
             {
                 AudioManager.instance.PlaySFX("Buid");
-                gamePlayManager.subtractionCoins(coin);
+                GamePlayManager.instance.subtractionCoins(coin);
                 currentLevel++;
                 canUpgrade = enable && currentLevel < levels.Length - 1; // Kiểm tra cấp tối đa
                 UpdateLevelVisibility();
@@ -93,7 +100,7 @@ public class MainHouseController : MonoBehaviour
             else
             {
                 // Rung text nếu không đủ tiền
-                gamePlayManager.ShakeCoinText();
+                GamePlayManager.instance.ShakeCoinText();
             }
         }
         else
@@ -144,4 +151,10 @@ public class MainHouseController : MonoBehaviour
     {
         isInCombat = false;
     }
+}
+
+[System.Serializable]
+public class LevelObjects
+{
+    public GameObject[] objects; // Các object của mỗi level
 }

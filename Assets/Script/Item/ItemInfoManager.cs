@@ -17,7 +17,7 @@ public class ItemInfoManager : MonoBehaviour
         // Tìm đối tượng có ItemInfoReceiver nếu chưa gán
         if (itemInfoReceiver == null)
         {
-            itemInfoReceiver = FindObjectOfType<ItemInfoReceiver>();
+            itemInfoReceiver = FindAnyObjectByType<ItemInfoReceiver>();
         }
 
         if (itemInfoReceiver == null)

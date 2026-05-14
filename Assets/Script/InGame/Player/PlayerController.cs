@@ -11,13 +11,11 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isMovingRight = true;                     // Biến để theo dõi hướng di chuyển
     private bool isAttacking = false;
-    private AudioManager audioManager;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Update()

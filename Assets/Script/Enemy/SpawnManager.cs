@@ -83,7 +83,8 @@ public class SpawnManager : MonoBehaviour
                 StartCoroutine(AdjustLightIntensity(1.0f, 0.1f));
             }
 
-            Miner[] miners = FindObjectsOfType<Miner>();
+            Miner[] miners = FindObjectsByType<Miner>(FindObjectsSortMode.None);
+
             foreach (Miner miner in miners)
             {
                 miner.inGame();
@@ -132,19 +133,22 @@ public class SpawnManager : MonoBehaviour
             Building.ExitCombat();
             gamePlayManager.AddCoins(waveConfigs[currentWave].coinsReward);
 
-            Miner[] miners = FindObjectsOfType<Miner>();
+            Miner[] miners = FindObjectsByType<Miner>(FindObjectsSortMode.None);
+
             foreach (Miner miner in miners)
             {
                 miner.AddCoin();
             }
 
-            Barracks[] barracks = FindObjectsOfType<Barracks>();
+            Barracks[] barracks = FindObjectsByType<Barracks>(FindObjectsSortMode.None);
+
             foreach (Barracks barracksInstance in barracks)
             {
                 barracksInstance.ResetUnitsPositions();
             }
 
-            TowerHealth[] towers = FindObjectsOfType<TowerHealth>();
+            TowerHealth[] towers = FindObjectsByType<TowerHealth>(FindObjectsSortMode.None);
+
             foreach (TowerHealth towerInstance in towers)
             {
                 towerInstance.RestoreHealth();

@@ -26,10 +26,10 @@ public class ItemStats : MonoBehaviour
     {
         if (assetDisplay == null)
         {
-            assetDisplay = FindObjectOfType<AssetDisplay>();
+            assetDisplay = FindAnyObjectByType<AssetDisplay>();
         }
-        itemManager = FindObjectOfType<ItemManager>();
-        inventoryUI = FindObjectOfType<InventoryUI>();
+        itemManager = FindAnyObjectByType<ItemManager>();
+        inventoryUI = FindAnyObjectByType<InventoryUI>();
         UpdateItemImageByRarity();
     }
 
